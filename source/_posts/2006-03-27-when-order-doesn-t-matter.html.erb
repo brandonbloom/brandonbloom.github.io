@@ -1,0 +1,11 @@
+---
+title: "When order doesn't matter"
+date: 2006-03-27
+comments: false
+---
+
+<div class='blogger'>
+  <div class='post'>
+    Programming languages, imperative ones in particular, place a lot of emphasis on sequence. Take this simple pseuodocode for example:<br /><br /><span style="font-family: courier new;">components = [4.5, 3.2, 4.0, 3.8]</span><br /><span style="font-family: courier new;">min(round_down(components))</span><br /><br />The result of this code is 3, but that same result can very clearly be achieved in a less computationally expensive manner by performing:<br /><br /><span style="font-family: courier new;">round_down(min(components))</span><br /><br />Correct me if I am wrong, but current day compilers operate on source code that lacks the semantic to perform such an optimization.  </div>
+  </div>
+</div>
