@@ -1,4 +1,5 @@
 ---
+layout: post
 date: 2013-01-11
 title: 'Fipp: Fast Idiomatic Pretty-Printer for Clojure'
 ---

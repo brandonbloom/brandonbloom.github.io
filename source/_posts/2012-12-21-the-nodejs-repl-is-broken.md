@@ -1,4 +1,5 @@
 ---
+layout: post
 date: 2012-12-21
 title: 'The Node.js REPL is Broken'
 comments: false

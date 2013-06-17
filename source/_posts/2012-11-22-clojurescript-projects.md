@@ -1,4 +1,5 @@
 ---
+layout: post
 title: ClojureScript Projects
 date: 2012-11-22
 ---

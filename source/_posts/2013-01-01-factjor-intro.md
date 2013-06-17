@@ -1,4 +1,5 @@
 ---
+layout: post
 date: 2013-01-01
 title: 'Factjor: Concatenative Clojure'
 ---

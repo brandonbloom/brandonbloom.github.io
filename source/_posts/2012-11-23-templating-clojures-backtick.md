@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Templating: Clojure's Backtick"
 date: 2012-11-23
 comments: false

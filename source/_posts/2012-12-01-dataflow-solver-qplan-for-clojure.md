@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Dataflow Solver (qplan for Clojure)'
 date: 2012-12-01
 ---

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Clojure's multimethod dispatch as a library"
 date: 2012-12-10
 comments: false
