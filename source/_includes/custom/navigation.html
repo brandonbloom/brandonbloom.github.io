@@ -1,4 +1,10 @@
 <ul class="main-navigation">
-  <li><a href="{{ root_url }}/">Blog</a></li>
+  <li><a href="{{ root_url }}/">Home</a></li>
   <li><a href="{{ root_url }}/blog/archives">Archives</a></li>
+  {% if site.github_user %}
+    <li><a href="https://github.com/{{site.github_user}}">GitHub</a></li>
+  {% endif %}
+  {% if site.twitter_user %}
+    <li><a href="https://twitter.com/{{site.twitter_user}}">Twitter</a></li>
+  {% endif %}
 </ul>
