@@ -90,11 +90,11 @@ Being able to "hot-reload" a file is nice, but the failing is in the manner by
 which names are resolved. Aliasing imports into a local variable lacks a level
 of indirection; this precludes hot-swapping.
 
-    This has nothing to do with an interactive prompt.
+> This has nothing to do with an interactive prompt.
 
 These are design decisions that impact the usability of interactive prompts.
 
-    you haven't written an in-memory migration script have you?
+> you haven't written an in-memory migration script have you?
 
 Sometimes I do migrate my in memory data structures... I enjoy having that
 option.
