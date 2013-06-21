@@ -29,14 +29,14 @@ diagram with an additional `Company` class that may also have an address.
 
 ![Person / Address / Company ball-of-mud](/images/oop-cycle.png)
 
-Any time you add a type to this graph, it's instantly tangled-up with
+Any time you add a type to this graph, it is instantly tangled-up with
 everything else. Compare this with this functional variant:
 
 ![Person / Address / Company untangled](/images/fp-dag.png)
 
 Now you can analyze, compile, and reason about a subset of this graph.
 Reasoning about any particular node only requires reasoning about the
-transitive closure of it's dependencies. However, in the presence of ubiquitous
+transitive closure of its dependencies. However, in the presence of ubiquitous
 cycles, the transitive closure is equivalent to the entire graph.
 
 Unfortunately, we've now lost the convenient `noun.verb` or `noun.component`
@@ -72,5 +72,5 @@ syntax.  Respectively, implicit conversions and extension methods leverage the
 type system to perform dispatch to non-members in a syntactically identical
 way.
 
-It's unfortunate that it's so easy to create cycles. A small sin at first, but
-they quickly add up and really start to hurt as a system grows larger.
+It is unfortunate that it is so easy to create cycles. A small sin at first,
+but they quickly add up and really start to hurt as a system grows larger.

@@ -16,7 +16,7 @@ flawed languages from a REPL-lover's perspective.
 Now, I realize that this is a bold and, thus far, unsubstantiated claim. Python
 and Ruby are revered for interactive, dynamic development and Firebug's
 JavaScript console changed the game for web apps. So with so many happy REPL
-users, what are these fundamental flaws? Since it's the worst offender, let me
+users, what are these fundamental flaws? Since it is the worst offender, let me
 pick on JavaScript for a moment...
 
 Node's stock REPL provides a fragile and awkward notion of an evaluation
@@ -38,7 +38,7 @@ did, you'd still be left with a reference f pointing to an old version of the
 function. That might not be a big problem if you have just one function, but
 what if you have several objects and functions in a larger system? The
 too-simple plain old JavaScript objects approach results in the copying of
-references and assigning those copies to local names. It's extremely difficult
+references and assigning those copies to local names. It is extremely difficult
 to reason about changes. Even if you knew to cheat by reaching inside of
 require.cache with a delete, you'd still be better off restarting your REPL to
 preserve your sanity. That's a real shame if you had a bunch of interesting
@@ -60,7 +60,7 @@ It doesn't have to be this way. There are languages that are much better suited
 to iterative REPL development. If you've been following my blog, then this is
 where you'd expect me to praise Clojure. I'll save that for a future post in
 which I'll discuss what is really necessary for a successful REPL. And while
-Clojure's REPL is far better than any other I've ever used, it's got it's own
+Clojure's REPL is far better than any other I've ever used, it has its own
 shortcomings to discuss as well.
 
 
