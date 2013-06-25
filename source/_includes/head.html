@@ -7,6 +7,23 @@
   <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
   <meta name="author" content="{{ site.author }}">
 
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
   {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
   <meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}">
   {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
