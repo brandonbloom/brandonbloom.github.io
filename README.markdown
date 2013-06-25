@@ -21,7 +21,7 @@ Check out [Octopress.org](http://octopress.org/docs) for guides and documentatio
 We love to see people contributing to Octopress, whether it's a bug report, feature suggestion or a pull request. At the moment, we try to keep the core slick and lean, focusing on basic blogging needs, so some of your suggestions might not find their way into Octopress. For those ideas, we started a [list of 3rd party plug-ins](https://github.com/imathis/octopress/wiki/3rd-party-plugins), where you can link your own Octopress plug-in repositories. For the future, we're thinking about ways to easier add them them into our main releases.
 
 
-## License
+## Octopress License
 (The MIT License)
 
 Copyright © 2009-2013 Brandon Mathis
@@ -36,3 +36,10 @@ THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 #### If you want to be awesome.
 - Proudly display the 'Powered by Octopress' credit in the footer.
 - Add your site to the Wiki so we can watch the community grow.
+
+
+## brandonbloom.com License
+
+All blog posts and other homepage content Copyright © 2013 Brandon Bloom
+
+All rights reserved.
