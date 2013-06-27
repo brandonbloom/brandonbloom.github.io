@@ -51,7 +51,7 @@ The bottom line on this subject is that 1) You're going to need significant
 cleverness to scale any service regardless of whether you use a database or the
 file system directly. And 2) You probably won't need to scale hugely anytime
 soon, anyway. Being crushed by traffic is a Good Problem To Have, so let's
-worry about the Ghost Town problem first.
+worry about the Ghost Town problem first. 3) You can always refactor later.
 
 
 ## Data Literals: print, read, spit, and slurp
