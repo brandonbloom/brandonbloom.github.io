@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Slurp & Spit"
-date: 2013-06-27 01:04
+date: 2013-06-26 11:59
 comments: true
 categories: 
 ---
