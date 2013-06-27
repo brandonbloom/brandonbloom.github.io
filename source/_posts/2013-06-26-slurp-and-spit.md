@@ -121,7 +121,7 @@ function saveData() {
 ```
 
 Just this one little tweak and this bad boy is production ready. Clojure
-programmers can use Java's `File.renameTo` method.
+programmers can use Java's `File.renameTo` method. See below.
 
 Remember to configure your backups!
 
@@ -147,10 +147,15 @@ time, the resulting race condition can lead to incremental data loss. Luckily,
 Clojure's agents and persistent data structures provide for a super quick fix:
 
 ```clojure
+(import 'java.io.File)
+
 (def save-agent (agent nil))
 
 (defn save-data []
-  (send-off save-agent (fn [_] (spit "somefile" (prn-str @db)))))
+  (send-off save-agent
+    (fn [_]
+      (spit "somefile.tmp" (prn-str @db))
+      (.renameTo (File. "somefile.tmp") (File. "somefile")))))
 ```
 
 Different web servers across all the different languages have varying
