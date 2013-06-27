@@ -140,7 +140,7 @@ either split your data files up and/or start writing files asynchronously.
 Asynchronous means coordination. Coordination means locking or queues. This
 stuff really isn't as scary as it sounds, but it will have to wait; this post
 has already gotten far too long. However, I don't want to lead you down the
-wrong path, so I should mention that, unlikely Node.js, synchronous writes on
+wrong path, so I should mention that, unlike Node.js, synchronous writes on
 the JVM will not block other requests. You practically don't have a choice, but
 to be asynchronous.  If two requests both call your save function at the same
 time, the resulting race condition can lead to incremental data loss. Luckily,
