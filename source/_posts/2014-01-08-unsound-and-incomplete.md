@@ -66,7 +66,7 @@ There is a class of such tools. They're called [linters][16].
 [1]: http://en.wikipedia.org/wiki/Soundness
 [2]: http://en.wikipedia.org/wiki/Completeness#Logical_completeness
 [3]: http://eschew.wordpress.com/2009/08/31/sound-and-complete/
-[4]: http://golang.org/
+[4]: http://www.dartlang.org/
 [5]: http://www.typescriptlang.org/
 [6]: https://www.dartlang.org/articles/why-dart-types/
 [7]: https://typescript.codeplex.com/discussions/428572
