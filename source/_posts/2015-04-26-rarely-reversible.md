@@ -103,7 +103,7 @@ will cause the reversal principles to explode in complexity.
 
 Grammars offer pretty simple and well defined operations. However, practically
 every new operation introduces new reversal principles. Once real world
-business logic get involved, things get hairy quickly.
+business logic gets involved, things get hairy quickly.
 
 In the context of user interfaces, these problems are magnified to be so large
 that they are practically unrecognizable. However, if you zoom in on individual
