@@ -12,11 +12,11 @@ https://github.com/brandonbloom/brandonbloom.github.io/tree/source
 
 ## License
 
-All blog posts and other homepage content Copyright © 2013, Brandon Bloom.
-All rights reserved.
+All blog posts and other homepage content Copyright © 2013, Brandon Bloom.  
+All rights reserved.  
 
-Octopress Copyright © 2013, Brandon Mathis. MIT License.
-See the Octopress [README.md][1] file for details.
+Octopress Copyright © 2013, Brandon Mathis. MIT License.  
+See the Octopress [README.md][1] file for details.  
 
 
 [1]: https://github.com/brandonbloom/brandonbloom.github.io/blob/source/README.markdown
