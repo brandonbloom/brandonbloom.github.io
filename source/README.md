@@ -8,7 +8,7 @@ http://www.brandonbloom.name
 
 Source code is available in the `source` branch on GitHub:
 
-https://github.com/brandonbloom/brandonbloom.github.io
+https://github.com/brandonbloom/brandonbloom.github.io/tree/source
 
 ## License
 
