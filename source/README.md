@@ -1,13 +1,11 @@
 # You Work For Me, Computer
 
-Brandon Bloom's blog and homepage.
-
+Brandon Bloom's blog and homepage.  
 http://www.brandonbloom.name
 
 ## Powered by Octopress
 
-Source code is available in the `source` branch on GitHub:
-
+Source code is available in the `source` branch on GitHub:  
 https://github.com/brandonbloom/brandonbloom.github.io/tree/source
 
 ## License
