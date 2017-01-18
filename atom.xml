@@ -4,7 +4,7 @@
   <title><![CDATA[You work for me, Computer.]]></title>
   <link href="http://brandonbloom.github.io/atom.xml" rel="self"/>
   <link href="http://brandonbloom.github.io/"/>
-  <updated>2017-01-18T13:25:27-08:00</updated>
+  <updated>2017-01-18T13:28:22-08:00</updated>
   <id>http://brandonbloom.github.io/</id>
   <author>
     <name><![CDATA[Brandon Bloom]]></name>
@@ -22,7 +22,7 @@
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
-    <content type="html"><![CDATA[<p>I&rsquo;ve written before about <a href="http://www.brandonbloom.name/blog/2013/06/19/semver/">my dislike for SemVer</a>. Recently, Rich Hickey has
+    <content type="html"><![CDATA[<p>I&rsquo;ve written before about <a href="http://www.brandonbloom.name/blog/2013/06/19/semver/">my dislike for SemVer</a>. Recently, Rich Hickey
 <a href="https://www.youtube.com/watch?v=oyLBGkS5ICk">spoke about this very same issue, and more</a>. I&rsquo;m currently working on some
 software that I&rsquo;m hoping people will use, so I decided to make my thoughts on
 a better versioning scheme clear. Below you&rsquo;ll find an exerpt from my new
