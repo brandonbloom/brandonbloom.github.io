@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[You work for me, Computer.]]></title>
-  <link href="http://www.brandonbloom.name/atom.xml" rel="self"/>
-  <link href="http://www.brandonbloom.name/"/>
-  <updated>2017-01-18T13:19:44-08:00</updated>
-  <id>http://www.brandonbloom.name/</id>
+  <link href="http://brandonbloom.github.io/atom.xml" rel="self"/>
+  <link href="http://brandonbloom.github.io/"/>
+  <updated>2017-01-18T13:25:27-08:00</updated>
+  <id>http://brandonbloom.github.io/</id>
   <author>
     <name><![CDATA[Brandon Bloom]]></name>
     
@@ -16,9 +16,9 @@
   
   <entry>
     <title type="html"><![CDATA[Versioning Better Than SemVer]]></title>
-    <link href="http://www.brandonbloom.name/blog/2017/01/18/versioning/"/>
+    <link href="http://brandonbloom.github.io/blog/2017/01/18/versioning-better-than-semver/"/>
     <updated>2017-01-18T01:30:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2017/01/18/versioning</id>
+    <id>http://brandonbloom.github.io/blog/2017/01/18/versioning-better-than-semver</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -148,9 +148,9 @@ extended to facilitate this before forking higher layers.</p>
   
   <entry>
     <title type="html"><![CDATA[Rarely Reversible]]></title>
-    <link href="http://www.brandonbloom.name/blog/2015/04/26/rarely-reversible/"/>
+    <link href="http://brandonbloom.github.io/blog/2015/04/26/rarely-reversible/"/>
     <updated>2015-04-26T15:33:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2015/04/26/rarely-reversible</id>
+    <id>http://brandonbloom.github.io/blog/2015/04/26/rarely-reversible</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -294,9 +294,9 @@ automatic reversibility.</p>
   
   <entry>
     <title type="html"><![CDATA[Unsound and Incomplete]]></title>
-    <link href="http://www.brandonbloom.name/blog/2014/01/08/unsound-and-incomplete/"/>
+    <link href="http://brandonbloom.github.io/blog/2014/01/08/unsound-and-incomplete/"/>
     <updated>2014-01-08T17:36:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2014/01/08/unsound-and-incomplete</id>
+    <id>http://brandonbloom.github.io/blog/2014/01/08/unsound-and-incomplete</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -381,9 +381,9 @@ create a <a href="http://bracha.org/pluggableTypesPosition.pdf">cyclic dependenc
   
   <entry>
     <title type="html"><![CDATA[Slurp & Spit]]></title>
-    <link href="http://www.brandonbloom.name/blog/2013/06/26/slurp-and-spit/"/>
+    <link href="http://brandonbloom.github.io/blog/2013/06/26/slurp-and-spit/"/>
     <updated>2013-06-26T11:59:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2013/06/26/slurp-and-spit</id>
+    <id>http://brandonbloom.github.io/blog/2013/06/26/slurp-and-spit</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -599,9 +599,9 @@ on your application.</p>
   
   <entry>
     <title type="html"><![CDATA[Code Density]]></title>
-    <link href="http://www.brandonbloom.name/blog/2013/06/24/code-density/"/>
+    <link href="http://brandonbloom.github.io/blog/2013/06/24/code-density/"/>
     <updated>2013-06-24T18:26:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2013/06/24/code-density</id>
+    <id>http://brandonbloom.github.io/blog/2013/06/24/code-density</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -694,9 +694,9 @@ used to spend typing.</p>
   
   <entry>
     <title type="html"><![CDATA[SemVer: A Technical Solution to a Social Problem]]></title>
-    <link href="http://www.brandonbloom.name/blog/2013/06/19/semver/"/>
+    <link href="http://brandonbloom.github.io/blog/2013/06/19/semver/"/>
     <updated>2013-06-19T11:35:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2013/06/19/semver</id>
+    <id>http://brandonbloom.github.io/blog/2013/06/19/semver</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -764,9 +764,9 @@ give to maintainers.</p>
   
   <entry>
     <title type="html"><![CDATA[Trivial Cycles in Object Oriented Programming]]></title>
-    <link href="http://www.brandonbloom.name/blog/2013/06/18/oop-cycles/"/>
+    <link href="http://brandonbloom.github.io/blog/2013/06/18/oop-cycles/"/>
     <updated>2013-06-18T16:41:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2013/06/18/oop-cycles</id>
+    <id>http://brandonbloom.github.io/blog/2013/06/18/oop-cycles</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -800,7 +800,7 @@ diagram with an additional <code>Company</code> class that may also have an addr
 
 
 
-<p><img src="http://www.brandonbloom.name/images/oop-cycle.png" alt="Person / Address / Company ball-of-mud" /></p>
+<p><img src="http://brandonbloom.github.io/images/oop-cycle.png" alt="Person / Address / Company ball-of-mud" /></p>
 
 
 
@@ -811,7 +811,7 @@ everything else. Compare this with this functional variant:</p>
 
 
 
-<p><img src="http://www.brandonbloom.name/images/fp-dag.png" alt="Person / Address / Company untangled" /></p>
+<p><img src="http://brandonbloom.github.io/images/fp-dag.png" alt="Person / Address / Company untangled" /></p>
 
 
 
@@ -868,9 +868,9 @@ but they quickly add up and really start to hurt as a system grows larger.</p>
   
   <entry>
     <title type="html"><![CDATA[Octopress]]></title>
-    <link href="http://www.brandonbloom.name/blog/2013/06/17/octopress/"/>
+    <link href="http://brandonbloom.github.io/blog/2013/06/17/octopress/"/>
     <updated>2013-06-17T17:04:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2013/06/17/octopress</id>
+    <id>http://brandonbloom.github.io/blog/2013/06/17/octopress</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -904,9 +904,9 @@ an extremely tedious process, but I&rsquo;m pretty happy with the result!</p>
   
   <entry>
     <title type="html"><![CDATA[Fipp: Fast Idiomatic Pretty-Printer for Clojure]]></title>
-    <link href="http://www.brandonbloom.name/blog/2013/01/11/fipp-intro/"/>
+    <link href="http://brandonbloom.github.io/blog/2013/01/11/fipp-intro/"/>
     <updated>2013-01-11T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2013/01/11/fipp-intro</id>
+    <id>http://brandonbloom.github.io/blog/2013/01/11/fipp-intro</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -933,9 +933,9 @@ pretty printers from the Haskell world.</p>
   
   <entry>
     <title type="html"><![CDATA[Factjor: Concatenative Clojure]]></title>
-    <link href="http://www.brandonbloom.name/blog/2013/01/01/factjor-intro/"/>
+    <link href="http://brandonbloom.github.io/blog/2013/01/01/factjor-intro/"/>
     <updated>2013-01-01T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2013/01/01/factjor-intro</id>
+    <id>http://brandonbloom.github.io/blog/2013/01/01/factjor-intro</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -954,9 +954,9 @@ motivated Factjor.</p>
   
   <entry>
     <title type="html"><![CDATA[The Node.js REPL is Broken]]></title>
-    <link href="http://www.brandonbloom.name/blog/2012/12/21/the-nodejs-repl-is-broken/"/>
+    <link href="http://brandonbloom.github.io/blog/2012/12/21/the-nodejs-repl-is-broken/"/>
     <updated>2012-12-21T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2012/12/21/the-nodejs-repl-is-broken</id>
+    <id>http://brandonbloom.github.io/blog/2012/12/21/the-nodejs-repl-is-broken</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -1162,9 +1162,9 @@ tight loop, so your only choice is kill the entire application.</p>
   
   <entry>
     <title type="html"><![CDATA[Clojure's multimethod dispatch as a library]]></title>
-    <link href="http://www.brandonbloom.name/blog/2012/12/10/clojures-multimethod-dispatch-as-library/"/>
+    <link href="http://brandonbloom.github.io/blog/2012/12/10/clojures-multimethod-dispatch-as-library/"/>
     <updated>2012-12-10T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2012/12/10/clojures-multimethod-dispatch-as-library</id>
+    <id>http://brandonbloom.github.io/blog/2012/12/10/clojures-multimethod-dispatch-as-library</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -1356,9 +1356,9 @@ tree lookup. That&rsquo;s quite reasonable in my mind.  December 14, 2012 at 1:2
   
   <entry>
     <title type="html"><![CDATA[Dataflow Solver (qplan for Clojure)]]></title>
-    <link href="http://www.brandonbloom.name/blog/2012/12/01/dataflow-solver-qplan-for-clojure/"/>
+    <link href="http://brandonbloom.github.io/blog/2012/12/01/dataflow-solver-qplan-for-clojure/"/>
     <updated>2012-12-01T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2012/12/01/dataflow-solver-qplan-for-clojure</id>
+    <id>http://brandonbloom.github.io/blog/2012/12/01/dataflow-solver-qplan-for-clojure</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -1459,9 +1459,9 @@ FRP evaluation strategy for animations.</p>
   
   <entry>
     <title type="html"><![CDATA[Templating: Clojure's Backtick]]></title>
-    <link href="http://www.brandonbloom.name/blog/2012/11/23/templating-clojures-backtick/"/>
+    <link href="http://brandonbloom.github.io/blog/2012/11/23/templating-clojures-backtick/"/>
     <updated>2012-11-23T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2012/11/23/templating-clojures-backtick</id>
+    <id>http://brandonbloom.github.io/blog/2012/11/23/templating-clojures-backtick</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -1756,9 +1756,9 @@ Thank you for making this available.</p>
   
   <entry>
     <title type="html"><![CDATA[ClojureScript Projects]]></title>
-    <link href="http://www.brandonbloom.name/blog/2012/11/22/clojurescript-projects/"/>
+    <link href="http://brandonbloom.github.io/blog/2012/11/22/clojurescript-projects/"/>
     <updated>2012-11-22T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2012/11/22/clojurescript-projects</id>
+    <id>http://brandonbloom.github.io/blog/2012/11/22/clojurescript-projects</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -1830,9 +1830,9 @@ building as I explore that path.</p>
   
   <entry>
     <title type="html"><![CDATA[Learn to Read the Source, Luke]]></title>
-    <link href="http://www.brandonbloom.name/blog/2012/04/16/learn-to-read-the-source-luke/"/>
+    <link href="http://brandonbloom.github.io/blog/2012/04/16/learn-to-read-the-source-luke/"/>
     <updated>2012-04-16T00:00:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2012/04/16/learn-to-read-the-source-luke</id>
+    <id>http://brandonbloom.github.io/blog/2012/04/16/learn-to-read-the-source-luke</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -1925,9 +1925,9 @@ someone else&rsquo;s code is absurd.</p></blockquote>
   
   <entry>
     <title type="html"><![CDATA[REST: One Thousand Inconsequential Decisions]]></title>
-    <link href="http://www.brandonbloom.name/blog/2012/02/26/rest-one-thousand-inconsequential-decisions/"/>
+    <link href="http://brandonbloom.github.io/blog/2012/02/26/rest-one-thousand-inconsequential-decisions/"/>
     <updated>2012-02-26T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2012/02/26/rest-one-thousand-inconsequential-decisions</id>
+    <id>http://brandonbloom.github.io/blog/2012/02/26/rest-one-thousand-inconsequential-decisions</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -2189,9 +2189,9 @@ an old client to magically support new concepts.</p>
   
   <entry>
     <title type="html"><![CDATA[Plugging a hole in Microsoft's hiring pipe: IE Frame]]></title>
-    <link href="http://www.brandonbloom.name/blog/2012/01/14/plugging-a-hole-in-microsoft-s-hiring-pipe-ie-frame/"/>
+    <link href="http://brandonbloom.github.io/blog/2012/01/14/plugging-a-hole-in-microsoft-s-hiring-pipe-ie-frame/"/>
     <updated>2012-01-14T00:00:00-08:00</updated>
-    <id>http://www.brandonbloom.name/blog/2012/01/14/plugging-a-hole-in-microsoft-s-hiring-pipe-ie-frame</id>
+    <id>http://brandonbloom.github.io/blog/2012/01/14/plugging-a-hole-in-microsoft-s-hiring-pipe-ie-frame</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -2251,9 +2251,9 @@ Windows to test something in Internet Explorer. <em>sigh</em>.</p>
   
   <entry>
     <title type="html"><![CDATA[One year after accidentally falling in love with Rails]]></title>
-    <link href="http://www.brandonbloom.name/blog/2011/09/24/one-year-after-accidentally-falling-in-love-with-rails/"/>
+    <link href="http://brandonbloom.github.io/blog/2011/09/24/one-year-after-accidentally-falling-in-love-with-rails/"/>
     <updated>2011-09-24T00:00:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2011/09/24/one-year-after-accidentally-falling-in-love-with-rails</id>
+    <id>http://brandonbloom.github.io/blog/2011/09/24/one-year-after-accidentally-falling-in-love-with-rails</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>
@@ -2441,9 +2441,9 @@ Windows to test something in Internet Explorer. <em>sigh</em>.</p>
   
   <entry>
     <title type="html"><![CDATA[Stupid brain trick: Tests and vertical splits]]></title>
-    <link href="http://www.brandonbloom.name/blog/2011/08/16/stupid-brain-trick-tests-and-vertical-splits/"/>
+    <link href="http://brandonbloom.github.io/blog/2011/08/16/stupid-brain-trick-tests-and-vertical-splits/"/>
     <updated>2011-08-16T00:00:00-07:00</updated>
-    <id>http://www.brandonbloom.name/blog/2011/08/16/stupid-brain-trick-tests-and-vertical-splits</id>
+    <id>http://brandonbloom.github.io/blog/2011/08/16/stupid-brain-trick-tests-and-vertical-splits</id>
     <author>
       <name><![CDATA[Brandon Bloom]]></name>
     </author>

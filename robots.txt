@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://www.brandonbloom.name/sitemap.xml 
+Sitemap: http://brandonbloom.github.io/sitemap.xml 
