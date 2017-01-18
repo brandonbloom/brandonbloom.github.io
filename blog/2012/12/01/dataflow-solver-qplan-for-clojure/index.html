@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Dataflow Solver (qplan for Clojure) - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="This post describes the motivation for my next Clojure library: qplan The overwhelming majority of graphical applications are built using ad-hoc &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2012/12/01/dataflow-solver-qplan-for-clojure">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Dataflow Solver (Qplan for Clojure)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-01T00:00:00-08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This post describes the motivation for my next Clojure library: <a href="https://github.com/brandonbloom/qplan">qplan</a></p>
+
+<p>The overwhelming majority of graphical applications are built using ad-hoc
+event callbacks. Some portion of graphical applications, however, use a
+databinding model of varying expressivity. Often, these databinding models are
+simply shorthand for ad-hoc dependency graphs composed of event callbacks.
+Inevitably, the databinding system will be insufficiently expressive,
+necessitating manual callback wiring. Even with the most expressive data
+binding systems available in application frameworks these days, there is a
+shockingly fragile rat&rsquo;s nest of control flow and execution order.</p>
+
+<p>Quite a bit of activity has occurred in the research community surrounding more
+formal, more composable, and less fragile event handling. The buzzword de jour
+is &ldquo;<a href="http://c2.com/cgi/wiki?FunctionalReactiveProgramming">Functional Reactive Programming</a>&rdquo; (FRP) which, although quite varied by
+author, generally involves the concepts of continuous &ldquo;signals&rdquo;, discrete
+&ldquo;events&rdquo;, and some evaluation strategy. FRP was born of animation systems and
+is a fertile research area. More generally, FRP is a type of
+<a href="http://en.wikipedia.org/wiki/Dataflow_programming">dataflow programming</a>.  The &ldquo;reactive&rdquo; moniker also applies to the area of
+push-sequences, such as .NET&rsquo;s <a href="http://msdn.microsoft.com/en-us/library/dd990377.aspx">IObservable</a> and associated <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx">Reactive
+Extensions</a> (Rx).</p>
+
+<p>As fun as it has been to study FRP, there has been little success building real
+applications using its techniques. In my opinion, this is because FRP
+encourages a continuous model of your application, but most graphical
+applications are much more discrete in nature. Multimedia systems, like the
+animation system that motivated the first FRP paper, and games have quite a few
+continuous use cases. Point-and-click software, however, generally has discrete
+controls, with discrete values, and discrete commands. Consider, for example,
+the undo-able discrete mutations in the most broadly deployed dataflow
+application on the planet: spreadsheets. Although capable of representing
+discreet events, FRP systems project the mental framework of water flowing
+through pipes. This mental framework clashes badly with the more familiar event
+callback model. Furthermore, even for truly continuous use cases,
+discretization is essential to the nature of computation; every game
+fundamentally distills down to an update and render loop.</p>
+
+<p>I&rsquo;m still contemplating whether or not it is possible to build a databinding
+system that is an order of magnitude more expressive and composable than the
+existing state of the art. However, I&rsquo;m certain that the underlying
+architecture will be a discrete system which embraces a formal notion of time
+through an explicit notion of <a href="http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey">identity and value</a>.  Consider again the
+spreadsheet, where cells have an identity composed of their row and column
+labels. As you change the spreadsheet, the document updates the values in all
+cells synchronously in response to a discrete command. This approach can be
+extended to an arbitrary graph of identities connected by dataflow constraints.</p>
+
+<p>Given a sprawling graph of identities, you need some evaluation system for
+assigning values to each identity. Unlike a spreadsheet, many applications
+demand sophisticated and potentially cyclical bindings. In the face of
+multi-input, multi-output, and multi-directional dataflow, there are many
+potential evaluation strategies yielding many different graph linearizations.
+You need a constraint solver suited to the task. Luckily, Texas A&amp;M has studied
+this problem in collaboration with Adobe. Their approach is referred to as
+<a href="https://parasol.tamu.edu/~jarvi/papers/gpce08.pdf">Property Models</a> and addresses many of the issues with relying on solvers
+for user-facing constraint systems. The Property Models approach is much
+broader than simply databinding, it also considers predictability and
+effectively synthesizing commands, such as those recorded in Photoshop&rsquo;s
+History pane.</p>
+
+<p>At the core of the Property Model system, is a variation of Zanden&rsquo;s
+<a href="http://www.cparity.com/projects/AcmClassification/samples/225543.pdf">Incremental Algorithm for Satisfying Hierarchies of Multiway Dataflow Constraints</a>
+as described by <a href="https://parasol.tamu.edu/publications/download.php?file_id=670">Freeman, et al</a>. I&rsquo;ve produced a Clojure implementation of
+this algorithm called qplan.</p>
+
+<p>My intention is to use qplan as part of a larger approach to building graphical
+user interfaces. I expect a that a complete system requires a variety of
+algorithms and solvers tuned for particular use cases. For example, Adobe&rsquo;s
+<a href="http://stlab.adobe.com/group__asl__overview.html">Adam and Eve</a>, has both a Quickplan solver for property models and a
+linear constraint solver for layout.  An even more complete system may have an
+FRP evaluation strategy for animations.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-01T00:00:00-08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2012/12/01/dataflow-solver-qplan-for-clojure/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2012/12/01/dataflow-solver-qplan-for-clojure/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/23/templating-clojures-backtick/" title="Previous Post: Templating: Clojure's Backtick">&laquo; Templating: Clojure's Backtick</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/12/10/clojures-multimethod-dispatch-as-library/" title="Next Post: Clojure's multimethod dispatch as a library">Clojure's multimethod dispatch as a library &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

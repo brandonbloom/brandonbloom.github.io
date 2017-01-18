@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>File systems for people - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="Using Blogger, I am able to create and edit blog posts from a set of simple
+lists without any concern for how the data is stored. There is no &ldquo; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2006/03/27/file-systems-for-people">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">File Systems for People</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-27T00:00:00-08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Using Blogger, I am able to create and edit blog posts from a set of simple
+lists without any concern for how the data is stored. There is no &ldquo;save&rdquo; button
+to be clicked in OneNote. Blogger and OneNote provide intelligent data handling
+for me. Yet, if I create a document in Microsoft Word, I am forced to provide a
+file name and save location if I want to store my document.</p>
+
+<p>As a user, I can utilize a file system to organize my documents for me, but
+generally, I just don&rsquo;t care. As long as all of my files are grouped by project
+(read: one level deep) I can find practically anything I need. N-tier grouping
+is overkill for nearly all typical user scenarios.</p>
+
+<p>File systems define data relationships by hierarchical locality. If two files
+are in the same folder, they are probably related, but there is no guarantee of
+that. Data has a lot of inherent relationships that goes unexploited by current
+day software. Source documents such as code and Photoshop files are in no way
+linked to their output documents such as executables and web graphics. I might
+have to click three dozen times to find the file for the image that is embedded
+in an a Word document or I may never find it (it could have been deleted).</p>
+
+<p>We need a directed graph having files as nodes and relationships as edges.
+These relationships need to be automatically inferred whenever possible.
+Relationships should be able to span from RAM to hard disks, from one hard disk
+to another, across the internet, and everywhere in between.</p>
+
+<p>Data collections need to be easily searchable. Querying and filtering data
+should not require construction of a database; tables and indexes should be
+created automatically to accommodate data access patterns.</p>
+
+<p>As much as possible, the work of managing data needs to be offloaded to
+computers so that humans can be left with the task of creating and utilizing
+data.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-27T00:00:00-08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2006</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2006/03/27/file-systems-for-people/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2006/03/27/file-systems-for-people/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2006/03/26/computers-should-make-life-easier/" title="Previous Post: Computers should make life easier">&laquo; Computers should make life easier</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2006/03/27/pythagoras-was-a-smart-guy/" title="Next Post: Pythagoras was a smart guy">Pythagoras was a smart guy &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

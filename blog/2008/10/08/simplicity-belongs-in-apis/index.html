@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Simplicity belongs in APIs - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="In a recent post, I insisted that flexibility belongs in APIs. Simplicity also belongs in APIs. There are two key things to simplify in APIs: Common &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2008/10/08/simplicity-belongs-in-apis">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Simplicity Belongs in APIs</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-08T00:00:00-07:00" pubdate data-updated="true">Oct 8<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In <a href="/blog/2008/08/28/flexibility-belongs-in-apis/">a recent post</a>, I insisted that flexibility belongs in APIs.</p>
+
+<p>Simplicity also belongs in APIs. There are two key things to simplify in APIs:</p>
+
+<ul>
+<li>Common tasks</li>
+<li>Surface area</li>
+</ul>
+
+
+<p>Since you are jam packing your APIs with loads of powerful and flexible
+functionality, you might have a lot of functions and data structures. You may
+have hoards of configuration options or capability bits, and a whole mess of
+operations to perform on them. However, your UI is simple and has picked
+sensible defaults for every operation. Your APIs should do the same. In fact,
+you should expose the same simplified operations your UI uses, so that
+developers do not have to guess what arguments you pass or in what sequence you
+composed more complex operations. If you have widely used private helper
+methods you&rsquo;ve developed for your UI, you have identified common tasks for
+which your helper methods should be promoted to address.</p>
+
+<p>Developers should be unwittingly led to these simplified methods, they
+shouldn&rsquo;t have to go searching for them. For example, the .NET framework
+provides a significant number of overloads for opening a file. The most complex
+of these takes parameters for file access, sharing, creation behavior, and
+more. The simplest of these, just opens the damn file. Reading all of the lines
+from a file is a very common task that involves opening a file, iterating over
+each line, accumulating the results, and then closing the file. Or you could
+just call File.ReadAllLines and simply get an array of strings.</p>
+
+<p>ReadAllLines is completely implemented using StreamReader, but was placed in
+the File class instead of the StreamReader class because more people would look
+there first. Organize APIs by how naive developers would look for them, not
+experts. Remember that developers, like users, are perpetual intermediates.
+They are only going to write the code once (as beginners) and iterate on it
+several times until it works (as intermediates). After that, they will move on
+to something else. There won&rsquo;t be time for them to become experts.</p>
+
+<p>You have limited screen space for features, but you can always fit more APIs.
+You develop a great UI by removing the features you don&rsquo;t need. However, you
+develop a great API by avoiding adding the features that you don&rsquo;t need. If
+there is a set of parameters no one will ever change, remove the ability to
+change them. If there are multiple approaches to the same common task, choose
+one. The less surface area there is for a developer to search and understand,
+the more likely they are to quickly choose and implement an effective solution.</p>
+
+<p>In a future post, I will discuss my favorite technique for designing APIs.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-08T00:00:00-07:00" pubdate data-updated="true">Oct 8<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2008/10/08/simplicity-belongs-in-apis/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2008/10/08/simplicity-belongs-in-apis/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/09/16/why-so-serious/" title="Previous Post: Why so serious?">&laquo; Why so serious?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/10/09/imaginary-apis/" title="Next Post: Imaginary APIs">Imaginary APIs &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

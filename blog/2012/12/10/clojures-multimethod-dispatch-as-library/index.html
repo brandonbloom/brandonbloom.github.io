@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Clojure's multimethod dispatch as a library - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="In keeping with the theme, this post motivates dispatch-map Clojure&rsquo;s multimethods embody a powerful polymorphic dispatch mechanism. With &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2012/12/10/clojures-multimethod-dispatch-as-library">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Clojure's Multimethod Dispatch as a Library</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-10T00:00:00-08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>In keeping with the theme, this post motivates <a href="https://github.com/brandonbloom/dispatch-map">dispatch-map</a></h3>
+
+<p>Clojure&rsquo;s multimethods embody a powerful polymorphic dispatch mechanism. With
+multimethods, you can define a function which is polymorphic with respect to a
+given hierarchy and arbitrary dispatch value. The hierarchy is actually a
+directed acyclic graph, but you can adjust method priority to address the
+<a href="http://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">diamond problem</a>.</p>
+
+<p>Unfortunately, Clojure&rsquo;s dispatch mechanism is baked into the defmulti and
+defmethod forms. If you want multimethod-style dispatch, you need a Var to hold
+your multimethod. Similar to the circumstances which prompted the creation of
+<a href="https://github.com/brandonbloom/backtick">backtick</a>, I discovered that there
+was an opportunity to decomplect a part of the core library to extract a useful
+subcomponent. In this case, the datastructure which describes dispatch rules
+was complected with the identity which points to those dispatch rules. As a
+result, it&rsquo;s impossible to treat a multimethod as an immutible value.</p>
+
+<p>So I created <a href="https://github.com/brandonbloom/dispatch-map">dispatch-map</a>.  A
+dispatch map is just like a regular Clojure map, but it comes coupled with a
+dispatch function and hierarchy. Looking up keys in a dispatch map has the same
+dispatch behavior and caching functionality of multimethods. However, unlike a
+multimethod, a dispatch-map is a true value.  The standard map operators assoc,
+dissoc, etc, return a new dispatch-map, leaving the original unmodified. This
+enables you to manipulate dispatch maps like any other Clojure data structure,
+without the need for a named, mutable Var. Clojure&rsquo;s multimethods and all
+related functions could trivially be reimplemented in terms of a dispatch-map
+and an atom <em>(edit: and now are!)</em>.</p>
+
+<p>One use for a dispatch-map as a value is to store them within some other data
+structure, without breaking the value guarantees of the enclosing data
+structure. In my case, I&rsquo;ve got a dispatch-map of data types to their GUI
+representations. In a hierarchical definition of a GUI, each node can have a
+:templates key which is a <code>(dispatch-map class)</code>. If you want to render a
+<code>(Person.)</code> inside a list box, you can rely on automatic dispatch by type to find
+the appropriate template: Simply walk up the GUI hierarchy and look in the
+:templates map. Thanks to the powerful dispatch functionality, this will also
+work if you have an <code>(Employee.)</code> too!</p>
+
+<h3>Comments</h3>
+
+<h4>tgoossens said&hellip;</h4>
+
+<p>Doesn&rsquo;t one restrict himself then. What to do when you have a new
+type that you need to get working with the existing code? You cannot add any
+new methods. Its a neat idea and I&rsquo;m sure you can use it for a lot of stuff.
+But I think &ndash; if my previous statement is correct &ndash; that the advantage of
+having it as a value doesn&rsquo;t compensate for losing the ability to extend (which
+is basically what you want to do to solve the expression problem right?)</p>
+
+<h4>Brandon Bloom said&hellip;</h4>
+
+<pre><code>You cannot add any new methods.
+</code></pre>
+
+<p>If that were true, you couldn&rsquo;t add any new key value pairs to an immutable
+map&hellip;</p>
+
+<pre><code>the advantage of having it as a value doesn't compensate for losing the ability to extend
+</code></pre>
+
+<p>You&rsquo;re not losing your ability to extend, you&rsquo;re simply shifting it&rsquo;s
+responsibility elsewhere.</p>
+
+<p>Just put your dispatch-map in an atom, and you&rsquo;ve basically got a multimethod.
+More accurately, a multimethod is a dispatch-map plus a Var. The goal of
+dispatch-map is to decomplect dispatch from state.</p>
+
+<p>Consider, for example, if I had two separate multimethods (call them f and g)
+and wanted to add a method to both atomically. With a multimethod, you would
+have to (locking xx (defmethod f &hellip;) (defmethod g &hellip;)) when you could instead
+(swap! yy #(&ndash;> (assoc-in [:x a] &hellip;) (assoc-in [:y a] &hellip;)))</p>
+
+<h4>tgoossens said&hellip;</h4>
+
+<p>Ok cool. I think that now I get what you were trying to achieve. Thanks for the
+explanation!</p>
+
+<h4>Paul Stadig said&hellip;</h4>
+
+<p>Conceptually, an atom and a dispatch-map could replace multimethods. It might
+be possible with multimethods, since they are so slow anyway. However, there
+could be performance issues.</p>
+
+<p>I did some similar experiments trying to extract type based dispatch from
+protocol functions. I started with an atom and a dispatch table, and it turned
+out to be pretty slow.</p>
+
+<h4>Brandon Bloom said&hellip;</h4>
+
+<p>&ldquo;Slow&rdquo; is a relative term. Surely multimethods are slower than protocol
+dispatch. And protocol dispatch is surely slower than direct dispatch.</p>
+
+<p>However, each yields an additional level of indirection for an additional
+abstraction need. Direct dispatch offers no abstraction. Protocol dispatch
+offers abstraction by type. Multimethods offer arbitrary dispatch with respect
+to a directed acyclic graph. In theory, you could also create a
+predicate-dispatch-map, which would allow dispatch with respect to an arbitrary
+decision tree.</p>
+
+<p>With each level of abstraction, you gain a little more flexibility and dynamism
+at the cost of a little more performance. However, if you can statically
+determine a dispatch value, you can eliminate those performance costs at
+compile time. That&rsquo;s likely not a worthwhile exercise, though, since dynamism
+is often the whole point of that level of abstraction.</p>
+
+<p>In the case of both multimethods and my dispatch-maps, dispatch values are
+memoized. Subsequent calls given the same dispatch key do not require
+traversing the hierarchy to find a &ldquo;best&rdquo; match. The result is that the
+amortized cost of a lookup is the cost of the dispatch-fn plus the cost of one
+tree lookup. That&rsquo;s quite reasonable in my mind.  December 14, 2012 at 1:26 PM</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-10T00:00:00-08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2012/12/10/clojures-multimethod-dispatch-as-library/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2012/12/10/clojures-multimethod-dispatch-as-library/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/01/dataflow-solver-qplan-for-clojure/" title="Previous Post: Dataflow Solver (qplan for Clojure)">&laquo; Dataflow Solver (qplan for Clojure)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/12/21/the-nodejs-repl-is-broken/" title="Next Post: The Node.js REPL is Broken">The Node.js REPL is Broken &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

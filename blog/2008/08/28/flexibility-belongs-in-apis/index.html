@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Flexibility belongs in APIs - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="Software comes in a large spectrum of power and flexibility, as well as an
+equally large spectrum of complexity and usability. Users also come in a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2008/08/28/flexibility-belongs-in-apis">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Flexibility Belongs in APIs</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-28T00:00:00-07:00" pubdate data-updated="true">Aug 28<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Software comes in a large spectrum of power and flexibility, as well as an
+equally large spectrum of complexity and usability. Users also come in a wide
+range of intelligence and skill. However, if you create software of average
+power and average complexity, you may satisfy the average users&#8217; needs, but
+they won&rsquo;t love you for it.</p>
+
+<p>One of my favorite books on software, <a href="http://www.amazon.com/gp/product/0672326140?ie=UTF8&amp;tag=youworkformec-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0672326140">The Inmates Are Running the Asylum</a>,
+describes the concept of &ldquo;perpetual intermediates&rdquo;. The book explains that
+beginners are only beginners for a little while, then they become
+intermediates. Most users are intermediates for as long as they use the
+software. Very few users become true experts. At any given time, virtually all
+of your users will be varying intermediates.</p>
+
+<p>With this powerful realization in mind, you may be tempted to design
+exclusively for these intermediates. When designing your software you can spin
+the flexibility and complexity dials to try to hone in this average user.
+Unfortunately, you would wind up pleasing more users by cranking these dials
+down much lower.</p>
+
+<p>The fundamental problem is that adding a bit of power and flexibility also adds
+a bit of complexity. Since most users are intermediates, they can tolerate some
+degree of complexity, but would honestly prefer not to. They avoid the
+complexity by only using the small subset of features they have come to
+understand and only venturing beyond their comfort zone when they absolutely
+have to. They quickly become intermediates and are no longer troubled by
+complexity.</p>
+
+<p>When users have to venture into uncharted features, they are effectively
+beginners, not intermediates. However, the more esoteric or powerful the
+feature, the more likely it was designed for that small percentage of experts.
+When the infrequent need arises for these features, users would rather force
+the problem into the features they know than learn new ones.</p>
+
+<p>Given that users actively avoid complexity and more powerful features, it
+becomes apparent that these powerful features should be excluded to keep
+complexity to a minimum. In doing so, you may annoy the 1% of your users who
+are truly experts and need the power. If you have a million users, 1% &mdash; 10,000
+users &mdash; can not be forgotten. You need to give these users this power somehow.</p>
+
+<p>Put the power and flexibility into APIs! APIs enable power users to automate
+frequent tasks and create the unique functionality they need. As a bonus, new
+tools will pop up to fill needs you didn&rsquo;t even consider when you originally
+designed your software.</p>
+
+<p>&ldquo;Wait a minute!&rdquo; I hear your cry. &ldquo;Expert users are not necessarily
+programmers&rdquo;, you say. This is very true, but there are two factors which
+mitigate this problem.</p>
+
+<p>First, most expert users of any software have at least some technical ability
+with which to hack together solutions. If you don&rsquo;t believe me, take a look at
+the <a href="http://www.langpop.com/">popularity of Visual Basic</a>. Despite the relatively small number of
+professional software engineers using Visual Basic, it still has very strong
+search volume and book sales. This is presumably due to its inclusion in
+Microsoft Office. However, the &ldquo;real&rdquo; software engineers view it as not worth
+their time and these are the people producing technical content on the web. As
+such, there is less online discussion of the language. Even if an expert is
+unable to put something together, they probably know someone who can. And even
+if they don&rsquo;t know someone who can, then they probably have just identified a
+  need to hire someone.</p>
+
+<p>Second, the needs of experts are so specialized that they need to exert a large
+amount of effort bending flexible software to their needs. Sometimes, no amount
+of flexibility will solve their problem. Other times, the flexibility is hidden
+behind so much complexity that it is not cost effective to uncover it. Still
+other times, users bend software until it breaks. Again looking at Visual
+Basic, it is quite common for Office users to create macros or scripts to solve
+problems that built in tools could have solved. Users do this because they
+didn&rsquo;t know they could or couldn&rsquo;t figure out how to utilize the existing
+features in the way they wanted to.</p>
+
+<p>The bottom line is that software should be <a href="http://www.quotedb.com/quotes/1360">as simple as possible, not
+simpler</a>. Treat users as intelligent, capable intermediates; do not engage
+in excessive hand-holding or assume expertise. Where applicable, provide
+plug-in or extension mechanisms, so that power and flexibility can be leveraged
+by APIs. Your users will love you for it.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-28T00:00:00-07:00" pubdate data-updated="true">Aug 28<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2008/08/28/flexibility-belongs-in-apis/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2008/08/28/flexibility-belongs-in-apis/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/08/18/computers-are-everywhere-you-no-longer-have-an-excuse/" title="Previous Post: Computers are everywhere, you no longer have an excuse">&laquo; Computers are everywhere, you no longer have an excuse</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/09/10/bug-farms/" title="Next Post: Bug farms">Bug farms &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

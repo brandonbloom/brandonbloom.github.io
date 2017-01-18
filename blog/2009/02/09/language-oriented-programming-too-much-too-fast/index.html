@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Language-oriented programming: too much, too fast - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="There was some recent discussion on Hacker News about the 2004 article on
+&ldquo;Language Oriented Programming&rdquo; by Sergey Dmitriev. With my &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2009/02/09/language-oriented-programming-too-much-too-fast">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Language-oriented Programming: Too Much, Too Fast</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-09T00:00:00-08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There was some <a href="http://news.ycombinator.com/item?id=452919">recent discussion on Hacker News</a> about the <a href="http://www.onboard.jetbrains.com/is1/articles/04/10/lop/index.html">2004 article on
+&ldquo;Language Oriented Programming&rdquo;</a> by <a href="http://www.sergeydmitriev.com/">Sergey Dmitriev</a>. With my growing
+interest in programming languages, this article, and the pending release of
+<a href="http://www.jetbrains.com/mps/index.html">JetBrain&rsquo;s Meta Programming System</a>, I have been thinking a lot about the
+future of programming.</p>
+
+<p>As Sergey points out, MPS is not the first entry into this paradigm of software
+development. <a href="http://en.wikipedia.org/wiki/Intentional_programming">Intentional Programming</a> was being <a href="http://www.youtube.com/watch?v=tSnnfUj1XCQ">demonstrated by Microsoft
+Research</a> as early as 2000. Wikipedia lists several implementations of the
+<a href="http://en.wikipedia.org/wiki/Language-oriented_programming">language-oriented programming</a> concept. (OK, that is enough links for now!)
+Sadly, none of these systems have been met with wide spread success. Despite my
+unlimited respect for the JetBrains team and love of their products &mdash;
+especially Resharper &mdash; I expect MPS to fail to achieve critical mass. I don&rsquo;t
+think many programmers would disagree. It&rsquo;s just too much, too fast.</p>
+
+<p>Software development needs to evolve, not start anew. If you change too much at
+once, the common developer simply won&rsquo;t accept it. Language designers are still
+re-inventing Lisp piece by piece in an effort to make sense of all the
+different concepts for <a href="http://www.nikhilk.net/Personas.aspx">Mort</a>. In order to improve adoption of
+language-oriented programming concepts, the critical path must be identified
+and the programming community must be lead down that path one step at a time.</p>
+
+<p>I believe that the first stepping stone is the box editor.</p>
+
+<p>Both MPS and Intentional Programming provide a visual tree of boxes editor and
+store the abstract syntax tree in a sort of source code database. Both of these
+concepts are critical to power of language-oriented programming, but changing
+the storage of source code is simply too radical of a change. Well, actually,
+source code is routinely stored in databases for IDE features, but the
+authoritative storage always remains text files. All of a programmers most
+trusted tools operate at the string level and it is simply impractical to throw
+everything out at once.</p>
+
+<p>This is why I propose the creation of a new editor which uses an abstract
+syntax tree box editing model, but preserves the source as text. This editor
+would have to play nice with other developers who are using traditional text
+editors. It should be possible for a single developer to try the editor for a
+day or two without another collaborator even noticing. There are clear benefits
+to a box editor even in the absence of language-oriented features. For example,
+navigation of source code by parent, child, or sibling relationships instead of
+by word or by line. Advanced renders can be used to layout math expressions or
+to show a referenced image file in a comment.</p>
+
+<p>Editors are a religion, start a new one. If some box editor becomes popular
+enough, other tools would spring up around them. To help the process, the
+editor should have well exposed extension and composition mechanisms. For
+example, it should be trivially easy to add new renderers for various nodes. It
+should be equally trivial to utilize the abstract syntax tree system to create
+stand alone code analysis tools.</p>
+
+<p>If box editors garner enough of a following, then the language-oriented
+programming advocates can seek the next stepping stone.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Shawn Presser</h3>
+
+<blockquote><p>&ldquo;I believe that the first stepping stone is the box editor.&rdquo;</p></blockquote>
+
+<p>I went through this phase too.  You&rsquo;ll eventually realize that visual editors
+are simply less efficient than text editors for programming purposes.  The
+boxes convey less meaning than symbols in a text editor.  The boxes and
+connections are also symbols, but they take up far more screen space than text,
+so you see much less code simultaneously, which makes the box editor less
+efficient.  Also, there aren&rsquo;t usually restrictions on the layout of the boxes,
+so it&rsquo;s very hard to follow the &ldquo;flow&rdquo; of code in a visual editor.  In a text
+editor, the flow of code within a function is at least mostly linear (left to
+right, top down).</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>I&rsquo;m not talking about &ldquo;boxes and connections&rdquo; I&rsquo;m talking about representing
+the actual code blocks. Take a look at this tutorial:
+<a href="http://www.jetbrains.com/mps/docs/tutorial.html">http://www.jetbrains.com/mps/docs/tutorial.html</a></p>
+
+<h3>warjan</h3>
+
+<p>I think you are right saying it is too much. Especially application developer
+might find MPS to be too much for achieving common programming task, but for
+library/frameworks and DSL creators it is IMHO very valuable proposal. It could
+be also good for providing DSL for clients to cusotmize products.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>&ldquo;good for providing DSL for clients to cusotmize products&rdquo;</p>
+
+<p>Maybe if your clients are hardcore engineers, but in general asking clients to
+write code is a tough value proposition.</p>
+
+<p>However, let&rsquo;s assume your clients are hardcore engineers. Not only does MPS
+ask them to learn a DSL, but it is also asking them to learn a new editor.</p>
+
+<p>One step at a time.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-09T00:00:00-08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2009/02/09/language-oriented-programming-too-much-too-fast/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2009/02/09/language-oriented-programming-too-much-too-fast/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/02/03/break-the-cycle-of-broken-builds/" title="Previous Post: Break the cycle of broken builds">&laquo; Break the cycle of broken builds</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/04/20/powershell-condemned-to-reinvent/" title="Next Post: PowerShell: condemned to reinvent">PowerShell: condemned to reinvent &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

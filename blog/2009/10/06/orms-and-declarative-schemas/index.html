@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ORMs and Declarative Schemas - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="My prior post was more controversial than I anticipated. In hindsight, I
+should have realized what a hot button issue web frameworks are. One &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2009/10/06/orms-and-declarative-schemas">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">ORMs and Declarative Schemas</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-06T00:00:00-07:00" pubdate data-updated="true">Oct 6<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>My <a href="http://blog.brandonbloom.name/2009/08/dropping-django.html">prior post</a> was more controversial than I anticipated. In hindsight, I
+should have realized what a hot button issue web frameworks are. One assertion
+went all but unnoticed. I expect it may be even more controversial:</p>
+
+<p><em>the schema-generative ORM paradigm is fundamentally flawed</em>.</p>
+
+<h4>Disclaimer</h4>
+
+<p>I came to this conclusion while working with Django&rsquo;s ORM, but this post is
+completely object-relational mapper agnostic. We are now using SqlAlchemy, but
+we are not using any of the many available declarative layers. Instead, we are
+using schema reflection and semi-automatically configured mappers. This is not
+an argument against ORMs. It is an argument against generating database schemas
+from ORM declarations. By extension, this is an argument against Django&rsquo;s ORM
+because Django uses an exclusively schema declarative model. That said,
+Django&rsquo;s ORM is far from alone in this camp.</p>
+
+<h4>Data Outlives Code</h4>
+
+<p>When code is dead and gone &mdash; be it through rewrite, obsolescence, or by other
+means &mdash; the data will still be there. Longevity implies slower evolution; data
+is always more difficult and riskier to change. Data is also more valuable.
+What if Facebook rebooted their database? They&rsquo;ve already rebooted their
+software several times.</p>
+
+<p>Schemas are data. As data, schemas are longer lived, less flexible, and more
+valuable than code. These factors alone suggest that the database itself should
+hold the authoritative schema, not a class declaration in the code.</p>
+
+<p>If you have inherited data from another project, you already know this lesson.
+You can&rsquo;t generate the schema from code because the schema already exists. You
+can mimic the authoritative schema in your declarations, but it is easier and
+more accurate to use reflection.</p>
+
+<h4>Ineffective Domain Objects</h4>
+
+<p>Object relational mapping is primarily a serialization problem. Every
+serialization solution has its quirks. The scale and number of quirks seem
+directly proportional to the absolute difference between the runtime and
+storage representations. Since a database is a completely distinct type system,
+rather than an opaque byte array, serialization to a database can have
+particularly quirky quirks.</p>
+
+<p>Modeling is one of the fundamental challenges of software development. Capable
+developers prefer highly expressive or unconstrained type systems to aid with
+modeling. Generally, runtime type systems are more expressive than those found
+in databases. Declarative relational mappers, however, constrain the
+programming language type system to its less expressive counterpart. When
+building domain objects, the developer must think in terms of the database&rsquo;s
+type system, not the programming language&rsquo;s.</p>
+
+<p>While using a declarative object relational mapper, developers are effectively
+trying to design storage and runtime models simultaneously. On average,
+superior results are achieved by modeling these two concerns separately and
+then solving an additional subproblem: serialization mapping. You might wind up
+with slightly more code, but it will be easier to understand and maintain.</p>
+
+<h4>SQL Is Not Going Away</h4>
+
+<p>Despite forcing a less expressive type system on to the developer, declarative
+ORM layers attempt to treat the database as an implementation detail. However
+much we wish this were true, the database is not a detail which can be ignored.
+Sooner or later, you are going to have to open your database shell and write a
+SQL expression. This requires knowledge of your database&rsquo;s particular SQL
+dialect and idiosyncrasies. Exacerbating this issue, generated schemas are
+typically full of name mangling and other ugliness. It is far more pleasant to
+work with a carefully designed schema than one that compromises for the ORM or
+the runtime type system.</p>
+
+<h4>Schema and Declarations Diverge</h4>
+
+<p>Data migrations present the most pressing need to work with SQL directly. As an
+widely unsolved problem, automation can not be trusted. Unless you are
+painstakingly simulating the schema generator, the production database schema
+will slowly diverge. Most deviations are tolerable as they will not affect the
+runtime behavior, but it is wise to minimze differences between production,
+staging, and development environments. To faciliate this, store migration
+scripts and backed-up schemas in version control.</p>
+
+<p>Some deviations will directly affect runtime behavior. For example, consider
+the case where two versions of an application are running in production. An
+<code>is_read</code> boolean column was added to a message table in the database. It&rsquo;s
+default value is false. When a row&rsquo;s page is viewed, the <code>is_read</code> column is set
+to true. The old version of the application doesn&rsquo;t know about the column, so
+it can not set the flag. When the new version is rolled out to everyone,
+affected user will see a bunch of read items marked as unread! The solution is
+to set the column&rsquo;s default to true, but initialize it to false in the
+application. Declarations must either deliberately deviate from the schema or
+present a misleading default value to be overridden during initialization. This
+is just a simple example, real world schema migrations can be significantly
+more complex and suffer from numerous more subtle problems.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Martin Diers</h3>
+
+<p>These are all good points, and largely irrelevant for someone developing to
+Django. Yes, if you are using Django to develop to a long-term data store,
+enterprise data, etc., you are dead right, and you should be using SQLAlchemy
+with Django instead of the Django ORM.</p>
+
+<p>However, consider Django&rsquo;s original target use: a newspaper, on the cutting
+edge, putting up quick apps on-the-fly with a very short development cycle. A
+CMS. A Polling app. A Blog. Think about the type of apps that people actually
+build with Django, and you will find that the Django ORM makes perfect sense.
+Short development cycle. Easy deployment. &ldquo;Good enough&rdquo; query
+optimizations.</p>
+
+<h3>Ezequiel</h3>
+
+<p>I agree with Martin, Jacob Kaplan-Moss himself said that, when you get to a
+point where you&rsquo;re building something really big (e.g. Twitter) you basically
+have to throw your framework away.</p>
+
+<p>Django is really good, but, like any technolgy, sometimes is not enough.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@Martin: The &ldquo;original target use&rdquo; argument is no longer relevant. Django is
+being pushed as a general purpose web framework for developing sites or apps,
+big and small.</p>
+
+<p>@Ezequiel: I&rsquo;m not building something Twitter big. I&rsquo;m building something that
+has to deal with real user data and survive real design evolution. The problems
+I describe affect any application with any longevity of any kind.</p>
+
+<h3>Julien</h3>
+
+<p>I agree I&rsquo;d rather go schema first than model first. As a side note though it&rsquo;s
+interesting to think about it in the context of the whole NOSQL mouvement
+that&rsquo;s been gaining a lot of traction over the last year. Facebook, LinkedIn or
+Amazon for some subset of its data and others are doing away with the
+relational stores and going with pure key/value pairs persistence.</p>
+
+<p>Not relevant for every application but very interesting nonetheless.</p>
+
+<h3>Ergo</h3>
+
+<p>Have you ever considered something else than django? Like pylons or repoze.bfg?
+Django is really not so good solution for more complicated tasks if you want to
+work efficiently.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-06T00:00:00-07:00" pubdate data-updated="true">Oct 6<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2009/10/06/orms-and-declarative-schemas/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2009/10/06/orms-and-declarative-schemas/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/08/24/url-routing-and-views/" title="Previous Post: URL routing and views">&laquo; URL routing and views</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/06/04/noscript-add-on-install-base/" title="Next Post: NoScript Add-on Install Base">NoScript Add-on Install Base &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

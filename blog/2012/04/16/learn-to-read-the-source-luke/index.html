@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Learn to Read the Source, Luke - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="Apparently, I&rsquo;m Jeff Atwood&rsquo;s guest blogger today:
+Learn to Read the Source, Luke Since I wrote the original Hacker News comment, I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2012/04/16/learn-to-read-the-source-luke">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Learn to Read the Source, Luke</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-16T00:00:00-07:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Apparently, I&rsquo;m Jeff Atwood&rsquo;s guest blogger today:
+<a href="http://www.codinghorror.com/blog/2012/04/learn-to-read-the-source-luke.html">Learn to Read the Source, Luke</a></p>
+
+<p>Since I wrote <a href="https://news.ycombinator.com/item?id=3769665">the original Hacker News comment</a>, I figured I might as well
+reproduce it in full here.</p>
+
+<blockquote><p>I started working with Microsoft platforms professionally at age 15 or so. I
+worked for Microsoft as a software developer doing integration work on Visual
+Studio. More than ten years after I first wrote a line of Visual Basic, I
+wish I could never link against a closed library ever again.</p>
+
+<p>Using software is different than building software. When you&rsquo;re using most
+software for its primary function, it&rsquo;s a well worn path. Others have
+encountered the problems and enough people have spoken up to prompt the core
+contributors to correct the issue. But when you&rsquo;re building software, you&rsquo;re
+doing something new. And there are so many ways to do it, you&rsquo;ll encounter
+unused bits, rusty corners, and unfinished experimental code paths. You&rsquo;ll
+encounter edge cases that have been known to be broken, but were worked
+around.</p>
+
+<p>Sometimes, the documentation isn&rsquo;t complete. Sometimes, it&rsquo;s wrong. The
+source code never lies. For an experienced developer, reading the source can
+often be faster… especially if you&rsquo;re already familiar with the package&rsquo;s
+architecture.  I&rsquo;m in a medium-sized co-working space with several startups.
+A lot of the other CTOs and engineers come to our team for guidance and
+advice on occasion.  When people report a problem with their stack, the first
+question I ask them is: &ldquo;Well, did you read the source code?&rdquo;</p>
+
+<p>I encourage developers to git clone anything and everything they depend on.
+Initially, they are all afraid. &ldquo;That project is too big, I&rsquo;ll never find
+it!&rdquo; or &ldquo;I&rsquo;m not smart enough to understand it&rdquo; or &ldquo;That code is so ugly! I
+can&rsquo;t stand to look at it&rdquo;. But you don&rsquo;t have to search the whole thing, you
+just need to follow the trail. And if you can&rsquo;t understand the platform below
+you, how can you understand your own software? And most of the time, what
+inexperienced developers consider beautiful is superficial, and what they
+consider ugly, is battle-hardened production-ready code from master hackers.
+Now, a year or two later, I&rsquo;ve had a couple of developers come up to me and
+thank me for forcing them to sink or swim in other people&rsquo;s code bases. They
+are better at their craft and they wonder how they ever got anything done
+without the source code in the past.</p>
+
+<p>When you run a business, if your software has a bug, your customers don&rsquo;t
+care if it is your fault or Linus&#8217; or some random Rails developer&rsquo;s. They
+care that your software is bugged. Everyone&rsquo;s software becomes my software
+because all of their bugs are my bugs. When something goes wrong, you need to
+seek out what is broken, and you need to fix it. You fix it at the right spot
+in the stack to minimize risks, maintenance costs, and turnaround time.
+Sometimes, a quick workaround is best. Other times, you&rsquo;ll need to recompile
+your compiler. Often, you can ask someone else to fix it upstream, but just
+as often, you&rsquo;ll need to fix it yourself.</p>
+
+<p>Closed-software shops have two choices: beg for generosity, or work around
+it.  Open source shops with weaker developers tend to act the same as
+closed-software shops.  Older shops tend to slowly build the muscles required
+to maintain their own forks and patches and whatnot.  True hackers have come
+to terms with a simple fact: If it runs on my machine, it&rsquo;s my software. I&rsquo;m
+responsible for it. I must understand it. Building from source is the rule
+and not an exception. I must control my environment and I must control my
+dependencies.</p></blockquote>
+
+<p>After reproducing my comment, Jeff wrote:</p>
+
+<blockquote><p>Nobody reads other people&rsquo;s code for fun. Hell, I don&rsquo;t even like reading my
+own code. The idea that you&rsquo;d settle down in a deep leather chair with your
+smoking jacket and a snifter of brandy for a fine evening of reading through
+someone else&rsquo;s code is absurd.</p></blockquote>
+
+<p><a href="https://news.ycombinator.com/item?id=3851767">I disagree</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-16T00:00:00-07:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2012/04/16/learn-to-read-the-source-luke/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2012/04/16/learn-to-read-the-source-luke/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/02/26/rest-one-thousand-inconsequential-decisions/" title="Previous Post: REST: One Thousand Inconsequential Decisions">&laquo; REST: One Thousand Inconsequential Decisions</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/11/22/clojurescript-projects/" title="Next Post: ClojureScript Projects">ClojureScript Projects &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

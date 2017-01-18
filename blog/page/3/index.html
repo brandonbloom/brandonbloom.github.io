@@ -1,0 +1,2266 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="Here’s a list of things I like about Ruby on Rails. Almost every single one of
+these are available in at least one Python framework in some form, but &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/page/3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/17/where-rails-rocks-and-where-python-doesn-t/">Where Rails Rocks (and Where Python Doesn&#8217;t)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-17T00:00:00-07:00" pubdate data-updated="true">Sep 17<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here’s a list of things I like about Ruby on Rails. Almost every single one of
+these are available in at least one Python framework in some form, but the best
+thing about Rails is how polished the pieces are and how well they all fit
+together. The whole is truly greater than the sum of its parts.</p>
+
+<h4>Fantastic OOBE</h4>
+
+<p>Rails has a fantastic out-of-box experience. Simply execute </span><span >rails new</span><span > and you’re off to the races with a directory full of goodies that every real web app needs: dependency management, build system, multi-environment configuration, development storage, logging, custom error pages, robots.txt file and more. See section 3.2 of the </span><a href="http://guides.rubyonrails.org/getting_started.html"><span >getting started guide</span></a><span > for a complete list. Hell, they even fill out a .gitignore file for you! A place for everything and everything in its place.</span></p>
+
+<h4>Dependency Management: RubyGems</h4>
+
+<p>In the Python world, easy_install and its ilk are all kinds of broken. You can’t even uninstall a package! Luckily, there is </span><a href="http://pypi.python.org/pypi/pip"><span >Pip and Virtualenv</span></a><span >, but assuming Pip supports all your packages, you’ve still got to make sense of dependency freezing and manually setup a virtual environment. With Rails, that all just works: </span><span >rails server</span><span > runs in a virtualized environment and loads gems as defined by your </span><a href="http://docs.rubygems.org/read/book/1"><span >Gemfile</span></a><span >; </span><span >rails console</span><span > for a repl. No need to muck with sys.path! Any seasoned developed has spent many an hour in dependency hell, but it is still hard to justify the infrastructure investment before writing a line of HTML. Bonus points for the “vendor” directory, in case you need to patch a third party package (or Rails itself) and want to keep it under version control.</span></p>
+
+<h4>Build System: Rake</h4>
+
+<p>gnu.org/software/make/manual/make.html&#8221;><span >Makefiles</span></a><span >. A lot of people really hate them, but they are just so damn useful. Frequently, you need to transform some set of files into some other set of files, but only when they change. Makefiles help you do that reliably. They accomplish their feat explicitly by </span><span >not</span><span > being a programming language, but a dependency and build rule declaration language. I’ve seen a lot of attempts at build systems that aim to be idiomatic with respect to their host languages. Java has Ant and Maven. Python has Scons and others. Scala has Simple Build Tool. None of them are as good as plain old Makefiles. Then, I discovered </span><a href="http://rake.rubyforge.org/"><span >Rake</span></a><span >. Rakefiles rock. They are 90% Makefiles, and 90% Ruby. Rake expertly uses the features of Ruby to craft an API/DSL that looks a lot like Make declarations without compromising on general purpose programmability.</span></p>
+
+<h4>Markup and Style Sheets: Haml and Sass</span></h4>
+
+<p><a href="http://haml-lang.com/"><span >Haml</span></a><span > and </span><a href="http://sass-lang.com/"><span >Sass</span></a><span > are so amazing, they ought to be illegal. Just click those links and check out the HTML and CSS comparisons. It is no contest. I never want to write HTML or CSS ever again. As far as I’m concerned, HTML and CSS are object code: to be generated by a compiler. Whenever I have to look at the generated code, it feels like I am reading assembly. Simply add </span><span >gem ‘haml’</span><span > to your Gemfile, then start writing .html.haml files instead of .html.erb and .sass files instead of .css. Use </span><span >html2haml</span><span > and </span><span >sass-convert</span><span > to upgrade your crusty old markup and style sheets instantly.</span></p>
+
+<h4>Object Relational Mapper: ActiveRecord</span></h4>
+
+<p>I’ve discussed my </span><a href="http://blog.brandonbloom.name/2009/10/orms-and-declarative-schemas.html"><span >preference for database schema reflection</span></a><span > at great length, so I won’t reiterate here. I will, however, say that </span><a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html"><span >ActiveRecord</span></a><span > makes simple things simple and complex things possible while embodying successful best practices in its various subsystems, like migrations. It doesn’t try to be everything to everyone, unlike </span><a href="http://www.sqlalchemy.org/"><span >SqlAlchemy</span></a><span >. And it seems to be nicely onion layered for pealing back when necessary. For example, </span><a href="http://github.com/rails/rails/tree/master/activemodel"><span >ActiveModel</span></a><span > validations can be used on plain old Ruby objects. Which brings me to&hellip;</span></p>
+
+<h4>Form Handling: FormBuilder, params and mass assignment</span><span ></span></h4>
+
+<p>I don’t need to learn and manage three different data marshaling techniques to map a database record to a web form. In fact, I don’t need to manage </span><span >any</span><span >. Schema reflection spares me in the model layer, </span><a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html"><span >FormBuilder/FormHelpers</span></a><span > in the views, and the hash &amp; array structured params in the controllers layer. Almost every user interaction boils down to interpreting a form’s worth of JSON-like data structures as an API call, implemented via a (</span><a href="http://github.com/ryanb/trusted-params"><span >secured</span></a><span >) </span><a href="http://railscasts.com/episodes/26-hackers-love-mass-assignment"><span >mass assignment</span></a><span > to </span><a href="http://railscasts.com/episodes/167-more-on-virtual-attributes"><span >virtual attributes</span></a><span >.</span></p>
+
+<h4>Templating: Layouts, Partials, and Helpers</span></h4>
+
+<p>When I’m getting my Haml on, I frequently want to run some non-trivial code. Feel free to shout about your separation of concerns religion, but I’ve got real things to worry about. Furthermore, we as engineers should be writing our production views/templates, not some hypothetical designer who is technical enough to write loops and branching statements, but not to be trusted with a function definition. Views are composed of markup and presentation declarations in the templates, presentation logic goes in helpers (which conveniently share scope with templates and controllers), and are neatly organized into </span><a href="http://api.rubyonrails.org/classes/ActionView/Partials.html"><span >partials</span></a><span >. Simple, but effective.</span></p>
+
+<h4>URL Design: Routes</span></h4>
+
+<p>Rail’s </span><a href="http://edgeguides.rubyonrails.org/routing.html"><span >routing</span></a><span > system makes clever use of blocks to provide a hierarchical, declarative URL map that just makes sense to read. I used to design URLs in an indented text file and then map it to a list of regexps, but the routes.rb file is close enough to a spec and doesn’t require me to even think about regexes, ‘nuff said.</span></p>
+
+<h4>Authentication: Authlogic</span><span ></span></h4>
+
+<p>Authentication is hard. Really, really hard. And boring. Really, really boring. But important. Really, really important. Everyone knows that the sign-up funnel is critical to get right and security is easy to get wrong. Most quality sites have a little bit of domain-specific special sauce in their authentication model. Trivial sign-up and log-in forms just don’t cut it. One size simply does not fit all for authentication front-ends, but the authentication back-ends tend to be pretty repeatable. </span><a href="http://github.com/binarylogic/authlogic"><span >Authlogic</span></a><span > turns repeatable into re-usable, without the baggage of views you’re going to need to rewrite anyway. Thinking about authentication as CRUD operations on a user-session model blew my mind slightly. I had a full authentication system tuned to my needs up and running within two hours.</span></p>
+
+<h4>Authorization: CanCan</span></h4>
+
+<p>I hate </span><a href="http://en.wikipedia.org/wiki/Access_control_list"><span >ACLs</span></a><span >. </span><a href="http://en.wikipedia.org/wiki/Role-based_access_control"><span >Role-based authorization</span></a><span > simply has too much impedance mismatch for most problem domains. </span><a href="http://github.com/ryanb/cancan"><span >CanCan</span></a><span > is a clever little library which makes zero assumptions about how permissions are represented. Simply declare a list of everything a user can do and how to tell if they may. Query with the </span><span >can?</span><span > function, or assert with the </span><span >authorize!</span><span > method. Beautiful.</span></p>
+
+<h4>Rope to Hang Yourself: Ruby Itself</span></h4>
+
+<p>One keyword in my previous post triggered much discussion: magic. The concept of magic is a topic for a whole ‘nother blog post (as I’ve already been hung a few times), but as several commenters pointed out: it’s all just Ruby. Between mixins, include, require, blocks, method_missing, symbols, and many other features, Ruby is a very capable internal domain specific language development toolkit. Most of the time, you don’t want a DSL. If you’re not an expert in both the host language and the DSL, there is almost certain confusion and maintenance danger. Most projects are either small or distinct enough to justify writing more verbose code that can more readily be understood by successors or even your future self. The gains of a DSL do not always outweigh the costs. Python excels at not supporting DSLs; it is basically executable pseudocode. However, when it comes to a task as common as web application development, it’s worth the time to develop or learn a DSL or two. Rails is loaded with DSL features and “magic” behavior that increases the learning curve, but also increases peak productivity.</span><span ></span></p>
+
+<h4>Community</h4>
+
+<p>These sites have been invaluable: </span><a href="http://ruby-toolbox.com/"><span >The Ruby Toolbox</span></a><span >, </span><a href="http://www.railsplugins.org/"><span >RailsPlugins</span></a><span >, </span><a href="http://railscasts.com/"><span >Railscasts</span></a><span >. The quantity and quality of </span><a href="http://github.com/languages/Ruby"><span >Ruby libraries on Github</span></a><span > continues to impress. The educational infrastructure is extensive. Somehow, the Ruby community seems to consistently be at the forefront of the biggest trends in software development. Much like Rails compared to other frameworks, the community distinctions are subtle, but meaningful. For example, Rubyists championed Git while Python adopted Hg. To the untrained eye, they are virtually identical tools, but extensive experience with both has convinced me that Git is significantly superior. I’m new to the community, but it seems like Rubyists tend to insist on quality and bet on the winning horses.</span></p>
+
+<h4>Other Random Things</h4>
+
+<ul><li ><span >Javascript and CSS minification are trivially easy with plug-ins</span></li><li ><span >Static files are served with version stamps for better caching behavior</span></li><li ><span >Console and file logging are usefully configured by default</span></li><li ><a href="http://heroku.com/"><span >git push heroku</span></a><span ></span></li><li ><a href="http://rails.vim.tpope.net/"><span >rails.vim</span></a><span ></span></li><li ><a href="http://www.activemerchant.org/"><span >ActiveMerchant</span></a><span > looks awesome</span></li><li ><span >Only been working with Rails for two weeks; lots more goodness to uncover</span></li></ul>
+
+
+<p><span ></span></p>
+
+<h4>Just who the hell do I think I am?</h4>
+
+<p>I’m nobody. Just some opinionated computer geek working on a start-up. Not unlike many of you! My co-founder and I are currently participating in TechStars Seattle and hope to launch something killer come demo day, November 11th, 2010. We’ve got a grand vision for next generation enterprise collaboration software, but we’re starting small by focusing on making </span><span ><span><span><a href="http://www.thinkfuse.com/">weekly status reports</a></span></span><a href="http://www.thinkfuse.com/"></a></span><span > less painful and more useful. More details soon, but please visit </span><span ><a href="http://www.thinkfuse.com">http://www.thinkfuse.com</a></a>. Thanks!</div>  </div></p>
+
+<h2>Imported Comments</h2>
+
+<h3>Steve</h3>
+
+<p>You&rsquo;ll probably remove this too (at least you read like a fan-boy) but &hellip; you
+don&rsquo;t show where Python is lacking at all in this article.  I&rsquo;m not going to
+start a war but TurboGears has an equivalent to almost everything you listed
+there  (Although I&rsquo;m not so sure about Rake), and I was looking forward to the
+&ldquo;comparisons&rdquo; your title implies.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>I removed the previous comment because the author deleted it himself which left
+a vestigial block in the comment stream saying that the post was deleted.</p>
+
+<p>He wrote &ldquo;Why would you compare a framework to a programming language?&rdquo; to
+which the answer is: because I&rsquo;ve tried dozens of libraries and several
+frameworks in Python. Then I tried Rails. Python as an ecosystem lost out to
+Rails as a particular framework community for my needs.</p>
+
+<p>To your comment: I don&rsquo;t really think TurboGears does. Or at least, they are
+not first class citizens. For example, the documentation on form handling
+presents several options include FormEncode, ToscaWidgets, etc. It requires
+that I create an additional schema class where I declare widgets outside of the
+templates &mdash; or awkward @validate decorators.</p>
+
+<h3>Ixmatus</h3>
+
+<p>This is a poorly researched article. You&rsquo;re comparing the language Python and
+it&rsquo;s vast sea of tools to Rails the framework <i>written in</i> Ruby.</p>
+
+<p>Pylons (which is also the foundation for TurboGears 2) provides all you have
+listed above, if not more. I&rsquo;ve also noticed a strong tendency for Rails,
+Django, CakePHP, and many other &ldquo;kitchen sink&rdquo; frameworks to do much of the
+work for the developer and if I wanted to get around it &ndash; it becomes a day long
+hackathon of digging through docs, source code, and IRC logs.</p>
+
+<p>Pylons, has its own quirks and dirty sides too; but I highly prefer having to
+spend a lot of up-front time programming/configuring my own framework
+environment &ldquo;flavor&rdquo; (and being able to use it across many different projects)
+then having it just be &ldquo;Rails&rdquo;.</p>
+
+<p>Next time you post something like this, compare Rails to Django, or TurboGears,
+or Pylons; not just &ldquo;Python&rdquo;.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@lxmatus: I am quite aware of the distinctions between a language and a
+framework. Thanks.</p>
+
+<p>In this case, I am genuinely making the case that the Python web-development
+ecosystem as a whole has a story to tell which is less coherent and less
+attractive than the single framework: Rails.</p>
+
+<p>I make this argument because I was able to use everything in this article
+without having to write a lot of glue code. I spent <em>months</em> researching and
+experimenting with Python libraries. Then I spent a week using Rails. Each of
+these things worked beautifully together without any heavy setup. The resulting
+complete stack aligned very closely with my preferences. And I&rsquo;m a picky
+bastard: I tried a huuuge list of Python libraries before I found a stack I
+liked and I&rsquo;m still not totally satisfied.</p>
+
+<p>You can say &ldquo;TurboGears has these&rdquo; or &ldquo;You should try Web.py&rdquo; but that&rsquo;s
+precisely the problem. If I install Ruby, install Rails, and then visit
+<a href="http://ruby-toolbox.com/">http://ruby-toolbox.com/</a> and choose the most popular plugin for each thing I
+need: I&rsquo;ve got a highly pleasant, well integrated, stack in hours instead of
+months.</p>
+
+<h3>Steve</h3>
+
+<p>@Brandon &hellip; sorry for the accusation!  I&rsquo;ve watched far too many baseless
+arguments between the Ruby and Python groups, so maybe I&rsquo;m a bit sensitive.</p>
+
+<p>In any case, the example you gave is exactly the type of information I was
+expecting to find in the article.  It&rsquo;s very valuable to get the kind of
+comparative information you provide in your comment.</p>
+
+<p>As noted by Ixmatus, I find both the frameworks to have their quirks &hellip; it&rsquo;s
+the learning curve that you&rsquo;re paying for when using either.</p>
+
+<p>So I generally recommend TurboGears to people that already know Python and Ruby
+with Ruby on Rails for those that want to learn a 4th generation scripting
+language and use it with a RAD web framework.  RoR definitely has the media
+hype and resulting community (or it could be the other way around).</p>
+
+<h3>John</h3>
+
+<p>Great list of reasons to love rails (may I add: migrations, UJS defaults, and
+restful controllers).  The &ldquo;python ecosystem&rdquo; is a appropriate phrase and the
+whole &ldquo;comparing framework to language&rdquo; debate is out of context for this
+article.  It is clear you taking the various frameworks and
+I-can-glue-this-library-to-this-one solutions into account in your support of
+the rails framework.</p>
+
+<p>As far as rails doing too much work for the developer, that is the point.  That
+is the whole point.</p>
+
+<h3>Paddy3118</h3>
+
+<p>Horses for courses. Python frameworks have <a href="http://www.niemanlab.org/2009/06/four-crowdsourcing-lessons-from-the-guardians-spectacular-expenses-scandal-experiment/" rel="nofollow">their fanbois</a> too!</p>
+
+<h3>Bruno Cezar Rocha</h3>
+
+<p>You probably does not know web2py.</p>
+
+<p>web2py has everything you mentioned in that list.</p>
+
+<p><a href="http://www.web2py.com/book">http://www.web2py.com/book</a></p>
+
+<h3>William Brian Smith</h3>
+
+<p>I&rsquo;d recommend devise over authlogic. Devises is build around warden which is
+kind of an authentication framework of sorts. Allows for pluggable auth
+strategies and already has a lot of extras(fb, twitter, imap, cas, openid).
+Also in rails 3.1, you&rsquo;ll be able to flush the buffer before the page is done
+rendering, which should greatly increase load times. It will also come with a
+built in sprite system and css compression</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@William:  I followed the advice in comment #10 here: <a href="http://railscasts.com/episodes/209-introducing-devise">http://railscasts.com/episodes/209-introducing-devise</a></p>
+
+<p>I tend to want to customize pretty much everything heavily :&ndash;) Also, I also
+explicitly did not want any views/templates/etc done for me. However, I didn&rsquo;t
+look at Devise closely. If I ever revisit our authentication, I&rsquo;ll
+reinvestigate it.</p>
+
+<p>Looking forward to those new features too. Thanks!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/13/how-two-pythonistas-accidentally-fell-in-love-with-rails/">How Two Pythonistas Accidentally Fell in Love With Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-13T00:00:00-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One week ago, <a href="http://stevekrenzel.com/">my co-founder</a>
+and I found ourselves staring down a thick stack of paper UI
+prototypes; almost 50 pages total. One week before that, we threw
+out a perfectly good, working beta product because customer
+feedback suggested a significantly better path. The tale of how we
+ended up at that point is entertaining as well, but it will have to
+wait for another time. This is the tale of how our paper prototype
+turned a pair of long time <a href= "http://www.python.org/">
+Python</a> developers (and <a href= "http://blog.brandonbloom.name/2009/08/dropping-django.html">
+documented framework haters</a>) into <a href="http://www.ruby-lang.org/">
+Ruby</a> on <a href="http://rubyonrails.org/"> Rails</a> developers.</p>
+
+<p>Paper prototyping proved to be an extremely worthwhile exercise,
+but we really wanted something we could click around. We devised a
+strategy to build a clickable prototype that would evolve into
+production code. The plan was to stub out all of the views with
+static HTML and CSS. The CSS could be directly carried over to the
+product and the HTML could be retrofitted as templates. Having
+become religious about <a href="http://sass-lang.com/">Sass</a>
+about a year ago, I fired up the file watcher (which automatically
+rebuilds CSS) and set to work filling a directory with sass and
+html files.</p>
+
+<p>After some time, I asked myself &ldquo;I wonder if <a href="http://haml-lang.com/">Haml</a>
+has a <code>--watch</code> argument?&rdquo; (it doesn&rsquo;t) because Sass
+makes me hate Html&rsquo;s verbosity. Armed with
+practically zero Ruby knowledge, I hobbled together a simple
+<a href="http://rake.rubyforge.org/">Rakefile</a>
+and Haml watcher script and got back to work. A few Git pushes
+later, my co-founder, being the clever bastard that he is, simply
+installed Rails and the Haml plugin to replace my hacky scripts.
+&ldquo;Neat&rdquo;, I said and thought nothing of it.</p>
+
+<p>Then we designed our URLs in an indented plain text file, which
+pretty much directly mapped into the <a href= "http://edgeguides.rubyonrails.org/routing.html">
+routes.rb</a> file and some trivial (empty method) controllers. Whoops! Now
+we&rsquo;re writing Ruby.</p>
+
+<p>&ldquo;At this point, we might as well try Rails proper.&rdquo;</p>
+
+<p>Generated some models and corresponding migrations:
+&ldquo;Wow, explicit schema with reflective model
+objects. None of this
+<a href= "http://blog.brandonbloom.name/2009/10/orms-and-declarative-schemas.html">declarative schema bullshit</a>.&rdquo;</p>
+
+<p>Wired up some controllers. &ldquo;The <a href= "http://rails.nuvvo.com/lesson/6371-action-controller-parameters">
+structured params</a> infrastructure is pretty cool.&rdquo;</p>
+
+<p>&ldquo;Ruby is kinda fun.
+<a href= "http://www.robertsosinski.com/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/">Blocks</a>
+are super useful.&rdquo;</p>
+
+<p>Integrated <a href= "http://github.com/binarylogic/authlogic">Authlogic</a>.
+&ldquo;Wow, that was easy. I really like how it does not force any front-end decisions on me.&rdquo;</p>
+
+<p>&ldquo;Rails is full of evil black magic that I do not understand, but it seems to
+read my mind, so I don&rsquo;t really care.&rdquo;</p>
+
+<p>Started to apply some polish and work on the 10% that takes 90% of the time. &ldquo;I
+think I can safely add Ruby to my resume now.&rdquo;</p>
+
+<p>Late at night, at the very end of the week, exhausted, we stared at each other.
+&ldquo;Dude, I think we can show this off to people tomorrow.&rdquo; Walking out the door
+of the office, my co-founder said to me &ldquo;I feel so dumb for having ignored
+Rails for so long. I just assumed it was Ruby&rsquo;s Django&rdquo;.</p>
+
+<p>We accidentally implemented our entire beta product in one week, with zero
+prior Ruby or Rails experience.</p>
+
+<p>When I have some more time (and experience), I&rsquo;ll try to write about specific
+design decisions that set Rails apart.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Veezus Kreist</h3>
+
+<p>Great story! I love the black magic quote &ndash; but I think it will feel more
+apropos when you use rspec as a test framework.</p>
+
+<h3>Joe Lallouz</h3>
+
+<p>Sweet. A very similar situation happened when my co-founder and i switched to
+Groovy and Grails.</p>
+
+<h3>Dan</h3>
+
+<p>How did I never notice you on Hacker News before? I read it every day!</p>
+
+<h3>Andrew Ingram</h3>
+
+<p>Weird, I moved to Django because I was fed up with building sites using Rails :p</p>
+
+<p>I guess everyone has their own preferred style.</p>
+
+<h3>Eric Floehr</h3>
+
+<p>The best language for you is the one in which you are most productive in, so
+awesome!</p>
+
+<p>My first public website was in Rails, and I assumed Django was just Python&rsquo;s
+Rails.</p>
+
+<p>I have since converted it to Django because Django allows me to be more
+productive, and ActiveRecord didn&rsquo;t work well for me.</p>
+
+<p>Best of luck, and congrats again for finding such productivity!</p>
+
+<h3>Rives</h3>
+
+<p>lol, do you always call your co-founder a bastard?</p>
+
+<h3>Max</h3>
+
+<p>Did you give web2py a try? I believe it provides in Python what you found in
+Rails.</p>
+
+<h3>JonnieCache</h3>
+
+<p>&ldquo;lol, do you always call your co-founder a bastard?&rdquo;
+I&rsquo;m guessing he&rsquo;s in the UK :)</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@Dan: I haven&rsquo;t been hiding :&ndash;)</p>
+
+<p>@Andrew: I think that&rsquo;s why these topics are such hot issues. It is more
+preference and religion than anything else. Django is a solid piece of code and
+a stellar community, but it just doesn&rsquo;t mesh with my brain.</p>
+
+<p>@Rives &amp; JonnieCache: I called him a <em>clever</em> bastard. I consider that a
+complement. And no, I&rsquo;m not from the UK. I&rsquo;m from NY, he&rsquo;s from Philly, and we
+are currently located in Seattle.</p>
+
+<p>@Max: I&rsquo;ve played with web2py, but wasn&rsquo;t super impressed. But hey, I thought
+the same thing about Rails. I guess you need to really try to make something to
+understand. What about it is interesting in particular?</p>
+
+<h3>Nicko</h3>
+
+<p>Just out of interest, which version of rails are you using?</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Rails 3</p>
+
+<h3>Psylinse</h3>
+
+<p>And here I am going from Rails (because of black magic :) to Pylons, which took
+a lot from Rails, but its in Python!</p>
+
+<p>Perhaps you should give Pylons a look over, just some food for thought.</p>
+
+<h3>jbaker</h3>
+
+<p>I originally began programming in Python with Django myself, but I saw Rails
+and immediately went.. WTF!? to Django and Python in general.</p>
+
+<h3>fitzgeraldsteele</h3>
+
+<p>I think the real lesson here is to find the right tool for the right job.  Both
+Rails and Django are pretty strong pieces of framework, allowing you to do a
+lot in a little amount of time.</p>
+
+<p>I had a similar experience, where I quickly prototyped a website in Rails.  I
+showed it off and said, &ldquo;see&hellip;this is pretty much done.&rdquo;  And then developers
+on my team felt the need to rebuild the site in PHP since that&rsquo;s what our
+company &lsquo;officially supports.&rsquo;  :)</p>
+
+<p>On another project, I was able to quickly use the Django ORM to introspect an
+existing MySQL database, and build an admin interface for some of our internal
+users.  That was a HUGE win for me to be able to quickly make the admin site.</p>
+
+<p>So, the right tool for the right job&hellip;</p>
+
+<h3>Max</h3>
+
+<p>@Brandon</p>
+
+<p>Given your article I thought your would like the fact that in web2py everything
+has a default. For example is you just type:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='python'><span class='line'><span class="n">db</span><span class="o">.</span><span class="n">define_table</span><span class="p">(</span><span class="s">&#39;post&#39;</span><span class="p">,</span><span class="n">Field</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>web2py creates the table (if it does not exist, or alters it as necessary), a
+web based database administrative interface, and crud.create, crud.update,
+crud.read, crud.select, crud.search forms that you can insert in your app like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='python'><span class='line'><span class="p"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It also includes role based access control out of the box with pluggable
+authentication mechanisms.</p>
+
+<p>Web2py also has a component/plugin architecture that is best described by this
+video <a href="http://vimeo.com/13485916">http://vimeo.com/13485916</a></p>
+
+<p>Since you are coming from Python, I though you may be interested. Anyway, I too
+really like Rails and web2py was originally designed to be in Python but closer
+to Rails than other Python frameworks.</p>
+
+<h3>brokenladder</h3>
+
+<p>Semantic indenting is far and away the best thing about Python, and Haml/Sass
+prove Ruby should adopt it too.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@brokenladder: Hell yes.</p>
+
+<h3>coulix</h3>
+
+<p>Well in my case I am way more productive in Python, especially when prototyping
+with Django. It all depends on the mastering level of the tool. One point I
+will give to rails is haml tho. We need a proper equivalent well integrated in
+Django/Python.</p>
+
+<h3>Rafael Rosa Fu</h3>
+
+<p>Hi,</p>
+
+<p>Next time you need to authentication, try Devise instead of Authlogic, and
+check Ruby Toolbox for more interesting Ruby tools.</p>
+
+<p><a href="http://github.com/plataformatec/devise">http://github.com/plataformatec/devise</a>
+<a href="http://ruby-toolbox.com/">http://ruby-toolbox.com/</a></p>
+
+<p>Cheers</p>
+
+<h3>Kevin</h3>
+
+<p>Could you expand on your file watcher script?  Running a background process
+(e.g. re-compile) on change is a common pattern that I haven&rsquo;t found a tidy
+solution to&hellip;</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@kevin: I&rsquo;ve written a bunch of watchers in the past. Each had their pros and cons.</p>
+
+<p>Steve has a simple Python script here: <a href="http://stevekrenzel.com/articles/autoreload">http://stevekrenzel.com/articles/autoreload</a></p>
+
+<p>However, in this case I used FSSM: <a href="http://github.com/ttilley/fssm">http://github.com/ttilley/fssm</a></p>
+
+<p>FSSM has the advantage that it uses the platform&rsquo;s native file notification
+mechanism, so it tends to respond more quickly (no polling delay).</p>
+
+<h3>T T</h3>
+
+<p>Awesome post! I&rsquo;ve been comfortable with Django though I am dabbling into Rails
+but I&rsquo;m having trouble with getting to grips with Ruby. Would you recommend
+anything you&rsquo;ve read that allowed you build a working prototype? I&rsquo;m curious
+about how you managed to learn it so quickly. Thanks!</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@TT: I took advantage of the fact that many people switch to or from Python. I
+searched for phrases like &ldquo;python&rsquo;s foo in ruby&rdquo;. Ruby is so similar to Python,
+it was pretty easy to just pretend it&rsquo;s the same and go back for cleanup as you
+learn the idiomatic approaches.</p>
+
+<p>Also, I generally just have an interest in programming languages. I&rsquo;m pretty
+fluent with about a half dozen languages, so each marginal new language is that
+much easier to pick up.</p>
+
+<p>As an aside: the &ldquo;end&rdquo; keyword is just sooo unnecessary!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/04/noscript-add-on-install-base/">NoScript Add-on Install Base</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-04T00:00:00-07:00" pubdate data-updated="true">Jun 4<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The <a href="http://noscript.net/" id="zj_s" title="official NoScript site">official NoScript site</a> downloads via the <a href="https://addons.mozilla.org/en-US/firefox/addon/722/" id="kbbv" title="Mozilla Add-ons page">Mozilla Add-ons page</a>, so its download count is probably accurate: 67,616,402</p>
+
+<p>NoScript does not publish their individual add-on usage statistics, but the global download/usage ratio can be calculated from the statistics on the <a href="https://addons.mozilla.org/en-US/firefox/" id="dq5o" title="Firefox Add-on home page">Firefox Add-on home page</a>:</p>
+
+<ul>
+<li>1,962,617,946 add-ons downloaded</li>
+<li>157,090,095 add-ons in use</li>
+</ul>
+
+
+<p>About 8% of downloaded add-ons are still in use. Assuming NoScript&rsquo;s usage
+ratio is comparable to the average, approximately 5.4 million installations of
+FireFox are running NoScript. Let&rsquo;s ignore the fact that NoScript&rsquo;s usage ratio
+is probably much lower than the average, due to the fact that it <i>breaks most
+web pages</i>.</p>
+
+<p>I&rsquo;d wager that the average NoScript user has at least two machines, so the
+total number of NoScript users is probably less than 2.7 million.</p>
+
+<p><a href="http://www.google.com/publicdata?ds=wb-wdi&amp;met=it_net_user&amp;idim=country:USA&amp;dl=en&amp;hl=en&amp;q=number+of+internet+users+in+america" id="seha" title="There are over 230 million internet users in the USA">There are over 230 million internet users in the USA</a>.</p>
+
+<p>Even if 100% of NoScript users were Americans, they form 1% or less of the
+general population. If you, like me, believe that I have been generous to
+NoScript here, it is likely that no script users are no more numerous than 1 in
+1,000.</p>
+
+<p>Even if the user is using NoScript, they can whitelist your site. You can
+probably add <code>&lt;noscript&gt;WARNING: THIS SITE IS BUSTED WITHOUT JS&lt;/noscript&gt;</code> to
+the top of your page and call it a day. If you are feeling generous, redirect
+no-script users to the mobile version of your site and tell them why.</p>
+
+<p>tldr: Assume that human user agents have Javascript.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Anthony DiSanti</h3>
+
+<p>What&rsquo;s the inspiration behind this post?  Did you think you actually needed to
+support a strong noscript experience?  JS is mandatory at this point, screw
+anyone that&rsquo;s turning it off.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Facebook&rsquo;s BigPipe tech announcement prompted some Javascript-required
+discussions on Hacker News.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/10/06/orms-and-declarative-schemas/">ORMs and Declarative Schemas</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-06T00:00:00-07:00" pubdate data-updated="true">Oct 6<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My <a href="http://blog.brandonbloom.name/2009/08/dropping-django.html">prior post</a> was more controversial than I anticipated. In hindsight, I
+should have realized what a hot button issue web frameworks are. One assertion
+went all but unnoticed. I expect it may be even more controversial:</p>
+
+<p><em>the schema-generative ORM paradigm is fundamentally flawed</em>.</p>
+
+<h4>Disclaimer</h4>
+
+<p>I came to this conclusion while working with Django&rsquo;s ORM, but this post is
+completely object-relational mapper agnostic. We are now using SqlAlchemy, but
+we are not using any of the many available declarative layers. Instead, we are
+using schema reflection and semi-automatically configured mappers. This is not
+an argument against ORMs. It is an argument against generating database schemas
+from ORM declarations. By extension, this is an argument against Django&rsquo;s ORM
+because Django uses an exclusively schema declarative model. That said,
+Django&rsquo;s ORM is far from alone in this camp.</p>
+
+<h4>Data Outlives Code</h4>
+
+<p>When code is dead and gone &mdash; be it through rewrite, obsolescence, or by other
+means &mdash; the data will still be there. Longevity implies slower evolution; data
+is always more difficult and riskier to change. Data is also more valuable.
+What if Facebook rebooted their database? They&rsquo;ve already rebooted their
+software several times.</p>
+
+<p>Schemas are data. As data, schemas are longer lived, less flexible, and more
+valuable than code. These factors alone suggest that the database itself should
+hold the authoritative schema, not a class declaration in the code.</p>
+
+<p>If you have inherited data from another project, you already know this lesson.
+You can&rsquo;t generate the schema from code because the schema already exists. You
+can mimic the authoritative schema in your declarations, but it is easier and
+more accurate to use reflection.</p>
+
+<h4>Ineffective Domain Objects</h4>
+
+<p>Object relational mapping is primarily a serialization problem. Every
+serialization solution has its quirks. The scale and number of quirks seem
+directly proportional to the absolute difference between the runtime and
+storage representations. Since a database is a completely distinct type system,
+rather than an opaque byte array, serialization to a database can have
+particularly quirky quirks.</p>
+
+<p>Modeling is one of the fundamental challenges of software development. Capable
+developers prefer highly expressive or unconstrained type systems to aid with
+modeling. Generally, runtime type systems are more expressive than those found
+in databases. Declarative relational mappers, however, constrain the
+programming language type system to its less expressive counterpart. When
+building domain objects, the developer must think in terms of the database&rsquo;s
+type system, not the programming language&rsquo;s.</p>
+
+<p>While using a declarative object relational mapper, developers are effectively
+trying to design storage and runtime models simultaneously. On average,
+superior results are achieved by modeling these two concerns separately and
+then solving an additional subproblem: serialization mapping. You might wind up
+with slightly more code, but it will be easier to understand and maintain.</p>
+
+<h4>SQL Is Not Going Away</h4>
+
+<p>Despite forcing a less expressive type system on to the developer, declarative
+ORM layers attempt to treat the database as an implementation detail. However
+much we wish this were true, the database is not a detail which can be ignored.
+Sooner or later, you are going to have to open your database shell and write a
+SQL expression. This requires knowledge of your database&rsquo;s particular SQL
+dialect and idiosyncrasies. Exacerbating this issue, generated schemas are
+typically full of name mangling and other ugliness. It is far more pleasant to
+work with a carefully designed schema than one that compromises for the ORM or
+the runtime type system.</p>
+
+<h4>Schema and Declarations Diverge</h4>
+
+<p>Data migrations present the most pressing need to work with SQL directly. As an
+widely unsolved problem, automation can not be trusted. Unless you are
+painstakingly simulating the schema generator, the production database schema
+will slowly diverge. Most deviations are tolerable as they will not affect the
+runtime behavior, but it is wise to minimze differences between production,
+staging, and development environments. To faciliate this, store migration
+scripts and backed-up schemas in version control.</p>
+
+<p>Some deviations will directly affect runtime behavior. For example, consider
+the case where two versions of an application are running in production. An
+<code>is_read</code> boolean column was added to a message table in the database. It&rsquo;s
+default value is false. When a row&rsquo;s page is viewed, the <code>is_read</code> column is set
+to true. The old version of the application doesn&rsquo;t know about the column, so
+it can not set the flag. When the new version is rolled out to everyone,
+affected user will see a bunch of read items marked as unread! The solution is
+to set the column&rsquo;s default to true, but initialize it to false in the
+application. Declarations must either deliberately deviate from the schema or
+present a misleading default value to be overridden during initialization. This
+is just a simple example, real world schema migrations can be significantly
+more complex and suffer from numerous more subtle problems.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Martin Diers</h3>
+
+<p>These are all good points, and largely irrelevant for someone developing to
+Django. Yes, if you are using Django to develop to a long-term data store,
+enterprise data, etc., you are dead right, and you should be using SQLAlchemy
+with Django instead of the Django ORM.</p>
+
+<p>However, consider Django&rsquo;s original target use: a newspaper, on the cutting
+edge, putting up quick apps on-the-fly with a very short development cycle. A
+CMS. A Polling app. A Blog. Think about the type of apps that people actually
+build with Django, and you will find that the Django ORM makes perfect sense.
+Short development cycle. Easy deployment. &ldquo;Good enough&rdquo; query
+optimizations.</p>
+
+<h3>Ezequiel</h3>
+
+<p>I agree with Martin, Jacob Kaplan-Moss himself said that, when you get to a
+point where you&rsquo;re building something really big (e.g. Twitter) you basically
+have to throw your framework away.</p>
+
+<p>Django is really good, but, like any technolgy, sometimes is not enough.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@Martin: The &ldquo;original target use&rdquo; argument is no longer relevant. Django is
+being pushed as a general purpose web framework for developing sites or apps,
+big and small.</p>
+
+<p>@Ezequiel: I&rsquo;m not building something Twitter big. I&rsquo;m building something that
+has to deal with real user data and survive real design evolution. The problems
+I describe affect any application with any longevity of any kind.</p>
+
+<h3>Julien</h3>
+
+<p>I agree I&rsquo;d rather go schema first than model first. As a side note though it&rsquo;s
+interesting to think about it in the context of the whole NOSQL mouvement
+that&rsquo;s been gaining a lot of traction over the last year. Facebook, LinkedIn or
+Amazon for some subset of its data and others are doing away with the
+relational stores and going with pure key/value pairs persistence.</p>
+
+<p>Not relevant for every application but very interesting nonetheless.</p>
+
+<h3>Ergo</h3>
+
+<p>Have you ever considered something else than django? Like pylons or repoze.bfg?
+Django is really not so good solution for more complicated tasks if you want to
+work efficiently.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/08/24/url-routing-and-views/">URL Routing and Views</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-24T00:00:00-07:00" pubdate data-updated="true">Aug 24<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As promised, I&rsquo;d like to elaborate on the URL routing system I came up with.</p>
+
+<p>Weighing at less than 200 lines of code (including example), I&rsquo;ll let it speak for itself:
+<a href="http://www.brandonbloom.name/static/blog_files/viewdemo.zip">download it</a>.</p>
+
+<p>This approach seems to be working great for us. Love it?
+Hate it? Feel free to let me know what you think.</p>
+
+<h3>Imported Comments</h3>
+
+<h3>Dead Man</h3>
+
+<p>You are hardcoding child views in the children method of each view which means
+the view can&rsquo;t decide what (type of) children it has based on the current path
+segment. For example, I have a use case in which some content types can contain
+children of more than 1 type, so for example /foobar/child/ can either be a
+TypeAView or TypeBView depending on whether a TypeA with name &ldquo;child&rdquo; can be
+found or not &ndash; if it cannot be found, TypeBView will be returned. If your
+children() method took a path segment as an argument, it would probably solve
+this problem.</p>
+
+<p>BTW have you checked out how Restish
+resolves/dispatches URLs? I think they have it right when it comes to dynamic
+URL trees.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Child views are not &ldquo;hard coded&rdquo;. They are determined by the children method.
+You could pass segment, but it would be easier for the bind method to just
+store something on self for use later.</p>
+
+<p>I looked at Restish a bit. It seems like a nice library; definitely the closest
+to my taste from what I&rsquo;ve seen.</p>
+
+<h3>Thomas</h3>
+
+<p>I&rsquo;d recommend taking a look at Werkzeug for your routing &amp; other wsgi basic
+needs.</p>
+
+<p>As a follow-up to the previous post, Jinja 2 makes for an excellent templating
+engine (think django but much faster and without the stupid limitations).</p>
+
+<p>And as a shameless plug, have a look at WTForms for your forms:
+<a href="http://wtforms.simplecodes.com/">http://wtforms.simplecodes.com/</a></p>
+
+<h3>Andriy Drozdyuk</h3>
+
+<p>I am sorry I still don&rsquo;t get how this serves as an improvement over Django&rsquo;s
+url system?</p>
+
+<p>Can you provide me with a concrete example of what you cannot do in Django in
+terms or url-routing?</p>
+
+<h3>Andriy Drozdyuk</h3>
+
+<p>in terms of* I meant. Spelling is not one of my strongest areas eh?</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>There is nothing that Django&rsquo;s routing can&rsquo;t do. In fact, the first version of
+this simply generated Django routes. This is about making is faster and easier
+to define hierarchical permissions and trees of URLs in a way that queries the
+database on a per-url-segment basis.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/08/19/dropping-django/">Dropping Django</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-19T00:00:00-07:00" pubdate data-updated="true">Aug 19<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My co-founder and I built a non-trivial web site on Django. When the next
+version ships, there might not be a single Django module imported.</p>
+
+<p>We&rsquo;re not trying to drop Django; it is just sort of happening. Piece by piece,
+it is failing to meet our needs. Despite the marketing copy on the Django site,
+most components of the framework are tightly coupled enough to make
+customization frustrating. It is often easier to rewrite core framework
+components than to implement them on top of the existing  extensibility points.</p>
+
+<p>What follows is a loose chronology of our migration away from Django.</p>
+
+<h4>URL Routing</h4>
+
+<p>A flat list of patterns violates the DRY principal when creating nested URLs.
+Trees are a superior representation. Having a tree of views also enabled us to
+optionally associate a &ldquo;binder&rdquo; function with each node. These bind functions
+are executed for each URL component from left to right, filling the template
+context as they go. Breadcrumbs are automatically generated as each node binds,
+but only the last node executes its full view logic.</p>
+
+<h4>Authorization</h4>
+
+<p>Our site enforces permissions on every resource, but Django&rsquo;s database ACLs
+would have been prohibitively numerous. Instead, views or their URL binders may
+raise an AccessDenied exception. Upon catching such an exception, a middleware
+layer serves a login form. This ensures users have permission to access the
+current resource, as well as all ancestor resources bound to the URL.</p>
+
+<h4>Authentication</h4>
+
+<p>Both of Django authentication&rsquo;s key extensibility points are flawed. These two
+extensibility points are &ldquo;user profiles&rdquo; (storing additional per-user data) and
+custom credentials (such as for logging in via email address instead of
+username). Django&rsquo;s documentation and numerous internet sources cover both
+topics, but all of the guidance lacks important caveats. The admin UI, in
+particular, is very easy to break with either extensibility mechanism.</p>
+
+<p>Extending the User model with the ORM requires a one-to-one database
+relationship. This relationship can be implemented with a &ldquo;user profile&rdquo;
+setting, an explicit foreign key, or model inheritance. Each approach has its
+own strengths and weaknesses in terms of performance, API semantics, subtle
+behavioral changes, and outright bugs.</p>
+
+<p>Enabling custom credentials requires implementing a trivial authorization
+&ldquo;backend&rdquo; object. Unfortunately, it is non-trivial to replace usernames with
+email addresses. The admin UI&rsquo;s login form refuses to accept email addresses
+without hacking the template. Even if you hacked the template, the User model
+would still enforce a non-null constraint on the username field and the
+generated database schema enforces a uniqueness constraint as well. It turns
+out to be easier to fill the username field with a dummy value and &ldquo;support&rdquo;
+both forms of authentication with your backend, but you won&rsquo;t come to that
+conclusion until your head has already bore a hole in your desk.</p>
+
+<h4>Templating</h4>
+
+<p>We do our best to keep view and template logic separate. Django&rsquo;s templates are
+targeted at designers, who aren&rsquo;t implementing any real logic anyway. However,
+we&rsquo;re a pair of hackers. Sometimes it is just more convenient to put a little
+bit of logic in the views. Besides, templates are code; code needs to be
+reviewed and tested. We wouldn&rsquo;t ever hire a designer who couldn&rsquo;t pass a code
+review for some trivial template logic.</p>
+
+<p>We needed a pragmatic template language to replace Django&rsquo;s idealistic one. Any
+template language with greater expressive power would have been welcome, but
+Jinja2 fit the requirements and provided the easiest migration path.
+Ultimately, we&rsquo;d prefer to use something like HAML, but there doesn&rsquo;t seem to
+be a Python equivalent besides the inactive GHRML project. We are, however,
+using SASS. I will never write CSS by hand again.</p>
+
+<h4>ORM and Admin UI</h4>
+
+<p>One of Django&rsquo;s most touted features is the Admin UI. For simple &ldquo;active
+record&rdquo; style database models, the Admin UI is a huge time saver. Sadly, it
+struggles a little bit with nullable fields and is tricky to customize. You&rsquo;ll
+definitely need to write custom UI for complex models, but by and large the
+admin solves the problem at hand: viewing, creating, updating, and deleting
+database rows.</p>
+
+<p>After using the Admin for a little, I found myself missing Microsoft Access. I
+never thought I&rsquo;d say that, but it is true. <del>Django&rsquo;s admin does not support
+sorting, filtering, or other impromptu queries.</del> <small><i>Edit: It turn&rsquo;s out
+I was mistaken about sorting and filtering, but I stand by the core message of
+this section.</i></small> I found myself writing impromptu queries in the
+database and Python shells. After a while, I just gave up and installed a
+desktop client. I haven&rsquo;t visited the Admin UI since.</p>
+
+<p>Django&rsquo;s ORM has shortcomings with respect to querying, especially for joins
+and aggregation. It has been improving over time, but it will likely never
+reach the capability of projects solely focused on databases, such as
+SqlAlchemy. With the admin having fallen into disuse, the Django ORM lost all
+advantage. Beyond Django&rsquo;s specific weaknesses, I&rsquo;ve come to believe that the
+schema-generative ORMs paradigm is fundamentally flawed. That is a topic that
+deserves an entire (Django-agnostic) post of it&rsquo;s own. We are now using
+SqlAlchemy via schema reflection; no declarative layer.</p>
+
+<h4>Form Validation and Generation</h4>
+
+<p>Here is where our chronology meets present day. We are still using Django form
+validation, but never used form generation beyond scaffolding. Nearly all of
+our templates customize labels and display of errors. Additionally, embedding
+widget information in the Python code is cumbersome during template
+development. Django forms is a quality validation library, but there are some
+inconsequential style things that I like better about FormEncode. Preferences
+aside, the difference isn&rsquo;t large enough to justify switching.</p>
+
+<p>While I like FormEncode, I&rsquo;m still not sold on its anti-form-generation
+companion, htmlfill. I think there is a middle ground with form generation that
+provides scaffolding during development, smoothly transitions to production
+use, and cooperates with validation. As we implement more complex client views,
+I&rsquo;ll be on the lookout for ways to improve our form development toolbox.</p>
+
+<h4>So, ugh&hellip; What&rsquo;s left?</h4>
+
+<p>Besides a few isolated helper functions, not much is left of Django.</p>
+
+<p>The last big ticket item is the HTTP framework and WSGI server. We could
+continue using Django as if it were CherryPy or Paste, but Django has this
+nasty habbit of insisting on running your code for you. The settings and
+manage.py infrastructure are fiddly for deployment and don&rsquo;t really add any
+value over simple scripts using our application like a library. Might as well
+use a simpler WSGI library, and replace those over-engineered
+<code>management/commands/foo.py</code> files with vanilla <code>scripts/foo.py</code> files.</p>
+
+<h4>Moral of the Story</h4>
+
+<p>I&rsquo;m sure there are numerous lessons to be generalized from this journey.
+Personally, I&rsquo;ve developed a moderate fear of the word &ldquo;framework&rdquo;, as well as
+altered the way I think about software abstractions. I think the most important
+lesson, however, is one I already knew: choose the right tool for the job.
+Unfortunately, we had no idea what the right tool was when we started. I&rsquo;m not
+sure we know any better now.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Austin</h3>
+
+<p>Maybe it worked out exactly like it should have.  Django bootstrapped your app
+to a certain point.  Got you further faster than you would have if you
+implemented everything from scratch.  Then from there, you identified the
+things you considered inadequate and replaced them.  If it all goes away who
+cares.   You have learned something, shared it with us and moved on.</p>
+
+<p>You seem to have successfully moved away from it to your own custom code.  I am
+impressed that it sounds like your decoupling your app from Django was not as
+traumatizing as it might have been.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Yeah, everything seemed to work out OK. Django was definitely a big help,
+especially with my initial limited web experience (previously, I was a game and
+desktop application developer).</p>
+
+<p>If I were to do it all again, I probably wouldn&rsquo;t choose Django. That&rsquo;s not to
+say Django wouldn&rsquo;t be the right choice for someone else. I just think that I&rsquo;d
+choose a collection of tools that are less likely to get stuck glued together.</p>
+
+<h3>Eric</h3>
+
+<p>I think Pylons would be a great fit for you. It matches the way you want to
+work.</p>
+
+<h3>Varikin</h3>
+
+<p>Your URL routing sounds intreging.  I like have been looking at Werkzeug,
+Routing and Django. I prefer Django to all three, but still I feel like
+something is missing.</p>
+
+<p>Could you elaborate on your solution?</p>
+
+<h3>Juan_Pablo</h3>
+
+<p>Take a look at Werkzeug. Despite the weird name is the most modular and yet
+easy to use wsgi wrapper and dispatcher I know.  Combine it with Jinja2 and
+SQLAlchemy&hellip; and voilà.</p>
+
+<h3>WhatDoYouThink?</h3>
+
+<p>Good thing there are people like you who would share your improvements back to
+the community!</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Thanks Juan, I&rsquo;ll take a look at Werkzeug.</p>
+
+<p>Eric: I&rsquo;ve been looking at Pylons, but I think I want to go with something more like Juan&rsquo;s suggestion.</p>
+
+<p>Varikin: I was able to implement my URL routing over Django by simple matching
+(.*) and then writing a view which splits by &lsquo;/&rsquo;. I then loop over each
+component and perform a depth-first search of a tree structure. Each node has
+an optional bind(request, template_context, path_component) function. After I
+find the node which matches the path, I call the ancestor chain&rsquo;s bind
+functions and then finally the current node&rsquo;s view function. We&rsquo;ve got some
+decorators and helper functions to make building this tree easy. I&rsquo;d share it,
+but it is too tightly tied to our application. Maybe I&rsquo;ll write more about this
+later.</p>
+
+<p>WhatDoYouThink: My improvements are application specific. I&rsquo;m sharing my
+experiences to help the community. That is far more than most people do.</p>
+
+<h3>Jeremiah</h3>
+
+<p>This comment has been removed by the author.</p>
+
+<h3>gaspode</h3>
+
+<p>The tree stuff and permission scheme you&rsquo;d like perfectly matches up how
+repoze.bfg works with traversal and security based on traversal schemes (also
+known as object dispatch).</p>
+
+<p>I&rsquo;d highly recommend giving it a shot as it seems to mesh quite well with the
+way you&rsquo;ve laid out the app.</p>
+
+<h3>Tucanae Services</h3>
+
+<p>Think Web2Py&hellip;..</p>
+
+<h3>Chris Shenton</h3>
+
+<p>Ditto what gaspode said. I&rsquo;ve been fighting Django for an app whose content is
+basically hierarchical and BFG&rsquo;s traversal would really be a relief.</p>
+
+<h3>Cesar</h3>
+
+<p>I&rsquo;d like to add my 2 cents.  Restish has no threadlocals (compatiable with
+eventlet/spawning) and focuses on resources/content negotiation.  I believe the
+URL routing is similar to what you want</p>
+
+<h3>handi</h3>
+
+<blockquote><p>Enabling custom credentials requires implementing a trivial authorization
+&ldquo;backend&rdquo; object. Unfortunately, it is non-trivial to replace usernames with
+email addresses. The admin UI&rsquo;s login form refuses to accept email addresses
+without hacking the template. Even if you hacked the template, the User model
+would still enforce a non-null constraint on the username field and the
+generated database schema enforces a uniqueness constraint as well. It turns
+out to be easier to fill the username field with a dummy value and &ldquo;support&rdquo;
+both forms of authentication with your backend, but you won&rsquo;t come to that
+conclusion until your head has already bore a hole in your desk.</p></blockquote>
+
+<p>We wanted to let users log into our app using their email address through
+contrib.auth.view.login. We don&rsquo;t care about having email addresses log into
+the Django Admin.</p>
+
+<p>You have to dig around a bit, but it can be done with a few lines:
+<a href="http://gist.github.com/170691" rel="nofollow"><a href="http://gist.github.com/170691">http://gist.github.com/170691</a></a></p>
+
+<h3>nassrat</h3>
+
+<p>I think you were looking for Pylons not Django. Each has its own advantages. I
+learnt that Django should be taken as is, once you start stripping it apart,
+IMHO you should consider using Pylons.</p>
+
+<h3>reedobrien</h3>
+
+<p>Sounds like you should look at <a href="http://docs.repoze.org/bfg/current/">http://docs.repoze.org/bfg/current/</a>
+<a href="http://bfg.repoze.org">http://bfg.repoze.org</a> is a nice microframework which stays out of the way as
+much as you want it to.</p>
+
+<h3>Jonathan Ellis</h3>
+
+<p>If you like SQLAlchemy, you will probably like FormAlchemy for form generation
+from SQLA models.</p>
+
+<h3>adeel</h3>
+
+<p>I&rsquo;ve written my last few web apps on top of
+<a href="http://pypi.python.org/pypi/berry" rel="nofollow">Berry</a>,
+which just lets you map URLs to methods (and lay them out however you want).
+And obviously you can import SQLAlchemy, Jinja, and whatever else you want
+yourself.  I&rsquo;ve found this gives me the most flexibility possible without
+actually writing a raw WSGI app.</p>
+
+<h3>Michael Galpin</h3>
+
+<p>You really need to read this
+<a href="http://terrychay.com/blog/article/challenges-and-choices.shtml.">http://terrychay.com/blog/article/challenges-and-choices.shtml.</a> It will help
+you understand why you were doomed from the beginning :&ndash;)</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Thanks Michael. Despite the distracting <em>laughter</em> that was an interesting
+read.</p>
+
+<h3>gunzip</h3>
+
+<blockquote><p>After using the Admin for a little, I found myself missing Microsoft Access.</p></blockquote>
+
+<p>it still happens to me every time i start a new data-entry project on the web.
+sometimes i think something went wrong in the latest 20 years&hellip;</p>
+
+<h3>Dead Man</h3>
+
+<p>I&rsquo;m also building a project on Django (a medium sized, multi language web
+encyclopedia about a Northern-European state Estonia) and I have to admit that
+I&rsquo;ve run into mostly the same problems. What surprised me the most is that I&rsquo;m
+implementing a nearly identical to yours solution for URL mapping as our
+content is also in a (generic) tree structure. The difference being that I&rsquo;m
+going to use class based views that allow nesting/composition of other views
+for the purposes of chaining that you described.</p>
+
+<p>I&rsquo;m also thinking of open sourcing the code as the project matures more as it&rsquo;s
+already written in a clean way and decoupled from project specific code.</p>
+
+<h3>ars</h3>
+
+<p>Beyond Django&rsquo;s specific weaknesses, I&rsquo;ve come to believe that the
+schema-generative ORMs paradigm is fundamentally flawed. That is a topic that
+deserves an entire (Django-agnostic) post of it&rsquo;s own. We are now using
+SqlAlchemy via schema reflection; no declarative layer.</p>
+
+<p>Well you caught my attention with that. Are you planning to write such a post
+in the near future, say in the next two weeks?</p>
+
+<h3>Andrew Shultz</h3>
+
+<p>One of the big things I appreciated about django is the unit test supports.
+What&rsquo;s your plan to replace that stuff?</p>
+
+<h3>proteusguy</h3>
+
+<p>Almost all of your technical feasibility issues are easily addressed by Django.
+URLs, authN/authZ, etc are all as flexible or more than any other python
+environment out there because it is so simple to leverage python to implement
+this things in an incredibly simple manner. This <a
+href="http://uswaretech.com/blog/2009/08/a-response-to-dropping-django/"
+rel="nofollow">blog entry</a> demonstrates it better than I could. It&rsquo;s really
+just a matter of perspective and context. Django may not be the context that
+best fits your perspective but it most certainly has the capability and power
+to address all the technical concerns you brought up. Good luck finding the one
+that fits you best. I actually thought I&rsquo;d be a TurboGears guy but ended up
+Django. Both are great and others are good as well.</p>
+
+<h3>Alexei</h3>
+
+<p>I am working on building a medium size application in Django too.  It is indeed a good way to start.  But I am hitting issues too.  I have multiple &ldquo;agencies&rdquo; so need to have users with multiple roles in agencies.  These are within single site.  That also means multiple &ldquo;admins&rdquo; with one &ldquo;super admin.&rdquo;  So Django Admin interface is out of the question and role/permission infrastructure is built from scratch.
+Another thing is importing data.  I started writing scripts within Django framework (using settings.py, etc.) but need some tables/entities created during import and then dropped.  Oops.  Have to look at how South does it.</p>
+
+<p>I realize that I am moving out of Django domain just because of the nature and complexity of the application I am building.  Django cannot and should not be everything for everybody.</p>
+
+<p>If you are looking for a &ldquo;glue&rdquo; framework, I recommend checking out Cherrypy: I like its configuration and request/response handling better than Paster + WebOb.  It also has several types of routing, pick what you like or mix it (I would not recommend the latter though), one of them is Routes.</p>
+
+<p>My next move will most likely be to Cherrypy + SQLAlchemy + FormAlchemy + Jinja2.</p>
+
+<p>By the way, repoze.bfg is not microframework either, it pulls quite a large chunk of Zope code, primarily for managing configuration but for templating too.      </div>
+</div></p>
+
+<h3>RJ Ryan</h3>
+
+<p>Got a few issues with the things you said &mdash; I&rsquo;ll list them by section.</p>
+
+<p>URL routing is not a flat list. You can make them hierarchical. How do you
+think all of the admin site routes get added? It&rsquo;s in the template urls.py for
+any starter project, so I really don&rsquo;t see how you missed this.</p>
+
+<p>Authorization &mdash; I don&rsquo;t think I understand what you are saying is wrong &mdash;
+&ldquo;too numerous?&rdquo; But designing a permission system using the Django auth system
+has usually been pleasant for me. To require certain permissions just use a
+decorator on your views which checks for it.</p>
+
+<p>Authentication. There&rsquo;s nothing that says you have to make a one-to-one with
+User and whatever profile system you have. That&rsquo;s just how most people do it
+because most projects want 1-1. Make a ManyToMany from your Profile to User if
+you want. There&rsquo;s nothing stopping you. Also, using email address as your login
+was simple &mdash; swap the auth backend. It&rsquo;s like 10 lines of code.</p>
+
+<p>Templating: Fair enough, I&rsquo;ve wnted the templates to allow a little bit more in
+the way of doing logic only for purposes of output, but you realize if they
+make allowances for that, then it opens the templates up to abuse &mdash; and then
+you get PHP. I&rsquo;ve actually come to appreciate the template strictness now, and
+when I come across something I just have to do in the template, I write a
+templatetag.</p>
+
+<p>ORM/Admin &mdash; I can&rsquo;t really understand what you&rsquo;re trying to say here. The
+Admin UI is a very nice piece of software, and it is extensible at every point.
+Though, the documentation on doing so is skimpy. Take a look at Satchmo &mdash; they
+do amazing things to the Admin UI that really showcase its flexibility. As for
+  the ORM &mdash; if it really doesn&rsquo;t suit your needs, upgrade to django-sqlalchemy
+  or something.</p>
+
+<p>Forms &mdash; it&rsquo;s true forms are sort of a go-between between views and templates.
+It does seem odd to specify the widget in the form declaration. Shrug, though
+the form is more of a prototype of a form, so you design the prototypical form
+that is instantiated in a view. This makes sense to me.</p>
+
+<p>I&rsquo;m sure you actually did run into problems with Django that caused it to be
+frustrating for you, and to that I say ymmv &mdash; I just couldn&rsquo;t help reading
+your post and being like &ldquo;but that&rsquo;s not true, because I&rsquo;ve done X and he said
+it can&rsquo;t do X&rdquo;.</p>
+
+<h3>Shantanu Kumar</h3>
+
+<p>Did you consider Jython? You could then probably use any framework from the
+Java-space.</p>
+
+<h3>EH</h3>
+
+<p>Faced same problems with Django during 2 years of its using. Looked also at
+Paste, web.py, Werkzeug, Pylons, WebOb to replace over-weight framework with
+more flexible tools. My current best python tools is Werkzeug, Mako,
+SQLAlchemy.</p>
+
+<h3>reedobrien</h3>
+
+<p>Alexei said> By the way, repoze.bfg is not microframework either, it pulls
+quite a large chunk of Zope code, primarily for managing configuration but for
+templating too.</p>
+
+<p>I guess we will have to agree to disagree. By alexei&rsquo;s definition 20 packages
+isn&rsquo;t &lsquo;micro&rsquo;. By mine 4 packages I wire together isn&rsquo;t a framework&hellip;but to
+clarify some misnomers:</p>
+
+<p>repoze.bfg is a microframework. it consists of 20 packages, 8 of which are zope
+packages. Although, BFG uses them you never have to.</p>
+
+<p>The default templating package implements TAL, but it is NOT a zope package.
+You are not bound to it either. You can plug in Jinha2, Mako, Genshi or
+whatever you want.</p>
+
+<p>There is no default database, form library or anything else.</p>
+
+<p>FWIW zope is about 170 packages. 8 is not a &lsquo;large chunk&rsquo; of that by any
+definition.</p>
+
+<h3>Sébastien</h3>
+
+<p>If you&rsquo;re looking for a HAML Python equivalent, there is PAML (Pamela) at
+<a href="http://github.com/sebastien/pamela">http://github.com/sebastien/pamela</a> &mdash; also, you can check CleverCSS as a SASS
+replacement.</p>
+
+<h3>Gabriel</h3>
+
+<p>I totally agree with RJ Ryan.  No framework will suit every project, but Django
+covers a lot of the basics in a way that&rsquo;s good enough and doesn&rsquo;t get in the
+way when I need to extend it.  Still, thanks for telling us why it wasn&rsquo;t the
+tool for you.</p>
+
+<h3>Tony Landis</h3>
+
+<p>I use pylons + mako + sqlalchemy and love it</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@Dead Man: I’ll probably publish something about our approach to URL routing
+soon. It seems that several people have shown interest in it.</p>
+
+<p>@ars: Yes, I will probably be writing about declarative ORM layers in the next
+week or so.</p>
+
+<p>@Andrew Shultz: We’re not doing a whole lot of automated testing yet. Small
+helper functions typically have doctests, we’ve got a couple unit tests, and
+we’re currently playing with Selenium for full tests. I’m much more confident
+in tests which drive the UI than tests which only poke at the views.</p>
+
+<p>@proteusguy: I just read that blog entry and will respond to it separately.
+Again, I’m not bashing Django so much as I am saying we’ve been slowly choosing
+tools that better fit each need as we identify those needs. Technical
+feasibility aside, we’ve been looking for a path of least resistance to
+accomplishing our goals and this post was just to describe them.</p>
+
+<p>@Alexei: That’s the impression I got too; Django would have had greater
+longevity on my tool shelf if I needed a highly customizable CMS. I don’t need
+more flexibility, I need less constraints.</p>
+
+<p>@RJ Ryan: Like I said about, I’ll try to follow up with more info about our URL
+routing system. What needs we had and why I felt I had to subvert Django to get
+them.</p>
+
+<p>@Shantanu Kumar: There are already too many choices of Python frameworks! :&ndash;)</p>
+
+<p>@Sebastien: Thanks for the PAML link! I’ll take a look at it. As for CleverCSS,
+I don’t see a need to switch from SASS. We only need Ruby and SASS installed on
+dev machines, the server only ever works with the compiled CSS.</p>
+
+<h3>dkubb</h3>
+
+<blockquote><p>&ldquo;Beyond Django&rsquo;s specific weaknesses, I&rsquo;ve come to believe that the
+schema-generative ORMs paradigm is fundamentally flawed.&rdquo;</p></blockquote>
+
+<p>I too would like to see some more detail on this.  I maintain a Ruby ORM called
+DataMapper, and while the API is completely different, it is still declarative.
+I prefer the declarative style to ActiveRecord, since I can specify rich types
+and constraints than I could reflect from a database.  The way I see it, at
+some point the schema needs to be defined, and I&rsquo;d rather do it in a richer DSL
+and have the schema, validation and other constraints generated from that.</p>
+
+<p>Even so, I&rsquo;d love to hear a different view point.</p>
+
+<h3>jgrant</h3>
+
+<p><a href="http://jng.imagine27.com/articles/2007-07-12-163820_red-vs-blue.html">http://jng.imagine27.com/articles/2007-07-12-163820_red-vs-blue.html</a></p>
+
+<p>A somewhat dated (and biased) comparison of Python/Django with Ruby/Rails.</p>
+
+<h3>Max</h3>
+
+<p>This is a subset of the reason for why we made
+<a href="www.web2py.com" rel="nofollow">web2py</a>.
+Thanks for explaining them so clearly.</p>
+
+<h3>Ian Lewis</h3>
+
+<p>pylons is great being a framework that allows mixing and matching libraries.</p>
+
+<p>My ideal would be</p>
+
+<ul>
+<li>Werkzeug</li>
+<li>Jinja2</li>
+<li>SqlAlchemy</li>
+<li>Babel</li>
+<li>wtforms (FormEncode and htmlfill&rsquo;s pattern of inserting html is gross)</li>
+</ul>
+
+
+<p>I would probably build on Django&rsquo;s idea of applications and middleware as
+that&rsquo;s a good paradigm.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>For anyone interested and tracking this thread, I&rsquo;ve posted a follow-up:</p>
+
+<p><a href="http://blog.brandonbloom.name/2009/08/url-routing-and-views.html">http://blog.brandonbloom.name/2009/08/url-routing-and-views.html</a></p>
+
+<h3>Angel</h3>
+
+<p>You <i>can</i> have non-flat URL routing. After your first point demonstrated a
+failure to grasp more than the basics before whining, I tuned out.</p>
+
+<p><a href="http://docs.djangoproject.com/en/dev/topics/http/urls/#including-other-urlconfs" rel="nofollow">Nested URL routing confs and includes</a> (new in 1.1) are what you should have used instead of bitching on the internet. It wouldn&rsquo;t have made you seem as cool, but you would have gotten the job done instead.      </div>
+</div></p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Without the changes in Django 1.1, modules were the only recursive mechanism;
+too heavyweight for my taste. The 1.1 beta was released in March. I had
+developed my own solution to this problem several months before then.</p>
+
+<p>Even with the 1.1 improvements, Django doesn&rsquo;t meet my other requirements:
+namely binding URL segments to the database and creating breadcrumbs while
+filling a template context dictionary. Since that work involves parsing
+request.path myself, I might as well just bind (.*)+ and do my own routing. It
+was relatively trivial.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/06/12/appweek/">AppWeek</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-12T00:00:00-07:00" pubdate data-updated="true">Jun 12<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://blogs.msdn.com/shawnhar/archive/2009/06/12/appweek.aspx">Shawn&rsquo;s AppWeek post</a> inspired me to write one too. AppWeek is our chance
+to be creators for a little while and it was a lot of fun. I didn&rsquo;t set out to
+build something nearly as ambitious as &ldquo;Super Avatar Sample Smashup EXTREME! &ndash;
+&lsquo;Capture the Cat&rsquo; edition&rdquo;, but I did get to take a swing at a game I&rsquo;ve wanted
+to build for a while: <del>Rock&#8217;em Sock&#8217;em Avatars</del> Avatar Boxing. Avatars, being
+a new feature in this release, were an unwritten requirement for all of the
+AppWeek games. Between SASSECTCE, my game, and the many others, Avatars were
+chasing cats, beating each other up, play futuristic sports, falling off
+buildings, dancing in a cloud of gems, being launched from canons to save the
+world, and much more. All this excitement was almost too much for a bunch of
+exhausted engineers, but that&rsquo;s what the beer was for during the game
+unveilings.</p>
+
+<p>Here&rsquo;s what the game looked like with the basic animations wired up. You&rsquo;ll
+notice that the avatars have been hitting the gym. That&rsquo;s because their arms
+were too short to reach each other! I added a little extra bulk because I was
+laughing too hard not to. I directly bound the game pad triggers to the
+shoulder and elbow joints and rigged up the chase camera sample to inspect my
+work. There wasn&rsquo;t much game play yet, but it was already fun. That&rsquo;s always a
+good sign.</p>
+
+<blockquote><p>IMAGES MISSING :&ndash;(</p></blockquote>
+
+<p>Even with just one week, I decided to invest some time into debugging
+visualizations. That turned out to be a really great idea.</p>
+
+<blockquote><p>IMAGE MISSING :&ndash;(</p></blockquote>
+
+<p>Then, I added some collision spheres for the heads, hands, and upper bodies.
+This was a hacky, trial and error process. Thankfully, C# compiles quickly.</p>
+
+<blockquote><p>IMAGES MISSING :&ndash;(</p></blockquote>
+
+<p>At this point, I spent an entire day working on the physics. I wanted the
+avatars to bounce/wobble when they got hit, so I rigged up some complex spring
+systems. Things were starting to work, but I&rsquo;m generally pretty bad at this
+sort of thing and my simulation routinely exploded. The avatars arms went
+shooting off into space and I was getting pretty frustrated. No screen shots of
+that chaos because I am embarrassed.</p>
+
+<p>With half a day to go, I added the obligatory damage bars and some rudimentary
+hand-to-head collision detection.</p>
+
+<blockquote><p>IMAGE MISSING :&ndash;(</p></blockquote>
+
+<p>I was feeling pretty good about the game, despite my physics failures, it was
+pretty fun anyway. I wondered down the hall to chat with Jace, who had just
+added sound effects to his game. His game was hilarious before, but the sound
+effects were <em>priceless</em>. I ejected the sound effect CD out of his machine,
+yoinked it, and took off running. An hour later (and 10 minutes <em>after</em> the
+deadline), my game had some sweet punch and miss sounds. I also made the
+avatars&#8217; heads pop up when their damage bar was full, accompanied by an awesome
+zip-tie sound.</p>
+
+<blockquote><p>IMAGE MISSING :&ndash;(</p></blockquote>
+
+<p>At our team happy hour, I&rsquo;d like to think Avatar Boxing was a fan favorite. I
+certainly had fun making it! I hope everyone enjoys Avatar support in the new
+XNA Game Studio.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Danny Tuppeny</h3>
+
+<p>I really wish you guys were releasing these games &ndash; they sound so funny and it
+would be great to see how you did some of the stuff with Avatars.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>As Shawn said: &ldquo;We did an AppWeek shortly before shipping Game Studio 1.0,
+which produced minigames by Dean and Minjie, plus a bunch of stuff that was too
+unfinished or too much of an IP violation to release.&rdquo;</p>
+
+<p>Believe me, the code for my game isn&rsquo;t remotely useful :&ndash;) Hacks upon kludges
+upon hacks galore. It would be a significant chunk of work to turn it into
+something educational. Even if it was interesting, it is technically not mine
+to release.  It would be a conflict of interest to publish it on Xbox LIVE
+Indie Games, since I created it during the course of my job.</p>
+
+<p>Since our games are only being seen by the team, many developers use
+copyrighted assets in the interest of time. Fair use allows us to show them at
+our happy hour, but someone would certainly come knocking if we released them.
+It is very expensive to clean that up because now you need to involve artists
+and rework the code for the new art (AppWeek games aren&rsquo;t robust, art changes
+are breaking).</p>
+
+<p>Everyone would love to share, but it isn&rsquo;t universally practical.  Luckily,
+several cool Avatar-centric samples were inspired by app week, so we will have
+something to share. I&rsquo;ll also see about recording some videos of the IP-safe
+games&hellip;</p>
+
+<h3>Danny Tuppeny</h3>
+
+<p>No worries, it makes sense. I&rsquo;m sure we&rsquo;ll see more Avatar samples soon
+that aren&rsquo;t hacked together we can learn from :-D</p>
+
+<h3>Kyle</h3>
+
+<p>This looks like it could be turned into a real fun game. It&rsquo;s too bad that we
+can&rsquo;t buff our Avatars up like this =(</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Yeah, sadly it appears that scaling individual body parts is against the rules
+(which were unwritten when I did this project). I believe the motivation is for
+accommodating future avatar accessories which might look awful with unknown
+joint transforms. Don&rsquo;t quote me on that :&ndash;)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/20/powershell-condemned-to-reinvent/">PowerShell: Condemned to Reinvent</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-20T00:00:00-07:00" pubdate data-updated="true">Apr 20<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I tried PowerShell when it was first released, but never used it for real work.
+I recently attended a &ldquo;brown bag&rdquo; presentation about PowerShell. This
+presentation spurred me to augment our team&rsquo;s environment with PowerShell and I
+have been using it every day since.</p>
+
+<p>In the past weeks using and abusing PowerShell, I have drawn two conclusions:</p>
+
+<ul>
+<li>PowerShell has a killer set of standard tools with brilliantly designed
+usability.</li>
+<li>The PowerShell team doesn&rsquo;t understand UNIX and therefore were condemned to
+reinvented it, poorly &mdash; with apologies to Henry Spencer.</li>
+</ul>
+
+
+<p>First things first: if you spend any time working with Windows, get PowerShell.
+Now. Stop reading my blog and go <a href="http://www.microsoft.com/windowsserver2003/technologies/management/powershell/download.mspx">download it</a> immediately. It mops the
+floor with cmd.</p>
+
+<p>The key premise behind PowerShell is that it operates on live .NET objects.
+This is beneficial because it eliminates a lot of the text cutting and
+manipulation common in shell scripts. Additionally, it puts the full .NET Base
+Class Library into your scripting toolbox. PowerShell tools, known as
+commandlets, typically only render the most common fields for their objects,
+but the less common fields are easily available in memory. By convention,
+Commandlets are named with a <code>verb-noun</code> pattern and support a common command
+line parsing behavior. The repository of commandlets and the command line
+options of each are easily queried and highly consistent. All this meta-data
+makes PowerShell a breeze to learn.</p>
+
+<p>I fell in love with the the discoverablity and ease of use when I tried to kill
+a collection of runaway processes:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>PS&gt; get-command -noun process
+</span><span class='line'>
+</span><span class='line'>CommandType   Name           Definition
+</span><span class='line'>-----------   ----           ----------
+</span><span class='line'>Cmdlet        Get-Process    Get-Process [[-Name] &lt;String[]&gt;] [-Verbo...
+</span><span class='line'>Cmdlet        Stop-Process   Stop-Process [-Id] &lt;Int32[]&gt; [-PassThru]...
+</span><span class='line'>
+</span><span class='line'>PS&gt; get-process notepad | stop-process
+</span><span class='line'>PS&gt; get-alias | where { $_.definition.contains("Process") }
+</span><span class='line'>
+</span><span class='line'>CommandType   Name   Definition
+</span><span class='line'>-----------   ----   ----------
+</span><span class='line'>Alias         kill   Stop-Process
+</span><span class='line'>Alias         ps     Get-Process
+</span><span class='line'>
+</span><span class='line'>PS&gt; ps someotherapp | kill</span></code></pre></td></tr></table></div></figure>
+
+
+<p>OK, that&rsquo;s pretty cool and oh-so-very Unixy &mdash; right? Wrong. Notice the
+&ldquo;CommandType&rdquo; column in the results of get-command. There are many other types
+of commands besides commandlets: functions, filters, scripts, applications,
+etc. Each of these has slightly different semantics for pipes and parameters.
+Applications, for example, have no way of accepting .NET object pipes. You must
+develop a separate commandlet. Yikes!</p>
+
+<p>Compare to Unix: all commands are applications which accept a command line and
+pipe byte streams in and out. Much simpler, but byte streams aren&rsquo;t as
+friendly, discoverable, and maintainable as object streams. However, the
+brilliantly simple thing about Unix is that, when you get right down to it,
+object streams are just byte streams! There is absolutely nothing stopping you
+from implementing <code>get-process</code> and <code>stop-process</code> as Unix programs which pipe
+object references, JSON, pickled Python objects, XML, S-expressions, or any
+other data format you fancy. Doug Mcllroy, the inventor of Unix pipes, was
+right: text streams are the universal interface.</p>
+
+<p>Actually, this is no different on Windows. All of the PowerShell commandlets
+could have been implemented as applications which import a library. This
+library would replace <code>main</code> in much the same way as <code>winmain</code>, provide a
+metadata enriched implementation of <a href="http://www.gnu.org/software/hello/manual/libc/Getopt.html">getopt</a>, <code>man</code>, etc. There is no need to
+invent a new shell in order to acquire the power of piping objects. Sure, cmd
+is old and needed to be retired for many other reasons, but it is a real shame
+that the PowerShell toolset is not available to those of us stuck in batch
+scripts.</p>
+
+<p>Personally, I would really like to see such a library developed. Microsoft has
+certainly proved one thing with PowerShell: steep learning curves are not
+intrinsic to command line interfaces. Unfortunately, commandlets are two steps
+forward and one step backwards. I have no doubt that we can retake that forward
+step.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>klumsy</h3>
+
+<p>I find the 2nd point interesting given that most of the powershell team were
+unix only guys before this project.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>I don&rsquo;t know the history of PowerShell or any of the team members. I&rsquo;m sure
+they are all very smart and have a strong grasp of Unix in general. Maybe they
+understand exactly what I&rsquo;m getting at, but explicitly rejected it for some
+non-obvious reasons (such as scheduling, implementation complexity, target
+users, etc). They probably know better than I do. My apologies for exaggerating
+to make a point :&ndash;)</p>
+
+<h3>Howard T. Snidbiscuits</h3>
+
+<p>I agree, PowerShell is way better than the primitive, DOS style Windows CMD.
+However, it&rsquo;s nothing like a normal Unix shell for me&hellip; and I&rsquo;d rather just
+use cygwin.</p>
+
+<h3>Kosta</h3>
+
+<p>Sorry but no: Pipelining objects is much smarter. You can still pipe strings or
+binary data if you want, but you don&rsquo;t have all the drawbacks.</p>
+
+<p>And then there&rsquo;s the security implications. While theoratically possible, are
+all your scripts safe against whitespace|&ldquo;&lsquo;<code>`` injection? Piping objects is sooo
+much easier AND it does not kill your system if the bytestream contains</code>rm -rf /`.</p>
+
+<p>Just my two cents&hellip;</p>
+
+<h3>Powershell Jedi</h3>
+
+<p>Unix is optimized around flat files windows is optimized around objects. It&rsquo;s
+not the they don&rsquo;t understand Unix. The Powershell Team has a strong unix
+Background. It&rsquo;s just just that M$ has 87% market share and a trillion dollars
+in the bank share that says F@ck unix.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Piping objects has draw backs too. Here&rsquo;s a case that came up on the internal
+PowerShell mailing list&hellip;</p>
+
+<p>Unix:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>cat foo | wc -l</span></code></pre></td></tr></table></div></figure>
+
+
+<p>PowerShell:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>Get-Content foo | Measure-Object -line</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ignore the line length, as I didn&rsquo;t use any aliases for the PowerShell version.
+The issue here is that Get-Content returns a String, not a StreamReader. The
+result is that for large files, the entire String must be read into memory and
+for really large files, swapped back out to disk!</p>
+
+<p>You could easily work around this with objects; this example is just to show
+that objects have drawbacks just as byte streams do. Everything is always a
+balance. I like the Unix approach because it is a simple system with drawbacks
+that are well understood. I dislike the object approach because it is a complex
+system with less obvious drawbacks that don&rsquo;t bite you until much later.</p>
+
+<h3>Len</h3>
+
+<p>Are you kidding?  MS couldn&rsquo;t even get the <em>simplest</em> thing right.  Their
+&ldquo;compare-object&rdquo; is supposed to be their &ldquo;equivalent&rdquo; to diff.  Not so.  Not
+even close.  Try comparing these two files:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>file 1:
+</span><span class='line'>a
+</span><span class='line'>b
+</span><span class='line'>c
+</span><span class='line'>d
+</span><span class='line'>
+</span><span class='line'>file 2:
+</span><span class='line'>d
+</span><span class='line'>c
+</span><span class='line'>b
+</span><span class='line'>a</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unix diff correctly shows how they are different.  MS compare-objects says they
+are the same.  Why?  Because the latter doesn&rsquo;t care about order.</p>
+
+<p>Microsoft is not &ldquo;very smart&rdquo;.  They are demented.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/09/language-oriented-programming-too-much-too-fast/">Language-oriented Programming: Too Much, Too Fast</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-09T00:00:00-08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There was some <a href="http://news.ycombinator.com/item?id=452919">recent discussion on Hacker News</a> about the <a href="http://www.onboard.jetbrains.com/is1/articles/04/10/lop/index.html">2004 article on
+&ldquo;Language Oriented Programming&rdquo;</a> by <a href="http://www.sergeydmitriev.com/">Sergey Dmitriev</a>. With my growing
+interest in programming languages, this article, and the pending release of
+<a href="http://www.jetbrains.com/mps/index.html">JetBrain&rsquo;s Meta Programming System</a>, I have been thinking a lot about the
+future of programming.</p>
+
+<p>As Sergey points out, MPS is not the first entry into this paradigm of software
+development. <a href="http://en.wikipedia.org/wiki/Intentional_programming">Intentional Programming</a> was being <a href="http://www.youtube.com/watch?v=tSnnfUj1XCQ">demonstrated by Microsoft
+Research</a> as early as 2000. Wikipedia lists several implementations of the
+<a href="http://en.wikipedia.org/wiki/Language-oriented_programming">language-oriented programming</a> concept. (OK, that is enough links for now!)
+Sadly, none of these systems have been met with wide spread success. Despite my
+unlimited respect for the JetBrains team and love of their products &mdash;
+especially Resharper &mdash; I expect MPS to fail to achieve critical mass. I don&rsquo;t
+think many programmers would disagree. It&rsquo;s just too much, too fast.</p>
+
+<p>Software development needs to evolve, not start anew. If you change too much at
+once, the common developer simply won&rsquo;t accept it. Language designers are still
+re-inventing Lisp piece by piece in an effort to make sense of all the
+different concepts for <a href="http://www.nikhilk.net/Personas.aspx">Mort</a>. In order to improve adoption of
+language-oriented programming concepts, the critical path must be identified
+and the programming community must be lead down that path one step at a time.</p>
+
+<p>I believe that the first stepping stone is the box editor.</p>
+
+<p>Both MPS and Intentional Programming provide a visual tree of boxes editor and
+store the abstract syntax tree in a sort of source code database. Both of these
+concepts are critical to power of language-oriented programming, but changing
+the storage of source code is simply too radical of a change. Well, actually,
+source code is routinely stored in databases for IDE features, but the
+authoritative storage always remains text files. All of a programmers most
+trusted tools operate at the string level and it is simply impractical to throw
+everything out at once.</p>
+
+<p>This is why I propose the creation of a new editor which uses an abstract
+syntax tree box editing model, but preserves the source as text. This editor
+would have to play nice with other developers who are using traditional text
+editors. It should be possible for a single developer to try the editor for a
+day or two without another collaborator even noticing. There are clear benefits
+to a box editor even in the absence of language-oriented features. For example,
+navigation of source code by parent, child, or sibling relationships instead of
+by word or by line. Advanced renders can be used to layout math expressions or
+to show a referenced image file in a comment.</p>
+
+<p>Editors are a religion, start a new one. If some box editor becomes popular
+enough, other tools would spring up around them. To help the process, the
+editor should have well exposed extension and composition mechanisms. For
+example, it should be trivially easy to add new renderers for various nodes. It
+should be equally trivial to utilize the abstract syntax tree system to create
+stand alone code analysis tools.</p>
+
+<p>If box editors garner enough of a following, then the language-oriented
+programming advocates can seek the next stepping stone.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Shawn Presser</h3>
+
+<blockquote><p>&ldquo;I believe that the first stepping stone is the box editor.&rdquo;</p></blockquote>
+
+<p>I went through this phase too.  You&rsquo;ll eventually realize that visual editors
+are simply less efficient than text editors for programming purposes.  The
+boxes convey less meaning than symbols in a text editor.  The boxes and
+connections are also symbols, but they take up far more screen space than text,
+so you see much less code simultaneously, which makes the box editor less
+efficient.  Also, there aren&rsquo;t usually restrictions on the layout of the boxes,
+so it&rsquo;s very hard to follow the &ldquo;flow&rdquo; of code in a visual editor.  In a text
+editor, the flow of code within a function is at least mostly linear (left to
+right, top down).</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>I&rsquo;m not talking about &ldquo;boxes and connections&rdquo; I&rsquo;m talking about representing
+the actual code blocks. Take a look at this tutorial:
+<a href="http://www.jetbrains.com/mps/docs/tutorial.html">http://www.jetbrains.com/mps/docs/tutorial.html</a></p>
+
+<h3>warjan</h3>
+
+<p>I think you are right saying it is too much. Especially application developer
+might find MPS to be too much for achieving common programming task, but for
+library/frameworks and DSL creators it is IMHO very valuable proposal. It could
+be also good for providing DSL for clients to cusotmize products.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>&ldquo;good for providing DSL for clients to cusotmize products&rdquo;</p>
+
+<p>Maybe if your clients are hardcore engineers, but in general asking clients to
+write code is a tough value proposition.</p>
+
+<p>However, let&rsquo;s assume your clients are hardcore engineers. Not only does MPS
+ask them to learn a DSL, but it is also asking them to learn a new editor.</p>
+
+<p>One step at a time.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/03/break-the-cycle-of-broken-builds/">Break the Cycle of Broken Builds</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-03T00:00:00-08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Broken builds suck. Breaking the build sucks. No one wants to have their work
+stopped by others&#8217; build breaks and no one wants to cause work stoppage on
+account of their own build breaks.</p>
+
+<p>So then why do builds break so often? You&rsquo;d think that after so many years of
+software development, someone would have solved this problem. Microsoft
+employees tens of thousands of engineers across hundreds, if not thousands, of
+code projects. Many of those code projects are development tools for the
+engineering community at large as well as engineers within Microsoft. Yet,
+still, all of the tools at the disposal of those engineers are highly prone to
+build breaks.</p>
+
+<p>Below, are three ideas for reducing build breaks. Together, they could all but
+eliminate the problem.</p>
+
+<h3>Use a better version control system</h3>
+
+<p>Everyone keeps raving about distributed version control, and for good reason. I
+won&rsquo;t rehash the argument here, but I will say: branch early and merge often.
+Perforce (better known as Source Depot within Microsoft) and it&rsquo;s spiritual
+successor Team Foundation Server are <a href="http://weblog.masukomi.org/2007/8/31/dear-perforce-fuck-you">completely unbearable</a> . A great
+majority of build breaks can be contained if people are only pulling known good
+changes from dedicated integrators. Everyone checking in all at once to a main
+branch simply doesn&rsquo;t work with anything but the most tightly knit of teams.
+Even if the does build break, it should only block the person waiting on that
+particular change.</p>
+
+<h3>Isolate build breaks</h3>
+
+<p><code>sd submit -c 12345</code> translates roughly to &ldquo;I&rsquo;m 100% confident that my changes
+are solid and am equally confident that I am submitting the changes that I
+think I am.&rdquo; You never can be 100% confident, don&rsquo;t take any chances: submit to
+a private branch which is being monitored by a build service. The server should
+detect your submission, run a full buddy build (with unit tests!), and then
+submit it to the shared branch only after it
+has passed.</p>
+
+<p>If your builds take too long for this, people should be able to grab changes
+down from your unverified branch on an as-needed basis. If this happens too
+frequently: your builds take too long. Refactor your system into smaller
+components and formalize the contractual interface between those components.
+Then buddy build just the components which have changed. Verify that the
+interface hasn&rsquo;t changed with a unit test. This will stop compile errors at the
+boundaries.</p>
+
+<h3>Go lazy, be late</h3>
+
+<p>This one is a big of a pipe dream&hellip; software systems developed with dynamic
+languages do not experience build breaks nearly as often as those developed
+with static languages. This is because dynamic languages are typically
+lazy-loaded and utilize late bounded method invocations. If someone adds a new
+button to the UI which calls a method in a file they forgot to add to source
+control, that should only block people who want to click the button!</p>
+
+<p>There is no firm technical reason why statically or JIT compiled systems can&rsquo;t
+simulate this. Most compile errors could theoretically be treated as a runtime
+error. Clearly, compile errors are valuable, but should be ignorable whenever
+possible. Don&rsquo;t ignore them in your known good builds, but ignore them when
+they stand between you and forward progress.</p>
+
+<p>Since most of us aren&rsquo;t writing our own compilers are full tool chains, here is
+some more practical advice for projects using statically compiled languages:
+write code which fails gracefully. Runtime errors can be build breaks just the
+same as compile errors, but try to defer the negative consequences as much as
+possible. One broken feature shouldn&rsquo;t break the whole project; unless, of
+course, you are about to ship. In production builds, perform verification code
+at startup or in unit tests, but try to be lazy and late in development builds.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

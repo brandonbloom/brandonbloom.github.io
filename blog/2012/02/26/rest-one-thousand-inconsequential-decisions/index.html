@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>REST: One Thousand Inconsequential Decisions - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="Hardly a week goes by without yet another Hacker News front page post by a
+blogger making a bold declaration about some important thing you &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2012/02/26/rest-one-thousand-inconsequential-decisions">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">REST: One Thousand Inconsequential Decisions</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-26T00:00:00-08:00" pubdate data-updated="true">Feb 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Hardly a week goes by without yet another Hacker News front page post by a
+blogger making a bold declaration about some important thing you <i>absolutely
+must do</i> if you want your API to be &ldquo;RESTful&rdquo;. With
+<a href="http://weblog.rubyonrails.org/2012/2/26/edge-rails-patch-is-the-new-primary-http-method-for-updates">Rails&#8217; recent PATCH announcement</a>, REST is all over the front page again.</p>
+
+<p>In my experience designing and consuming APIs of varying levels of RESTfulness,
+I&rsquo;ve concluded that most of the decisions involved in designing a RESTful API
+are completely inconsequential. PUT vs POST vs PATCH? HATEOAS vs manual URL
+construction? JSON vs custom Mimetype? It&rsquo;s all the same to an API consuming
+<i>developer</i>. It might matter to some kind of generic crawler, but I&rsquo;m not
+building an API for crawlers, so I don&rsquo;t care.</p>
+
+<p>What follows is a series of rants about various parts of the grand REST debate.
+This is by no means comprehensive. My goal with this post isn&rsquo;t to discourage
+you from writing a REST API. I simply want you to spend your time on the API
+decisions that matter, not the cosmetic, inconsequential ones.</p>
+
+<h4>HTTP Verbs &amp; Status Codes</h4>
+
+<p>The Rails PATCH announcement states &ldquo;both PUT and PATCH are routed to update&rdquo;.
+So what&rsquo;s the difference? Apparently PATCH is for partial updates, where as PUT
+is for complete replacement of resources. Here&rsquo;s the funny bit: Both of these
+are implemented via POST with a <code>_method</code> parameter for support of older
+browsers. The only two HTTP Verbs that actually matter are GET, for idempotent,
+cachable requests; and POST, for side-effects. Even DELETE is insufficiently
+defined for any real application. What if you want to support both Archive and
+Delete like Gmail?</p>
+
+<p>Which response codes should you use? Those which have specific meaning to HTTP
+clients. Specifically: those treated differently by browsers. Should you use
+201 on create instead of 200? Who cares? Should you use 301 or 302 for
+redirects? In an API, it doesn&rsquo;t matter. Pick one. Document it. For your actual
+web page, consult an SEO guide.</p>
+
+<p>What about errors? If you don&rsquo;t have permission to see a resource, is that a
+403? Or do you hide the existence of the resource and return a 404 (like
+GitHub)? It doesn&rsquo;t matter. Return a 4xx for expected caller errors and a 5xx
+for unexpected errors. Pick one. Document it.</p>
+
+<p>The smart thing to do is to always return your resources within one level of
+nesting. That is an <i>item</i> key in JSON or an <i>item </i>element in XML.
+Do this so that you can add an <i>error</i> key or other metadata without
+breaking changes. For example, you may want a <i>timings</i> key for perf
+debugging. For lists, use an <i>items</i> key because pretty soon, you&rsquo;re going
+to want a <i>paging</i> key. Also, for errors, make sure you include a
+non-localized (and hence, Google-able) error string; a status code is
+insufficient.</p>
+
+<h4>Hating On HATEOAS</h4>
+
+<p>HATEOAS, an absurd mouthful of an acronym, is a complete waste of time outside
+of read-only semi-structured datasets. If you&rsquo;re FreeBase, then go to town with
+HATEOAS conventions that are useful to you. However, for your typical webapp
+API, you simply cannot build a useful API client application without deep
+knowledge of the problem domain and the available API calls. You&rsquo;re going to
+have API documentation and you&rsquo;re going to have to read it.</p>
+
+<p>By all means, feel free to use HTTP 201 and a <i>Location</i> header to return
+the location of a newly created resource. Or you could just return the resource
+as JSON with an <i>href</i> or <i>id</i> key. That&rsquo;s yet another
+inconsequential decision. Might as well go with the path of least resistance:
+return interesting data in the body of the response (ie. in the JSON) where it
+can be accessed without additional effort to parse the headers. As long as your
+response code is in the 200 range, no one is going to look at it further.</p>
+
+<p>I&rsquo;ve seen people advocate <i>Link</i> headers such as <i>rel=&ldquo;newcomment&rdquo;.</i>
+It&rsquo;s weird to me because you still need to know which <i>rel</i> to lookup. The
+same thing applies to returning a bunch of extra URLs as metadata in your JSON.
+You still need to know which key to look up for the post-new-comment URL. You
+might as well just appended <i>&ldquo;/comments&rdquo;</i> and avoid the indirection.
+<i>Link</i> and <i>rel</i> are useful to generic tools that want to treat a
+wide range of resources the same. There aren&rsquo;t enough common aspects between
+the domain models of a typical API to justify the spare brain cycles. Again, if
+you&rsquo;re Wikipedia, your use case is different. You have generic data that you
+want to traverse generically. And again, that&rsquo;s a mostly read-only use case.</p>
+
+<h4>Versioning</h4>
+
+<p>Some REST fans advocate the use of custom MIME types for API versioning. These
+folks believe that version numbers in URLs are ugly. The usual objection is
+that resources should be equitable by URL and that <i>/v1/users/5</i> and
+<i>/v2/users/5</i> are different resources. The problem here is that this
+resource is actually identified by just the number. You don&rsquo;t need the whole
+URL and practical constraints are going to make it impossible to equate
+resources by URL. Consider the constraint of browsers&#8217; Same Origin Access
+Policy. You need <i>api.example.com</i> to run your public API on it&rsquo;s own IP
+address. And you need <i>example.com/api/</i> to make calls from your web
+frontend without jumping through crazy IFrame interop hacks.</p>
+
+<p>There are two types of API changes: 1) Backward Compatible, and 2) Breaking
+Changes. In the case of backwards compatible changes, you don&rsquo;t have to, nor
+should you, change version numbers. Simply add the additional method or
+additional return data. Nothing to worry about. In the case of breaking
+changes, you <i>want</i> to break clients as loudly as possible. If you simply
+change the MIME type, most consumers of the API are totally going to ignore it.
+If you deploy your new API at <i>api2.example.com</i>, then there is no risk of
+breaking older clients and they have to make a conscious decision to upgrade.</p>
+
+<p>In general, you&rsquo;re probably going to want to protect yourself with API keys.
+API keys provide the best way to version your API: record the desired API
+version with the generated key. Just stick an <i>api_version</i> column on your
+<i>api_keys</i> table. Expose that column as a drop down box in your API key
+management UI. This solution let&rsquo;s you leave the &ldquo;ugly&rdquo; version number out of
+the URL, but still enforce breakage on breaking changes. The best part is that
+you can totally ignore API keys and versioning when you start: Simply default
+unregistered API consumers to use v1 when you do implement v2.</p>
+
+<p>Last word on custom MIME types: One of the great promises of REST is the
+ability to treat generic things, generically. If your MIME type isn&rsquo;t a
+standard JSON MIME type, then how can you expect your browser to render it
+nicely with syntax highlighting and code folding? Your data is structured as
+JSON or XML; if you want to version the schema, use the facilities provided by
+XSDs or JSON Schemas, etc. But you&rsquo;re better off with documentation written by
+humans, for humans, than you are with formal schema.</p>
+
+<h4>REST: The Good Parts</h4>
+
+<p>There are a lot of good reasons why REST has gained popularity. For one thing,
+it isn&rsquo;t SOAP.</p>
+
+<p>The good ideas in REST are primarily predictable URLs, contractual idempotence,
+the <a href="http://news.ycombinator.com/item?id=2858712">preference of nouns
+over verbs</a>, and CURL as a client library. In practice, you can get
+contractual idempotence via GET vs POST. Predictable URLs are no different than
+predictable function names in all typical library code.</p>
+
+<p>All this other stuff, the finer points of URIs and HTTP headers, are completely
+inconsequential to a developer programming against a well documented API.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Xavier Noria</h3>
+
+<p>Note that the motivation for PATCH in Rails is to follow HTTP semantics, it is
+unrelated to REST.</p>
+
+<h3>Lars Gierth</h3>
+
+<blockquote><p>It&rsquo;s all the same to an API consuming developer. It might matter to some kind
+of generic crawler, but I&rsquo;m not building an API for crawlers, so I don&rsquo;t
+care.</p></blockquote>
+
+<p>That&rsquo;s how you&rsquo;re consuming APIs now! Imagine building a client that doesn&rsquo;t
+break if the API changes its semantics.</p>
+
+<p>The idea of versioning APIs is bad though, as it&rsquo;s contradicting the idea of
+building sustainable web services.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@Xavier: What benefit do I get from following the rules of HTTP semantics on
+this point? Semantics are only worth having if they make a distinction that is
+useful in practice. HTTP experimented with various verbs and it turns out that
+two are universally useful: GET and POST. The rest are ancillary.</p>
+
+<p>@Lars: Your two points conflict. You should only make breaking changes if
+you&rsquo;re changing your models meaningful. When you make a breaking change, you
+use versioning strategies like changing the base URL. When your models change
+meaningfully, your clients will need to change to present the new view of the
+problem domain. If you&rsquo;ve versioned correctly, old apps will work on the old
+API version and new ones will work on the new API version. It&rsquo;s impossible for
+an old client to magically support new concepts.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-26T00:00:00-08:00" pubdate data-updated="true">Feb 26<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2012/02/26/rest-one-thousand-inconsequential-decisions/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2012/02/26/rest-one-thousand-inconsequential-decisions/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/01/14/plugging-a-hole-in-microsoft-s-hiring-pipe-ie-frame/" title="Previous Post: Plugging a hole in Microsoft's hiring pipe: IE Frame">&laquo; Plugging a hole in Microsoft's hiring pipe: IE Frame</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/04/16/learn-to-read-the-source-luke/" title="Next Post: Learn to Read the Source, Luke">Learn to Read the Source, Luke &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

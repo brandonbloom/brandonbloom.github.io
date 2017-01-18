@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Break the cycle of broken builds - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="Broken builds suck. Breaking the build sucks. No one wants to have their work
+stopped by others&#8217; build breaks and no one wants to cause work &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2009/02/03/break-the-cycle-of-broken-builds">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Break the Cycle of Broken Builds</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-03T00:00:00-08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Broken builds suck. Breaking the build sucks. No one wants to have their work
+stopped by others&#8217; build breaks and no one wants to cause work stoppage on
+account of their own build breaks.</p>
+
+<p>So then why do builds break so often? You&rsquo;d think that after so many years of
+software development, someone would have solved this problem. Microsoft
+employees tens of thousands of engineers across hundreds, if not thousands, of
+code projects. Many of those code projects are development tools for the
+engineering community at large as well as engineers within Microsoft. Yet,
+still, all of the tools at the disposal of those engineers are highly prone to
+build breaks.</p>
+
+<p>Below, are three ideas for reducing build breaks. Together, they could all but
+eliminate the problem.</p>
+
+<h3>Use a better version control system</h3>
+
+<p>Everyone keeps raving about distributed version control, and for good reason. I
+won&rsquo;t rehash the argument here, but I will say: branch early and merge often.
+Perforce (better known as Source Depot within Microsoft) and it&rsquo;s spiritual
+successor Team Foundation Server are <a href="http://weblog.masukomi.org/2007/8/31/dear-perforce-fuck-you">completely unbearable</a> . A great
+majority of build breaks can be contained if people are only pulling known good
+changes from dedicated integrators. Everyone checking in all at once to a main
+branch simply doesn&rsquo;t work with anything but the most tightly knit of teams.
+Even if the does build break, it should only block the person waiting on that
+particular change.</p>
+
+<h3>Isolate build breaks</h3>
+
+<p><code>sd submit -c 12345</code> translates roughly to &ldquo;I&rsquo;m 100% confident that my changes
+are solid and am equally confident that I am submitting the changes that I
+think I am.&rdquo; You never can be 100% confident, don&rsquo;t take any chances: submit to
+a private branch which is being monitored by a build service. The server should
+detect your submission, run a full buddy build (with unit tests!), and then
+submit it to the shared branch only after it
+has passed.</p>
+
+<p>If your builds take too long for this, people should be able to grab changes
+down from your unverified branch on an as-needed basis. If this happens too
+frequently: your builds take too long. Refactor your system into smaller
+components and formalize the contractual interface between those components.
+Then buddy build just the components which have changed. Verify that the
+interface hasn&rsquo;t changed with a unit test. This will stop compile errors at the
+boundaries.</p>
+
+<h3>Go lazy, be late</h3>
+
+<p>This one is a big of a pipe dream&hellip; software systems developed with dynamic
+languages do not experience build breaks nearly as often as those developed
+with static languages. This is because dynamic languages are typically
+lazy-loaded and utilize late bounded method invocations. If someone adds a new
+button to the UI which calls a method in a file they forgot to add to source
+control, that should only block people who want to click the button!</p>
+
+<p>There is no firm technical reason why statically or JIT compiled systems can&rsquo;t
+simulate this. Most compile errors could theoretically be treated as a runtime
+error. Clearly, compile errors are valuable, but should be ignorable whenever
+possible. Don&rsquo;t ignore them in your known good builds, but ignore them when
+they stand between you and forward progress.</p>
+
+<p>Since most of us aren&rsquo;t writing our own compilers are full tool chains, here is
+some more practical advice for projects using statically compiled languages:
+write code which fails gracefully. Runtime errors can be build breaks just the
+same as compile errors, but try to defer the negative consequences as much as
+possible. One broken feature shouldn&rsquo;t break the whole project; unless, of
+course, you are about to ship. In production builds, perform verification code
+at startup or in unit tests, but try to be lazy and late in development builds.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-03T00:00:00-08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2009/02/03/break-the-cycle-of-broken-builds/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2009/02/03/break-the-cycle-of-broken-builds/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/01/26/contributions/" title="Previous Post: Contributions">&laquo; Contributions</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/02/09/language-oriented-programming-too-much-too-fast/" title="Next Post: Language-oriented programming: too much, too fast">Language-oriented programming: too much, too fast &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

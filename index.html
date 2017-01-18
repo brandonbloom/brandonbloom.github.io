@@ -1,1 +1,1147 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="I&rsquo;ve written before about my dislike for SemVer. Recently, Rich Hickey has
+spoke about this very same issue, and more. I&rsquo;m currently &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-01-18T01:30:00-08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve written before about <a href="http://www.brandonbloom.name/blog/2013/06/19/semver/">my dislike for SemVer</a>. Recently, Rich Hickey has
+<a href="https://www.youtube.com/watch?v=oyLBGkS5ICk">spoke about this very same issue, and more</a>. I&rsquo;m currently working on some
+software that I&rsquo;m hoping people will use, so I decided to make my thoughts on
+a better versioning scheme clear. Below you&rsquo;ll find an exerpt from my new
+project&rsquo;s documentation. Each point below could be elaborated on in a full post
+of it&rsquo;s own, but this summary has value as a checklist of sorts for those
+discussions.</p>
+
+<h2>Contracts</h2>
+
+<p>Software should make explicit what it promises to provide, as well as make
+explicit the requirements it relies on. Implicit promises or reliance should
+be avoided. This is a as much a social contract as it is a technical one.</p>
+
+<h3>Breakage</h3>
+
+<p>If software relies on an explicit promise, it should never break.</p>
+
+<h3>Instability</h3>
+
+<p>It is often useful to defer commitments. The default social contract should be
+one of instability. In the absence of explicit promises, everything should be
+considered unstable, and subject to change.</p>
+
+<h3>Accretion</h3>
+
+<p>It should always be possible to provide more. Making additional promises should
+never cause breakage.</p>
+
+<h2>Migrations</h2>
+
+<p>Occasionally supporting old contracts becomes burdensome. Parties to these
+contracts should be provided a path to a new contract without breakage.</p>
+
+<h3>Retractions</h3>
+
+<p>Retracting promises should always be preceded by sufficient warning in order
+to avoid breakage. This entails a new contract which specifies deprecated
+provisions at the same time as providing new promises to migrate to.</p>
+
+<h3>Timelines</h3>
+
+<p>Contracts are identified by a ordinal version number and an instant in time.
+Any contract may accrete new promises or bug fixes by creating an artifact
+tagged with a new instant. Successive ordinal versions may retract promises
+deprecated by previous ordinals.</p>
+
+<h2>Coexistence</h2>
+
+<p>Even in the presence migrations, grandfathered contracts should be honored.</p>
+
+<h3>Side-by-Side</h3>
+
+<p>A contract timeline may be forked by accreting a new contract with a new name.</p>
+
+<h3>Layering</h3>
+
+<p>Platform systems should facilitate openness such that side-by-side systems may
+interoperate. Where this is not immediately possible, lower layers should be
+extended to facilitate this before forking higher layers.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-26T15:33:00-07:00" pubdate data-updated="true">Apr 26<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://facebook.github.io/react/">React.js</a> and its <a href="http://mollyrocket.com/861">&ldquo;IMGUI&rdquo;</a> inspired rendering model is exploding in
+popularity.  After <a href="https://www.youtube.com/watch?v=LNtQPSUi1iQ">my talk at Clojure/West</a>, several folks asked me about
+two seemingly separate discussion topics: Two-way Bindings and <a href="https://github.com/omcljs/om/wiki/Cursors">Cursors</a>.</p>
+
+<p>Among those asking me about data binding, there are a few campaigning for a
+&ldquo;spreadsheet-like&rdquo; method of defining user interfaces. On one hand, they&rsquo;re
+right to seek a direct-manipulation experience for building artifacts in a
+fundamentally visual and interactive medium. However, the code-level approach
+of using spreadsheet-like &ldquo;equations&rdquo; is fundamentally flawed.</p>
+
+<p>Meanwhile, folks using <a href="https://github.com/omcljs/om">Om</a> in practice have expressed their frustrations
+with cursors. A few suggested using something more principled like Haskell&rsquo;s
+<a href="https://hackage.haskell.org/package/lens">lenses</a>.  While this may be useful in some situations, it&rsquo;s fundamentally
+flawed for the same underlying reasons.</p>
+
+<p>Both designs share a flaw born of a common desire: To automatically map user
+input back to data sources. When there&rsquo;s a 1-to-1 mapping from data sources to
+user interfaces, this is appropriate. However, it&rsquo;s not sufficient for the
+general case. In fact, it&rsquo;s not sufficient for the <em>common</em> case.</p>
+
+<p>Transformations of source data in to views beyond trivial editable fields is
+almost never reversible or equational.</p>
+
+<p>To substantiate my position, let me demonstrate just how difficult it is to
+write reversible relationships with some examples in the domain of grammars.</p>
+
+<p>Let&rsquo;s say you have this simple grammar:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>A ::= a+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The production <code>A</code> is formed of 1 or more <code>a</code> characters.</p>
+
+<p>An infinite number of substitutions will satisfy the rule.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>a -&gt; A
+</span><span class='line'>aaaaaa -&gt; A</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here, the direction of the arrow is critically important.</p>
+
+<p>How can you reverse this production rule?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>??? &lt;- A</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The only <em>universal</em> way to convert directed rules in to reversible relations
+is to never discard &ldquo;information&rdquo;.</p>
+
+<p>For example, we could parameterize <code>A</code> by a number.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>aaaa &lt;-&gt; A(4)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Alternatively, you can specify a general principal for lossy reversal rules,
+like &ldquo;always produce the smallest value that would satisfy the rule&rdquo;.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>a &lt;- A</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However, this falls flat on its face if you introduce alternation:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>AB ::= a | b
+</span><span class='line'>
+</span><span class='line'>a -&gt; AB
+</span><span class='line'>b -&gt; AB
+</span><span class='line'>
+</span><span class='line'>??? &lt;- AB</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Neither <code>a</code> nor <code>b</code> is &ldquo;smaller&rdquo;, so you need a new principle to reverse by.
+In a traditional context free grammar, <code>|</code> doesn&rsquo;t imply order, but in a
+<a href="https://en.wikipedia.org/wiki/Parsing_expression_grammar">PEG</a>, for example, you have ordered choice. You could say that you reverse
+to the first choice which satisfies the rule. Let&rsquo;s use <code>/</code> as the ordered
+choice operator.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>AB ::= a / b
+</span><span class='line'>
+</span><span class='line'>a -&gt; AB
+</span><span class='line'>b -&gt; AB
+</span><span class='line'>
+</span><span class='line'>a &lt;- AB</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Even in this simplified context, we haven&rsquo;t even begun to scratch the surface
+of potential problems with reversibility. Constructs such as binders or loops
+will cause the reversal principles to explode in complexity.</p>
+
+<p>Grammars offer pretty simple and well defined operations. However, practically
+every new operation introduces new reversal principles. Once real world
+business logic gets involved, things get hairy quickly.</p>
+
+<p>In the context of user interfaces, these problems are magnified to be so large
+that they are practically unrecognizable. However, if you zoom in on individual
+cases in your own applications, you&rsquo;ll spot this inherit complexity.</p>
+
+<p>A robust UI solution should not attempt to build upon a foundation of
+automatic reversibility.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-08T17:36:00-08:00" pubdate data-updated="true">Jan 8<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The academic programming language community spends lots of time studying and
+building type systems. It&rsquo;s widely considered that <a href="http://en.wikipedia.org/wiki/Soundness">soundness</a> is the mark
+of a well designed type system. A sound type system never permits an
+incorrectly typed program to pass type checking. An ideal type system would
+also be <a href="http://en.wikipedia.org/wiki/Completeness#Logical_completeness">complete</a>; it would never reject a correctly typed program because
+it was unable to prove its correctness. If you&rsquo;re not familiar with this
+terminology, Ben Karel offers <a href="http://eschew.wordpress.com/2009/08/31/sound-and-complete/">an illuminating analogy</a> to help you.</p>
+
+<p>Recently, a flurry of new, statically typed languages have entered the public
+stage. Among these are Google&rsquo;s <a href="http://www.dartlang.org/">Dart</a>, as well as Microsoft&rsquo;s
+<a href="http://www.typescriptlang.org/">TypeScript</a>. One thing that these languages have in common is that they
+have unsound type systems. Cue the horrified gasps of the type theorists!</p>
+
+<p>Ignoring the topic of completeness for a moment, since most critics do so
+themselves (I think &ldquo;unsound&rdquo; just sounds scarier than &ldquo;incomplete&rdquo;). Surely
+Google and Microsoft employ some smart folks who have followed the latest
+research in type systems, so why, in 2014, are we still building languages
+that have unsound type systems? Well, I&rsquo;ll let the <a href="https://www.dartlang.org/articles/why-dart-types/">Googlers</a> and
+<a href="https://typescript.codeplex.com/discussions/428572">Microsofties</a> explain themselves. In short, it&rsquo;s difficult to maintain
+soundness in feature-rich languages. Even when possible, it may cause an
+<a href="http://i.imgur.com/YAls4tQ.png">astronomical increase in complexity</a>. Achieving soundness requires
+a trade off against completeness, complexity, toolability, and more. Never
+mind the fact that being fully sound isn&rsquo;t even that useful to begin with!</p>
+
+<p>Let&rsquo;s step back and examine why we even bother with type systems at all.
+In many cases, static analysis can dramatically reduce programmer errors and
+opens up significant optimization opportunities. Programming languages that
+are amenable to formal static analysis are <a href="http://www.cse.chalmers.se/~nad/publications/danielsson-et-al-popl2006.html">highly correlated</a> with
+programming languages that are amenable to informal static analysis, i.e. by
+programmers! Type systems have proven to be a particularly useful category of
+static analysis; so much so, that many programmers can&rsquo;t imagine building
+software without a type checker on hand at all times.</p>
+
+<p>Sadly, type systems fundamentally can&rsquo;t catch all kinds of programming
+mistakes, nor will they magically improve the time or space complexity of your
+algorithms. You&rsquo;ll have to write tests and benchmarks either way, to say
+nothing of validating your designs with stakeholders! Still, there are other
+reasons to have a good type system, like enforcement of <a href="http://en.wikipedia.org/wiki/Type_safety">type safety</a>
+(which is a different thing than &ldquo;type correctness&rdquo;). However, safety can also
+be <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/ClassCastException.html">enforced by dynamic means</a> and dynamic mechanisms such as
+<a href="http://erights.org/elib/capability/ode/ode-capabilities.html">capabilities</a> can enforce security far beyond that of static safety
+checks. You might even want to <a href="http://msdn.microsoft.com/en-us/library/t2yzs44b.aspx">intentionally forego safety</a> in order to
+achieve maximum performance. Furthermore, there&rsquo;s lots of other kinds of
+static analysis, both formal and informal, that can be used to find bugs or
+speed your programs up.</p>
+
+<p>Assuming we want a tool that finds as many errors as possible, we should be
+willing to forego completeness, instead preferring to have our static analysis
+be overly cautious, warning us of programs that <em>might</em> be incorrect. We can
+always suppress such warnings after informal analysis (or alternative formal
+analysis!). Assuming we&rsquo;re realistic about the fact that no static analysis
+tool will ever catch all errors, we should also be willing to tolerate
+unsoundness in order to <a href="http://www.haskell.org/haskellwiki/Hoare_Property">spend our mental complexity budgets more wisely</a>.
+Assuming we want a tool that independently improves with time, we should not
+create a <a href="http://bracha.org/pluggableTypesPosition.pdf">cyclic dependency between languages and type systems</a>.</p>
+
+<p>There is a class of such tools. They&rsquo;re called <a href="http://en.wikipedia.org/wiki/Lint_(software)">linters</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-26T11:59:00-07:00" pubdate data-updated="true">Jun 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Does nobody teach fopen anymore?</h2>
+
+<p>Many programmers start with &ldquo;Hello World&rdquo;. Shortly after that, it&rsquo;s &ldquo;Hello
+$NAME&rdquo;, with a string read off stdin. But soon, budding engineers get tired of
+reminding their computer of their name each and every time their code runs.
+When I was first learning to program, file IO was an early requirement. We were
+taught how to read and write &ldquo;data files&rdquo; using little more than fopen,
+fscanf, fprintf, and fclose.</p>
+
+<p>Fast forward five to ten years; you find yourself writing your 10 millionth SQL
+query, wishing for simpler times. Spend some more time with the NoSQL database
+du jour and the humble fopen function will be but a distant memory.  Until that
+one fateful day arrives where you&rsquo;ve got a relatively simple program and
+encounter the need for equally simple durability. Five years ago, you&rsquo;d have
+cracked your knuckles and hacked out a pair of &ldquo;save&rdquo; and &ldquo;load&rdquo; functions.
+Today, you add a dependency on your favorite database driver, switch to the
+shell, type <code>createdb myapp</code> and then dutifully begin defining a lovely schema.
+Of course, now you need to either rework your models to conform to some horrid
+ORM layer, or write save/load-style &ldquo;hydrate&rdquo; and &ldquo;dehydrate&rdquo; methods anyway.</p>
+
+<p>Now, at ten years and a day, you decide it&rsquo;s finally time to learn that hip new
+programming language that everybody is talking about. You&rsquo;ve got your book out,
+you&rsquo;ve rocked through all your favorite technical interview puzzles, and you&rsquo;re
+ready to put together a little web service for personal or small group use.  If
+this was yesterday, you&rsquo;d know exactly what dependency to add and how to
+proceed, but that was yesterday. Today, you do some Googling or hop into IRC
+looking to find out what&rsquo;s popular.</p>
+
+<p>Why don&rsquo;t you even consider fopen?</p>
+
+<h2>But files aren&rsquo;t &ldquo;Web Scale&rdquo;!</h2>
+
+<p>Is that really true? And do you really care? Should you really care?</p>
+
+<p>The answer to all of these questions is &ldquo;No&rdquo;. Files can easily be &ldquo;web scale&rdquo;.
+As of 2013, Hacker News is still running as a single process, on a single core,
+of a single server, backed by a directory structure of simple data files.
+Nearly 2 million page views are served daily. See <a href="https://news.ycombinator.com/item?id=5229522">this thread</a> and
+<a href="https://news.ycombinator.com/item?id=5253773">this submission</a> for details.</p>
+
+<p>The bottom line on this subject is that 1) You&rsquo;re going to need significant
+cleverness to scale any service regardless of whether you use a database or the
+file system directly. And 2) You probably won&rsquo;t need to scale hugely anytime
+soon, anyway. Being crushed by traffic is a Good Problem To Have, so let&rsquo;s
+worry about the Ghost Town problem first. 3) You can always refactor later.</p>
+
+<h2>Data Literals: print, read, spit, and slurp</h2>
+
+<p>This article was prompted by a reoccurring discussion started by newcomers to
+the Clojure IRC channel. Having learned the basics, folks want to hit the
+ground running with stateful and durable services. Coming from a background in
+some big framework or some hairy application, these folks ask those suggestive
+questions about databases, driver libraries, and the like. Often, upon
+interrogation, they only have a couple kilobytes or megabytes of total data to
+be stored. In such a situation, the advice is always the same: Put that data
+into an atom, then use <code>spit</code> and <code>slurp</code> to save and load.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">db</span> <span class="p">(</span><span class="nf">atom</span> <span class="p">{</span><span class="nv">...</span><span class="p">}))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">save-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">spit</span> <span class="s">&quot;somefile&quot;</span> <span class="p">(</span><span class="nb">prn-str </span><span class="err">@</span><span class="nv">db</span><span class="p">)))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">load-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">reset!</span> <span class="nv">db</span> <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nb">slurp </span><span class="s">&quot;somefile&quot;</span><span class="p">))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Because Clojure encourages the use of printable, readable, &ldquo;pure&rdquo; data, your
+save and load functions are virtually free! If you&rsquo;re not familiar with
+Clojure, then consider working with pure JSON in Node.js:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="p">{...};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">saveData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;somefile&quot;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(</span><span class="nx">db</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">loadData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">db</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&quot;somefile&quot;</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Things aren&rsquo;t quite as easy in languages lacking data literals, but nearly
+every popular language has some kind of automatic serialization library.
+However, even if you do need to write your own save and load functions, it&rsquo;s
+a pretty straightforward, if somewhat tedious, process.</p>
+
+<p>Even&mdash;or especially&mdash;experienced programmers are surprised by just how far
+this brain-dead-simple durability scheme will go.</p>
+
+<h2>Atomicity</h2>
+
+<p>One other objection to files is that it&rsquo;s difficult to ensure an application
+enjoys the same guarantees that a well-tested ACID database affords. Never mind
+the fact that the majority of Rails applications suffer from dozens of
+consistency bugs because most developers forget to wrap related updates in
+transactions; it is true that incorrectly implemented file IO can cause
+catastrophic data loss.</p>
+
+<p>If you plan to deploy spit and slurp into production, you&rsquo;d be advised to write
+to a temporary file and utilize an atomic rename. This ensures that a failure
+during writing won&rsquo;t corrupt your database. See <code>man rename</code> for more.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">saveData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;somefile.tmp&quot;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(</span><span class="nx">db</span><span class="p">));</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">renameSync</span><span class="p">(</span><span class="s2">&quot;somefile.tmp&quot;</span><span class="p">,</span> <span class="s2">&quot;somefile&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Just this one little tweak and this bad boy is production ready. Clojure
+programmers can use Java&rsquo;s <code>File.renameTo</code> method. See below.</p>
+
+<p>Remember to configure your backups!</p>
+
+<h2>Don&rsquo;t Stop The World</h2>
+
+<p>Experienced Node.js programmers likely cringed at the &ldquo;Sync&rdquo; suffix on the
+above file operations. These operations will block while data is being read or
+written. In addition to yielding clearer example code, synchronous operations
+do not require coordination. If your application only needs to serve a handful
+of users, you can still write 100 megabytes of data in less than half a
+second. Even if you write every change to a file on every request, your ten
+users might not even notice your blocking IO. As you scale up, you&rsquo;ll need to
+either split your data files up and/or start writing files asynchronously.</p>
+
+<p>Asynchronous means coordination. Coordination means locking or queues. This
+stuff really isn&rsquo;t as scary as it sounds, but it will have to wait; this post
+has already gotten far too long. However, I don&rsquo;t want to lead you down the
+wrong path, so I should mention that, unlike Node.js, synchronous writes on
+the JVM will not block other requests. You practically don&rsquo;t have a choice, but
+to be asynchronous.  If two requests both call your save function at the same
+time, the resulting race condition can lead to incremental data loss. Luckily,
+Clojure&rsquo;s agents and persistent data structures provide for a super quick fix:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="nb">import </span><span class="ss">&#39;java.io.File</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">save-agent</span> <span class="p">(</span><span class="nb">agent </span><span class="nv">nil</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">save-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">send-off </span><span class="nv">save-agent</span>
+</span><span class='line'>    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">_</span><span class="p">]</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">spit</span> <span class="s">&quot;somefile.tmp&quot;</span> <span class="p">(</span><span class="nb">prn-str </span><span class="err">@</span><span class="nv">db</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">.renameTo</span> <span class="p">(</span><span class="nf">File.</span> <span class="s">&quot;somefile.tmp&quot;</span><span class="p">)</span> <span class="p">(</span><span class="nf">File.</span> <span class="s">&quot;somefile&quot;</span><span class="p">)))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Different web servers across all the different languages have varying
+concurrency support and configuration defaults. Whether or not you use file IO,
+you should be aware of the concurrency story for your platform and its impact
+on your application.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/24/code-density/">Code Density</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-24T18:26:00-07:00" pubdate data-updated="true">Jun 24<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve heard from many folks who have had difficulty learning functional
+programming. In attempting to complete seemingly simple tasks, even the most
+experienced imperative and object oriented programmers fall flat on their faces
+when first attempting to program in a functional style. Yet, experienced
+functional programmers rave about their productivity and their small, beautiful
+codebases. Are these functional programmers simply that much smarter? Or is
+there some other force at work?</p>
+
+<p>Even in a familiar language, a small, but powerful library might be described
+as &ldquo;write-only code&rdquo; by those who do not grok the fundamental ideas. Powerful
+ideas produce powerful programs, but powerful programs don&rsquo;t always shed light
+on their underlying powerful ideas. Functional programming is a powerful idea.</p>
+
+<p>A lot of businesses just need somebody to bang out some pretty vanilla
+solutions to some pretty vanilla problems. If you&rsquo;re in one of these businesses
+(and most of us are), then your team&rsquo;s resident curmudgeon is right: Clever is
+not a good thing. Familiar and understood beats simple and powerful ideas every
+time.</p>
+
+<p>However, if you&rsquo;re looking to up your game; If you want to tackle bigger
+problems, you need more powerful tools. If you&rsquo;ve tried to read some Lisp or ML
+or Haskell, but found your head swimming; If you&rsquo;ve tried to fight your way
+through <a href="http://projecteuler.net/">Project Euler</a> with an unfamiliar language, but got stumped by
+tasks you aced in freshman year; Don&rsquo;t panic. There&rsquo;s a good explanation for
+why these things seem harder. Those functional programmers really aren&rsquo;t
+smarter than you.  They&rsquo;re just a little more persistent.</p>
+
+<p>The key issue is one of code density. Powerful ideas can succinctly express
+solutions to tough problems. The problem isn&rsquo;t necessarily any easier, nor is
+expressing the solution necessarily any more difficult. There is simply more
+meaning per line of code, so reading and writing each line of code takes
+proportionally longer. If you&rsquo;ve jumped into a 100,000+ lines-of-code Java
+project and found your way around like a champ, you shouldn&rsquo;t feel ashamed by
+jumping into a 10,000 line Clojure project and being horribly lost. Those
+10,000 lines of code might take you five times as long to read per line.  These
+numbers are only backed by anecdotal evidence, but that&rsquo;s a hypothetical 50%
+reduction in total code reading time!</p>
+
+<p>When you start writing some object-oriented code, you spend a bunch of time
+creating classes and defining the shape of your domain. There is some delay
+between when you begin typing and when you run head first into the problem at
+hand. During that delay, you have a lot of time to think about the problem.
+While you&rsquo;re fingers are hard at work, your mind is too. Your brain needs time
+for solutions to bake. If you encounter the hard problems as soon as you start
+typing, you need to walk away from your desk!</p>
+
+<p>Functional programming is a particularly compelling powerful idea because it
+captures the essence of a lot of computational problems. There is a great deal
+of complexity that is hidden away in mutable state, implicit context, and
+abstract interfaces. If you&rsquo;re used to the constant drip of progress afforded
+by stitching together class hierarchies, you suffer immediate withdrawals when
+faced with all of the hidden moving parts laid bare in an individual function&rsquo;s
+signature. Suddenly, you need to solve many more problems at once, but you&rsquo;ve
+become accustom to having those problems spread out across a wider
+cross-section of your program.</p>
+
+<p>It takes longer to get started with a powerful idea because you must first
+understand and internalize that powerful idea. Take a deep breath, lean back in
+your chair, close your eyes, and think through the problem. Untangle the mess
+in your head, maybe explore a bit in the REPL, then come back and try the
+problem again. You might find that you spend half as much time thinking as you
+used to spend typing.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/19/semver/">SemVer: A Technical Solution to a Social Problem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-19T11:35:00-07:00" pubdate data-updated="true">Jun 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>&ldquo;Semantic Versioning&rdquo;, commonly called <a href="http://semver.org/">SemVer</a>, is a specification for
+assigning and reasoning about software version numbers. In short, it codifies
+some common practices regarding <code>$MAJOR.$MINOR.$REVISION</code> style version
+numbers, including guarentees about API compatibility and dependency
+resolution.</p>
+
+<p>Beautifully simple semantics, outlined by a clear and concise specification.
+What&rsquo;s not to like? Technically, SemVer is very strong. However, statistically
+speaking, software developers can not be trusted to maintain the semantics
+promised by SemVer. A small handful of individuals and projects use SemVer, or
+something like it, to good effect. The rest can&rsquo;t be trusted not to introduce
+major bugs or breaking changes with each and every revision.</p>
+
+<p>Every engineer who has ever worked on a project with more than a handful of
+external dependencies has had the horrifying experience of deploying some small
+dependency upgrades only to have their entire house of cards come crashing
+down. As a result, mature organizations tend to maintain their own package
+repositories, vendor all dependencies, or otherwise carefully scrutinize and
+control each and every external component.</p>
+
+<p>Packaging systems such as Ruby&rsquo;s <a href="http://gembundler.com/">Bundler</a> and Node&rsquo;s <a href="https://npmjs.org/">NPM</a> often default
+to or otherwise encourage SemVer. Depending on a
+<a href="http://docs.rubygems.org/read/chapter/16#page74">pessimistic version constraint</a>, such as <code>~&gt; 1.2</code>, is tantamount to saying
+&ldquo;I trust that the maintainer of this project both understands SemVer and is
+capable of enforcing its guarantees.&rdquo; Sadly, this is rarely, if ever, true.</p>
+
+<p>Versioning is a social contract. A maintainer makes a promise regarding API
+stability and versioning policy. Consumers make a judgement call regarding the
+veracity of the maintainer&rsquo;s promise. If the README file says &ldquo;This project uses
+SemVer&rdquo; and the project&rsquo;s maintainer is <a href="http://tom.preston-werner.com/">Tom Preston-Werner</a>, then you can
+trust that pessimistic version constraint in your dependencies file.</p>
+
+<p>However, the README might say &ldquo;Releases are only packaged for long-term support
+versions.  Please use the <code>stable</code> branch for new production systems.&rdquo; In such
+a case, you might want to consider depending directly on that branch or even on
+a particular commit hash. Speaking of branches and commits, this calls to mind
+a far preferable default for packaging and dependency resolution systems:
+<a href="https://www.kernel.org/pub/software/scm/git/docs/gitrevisions.html">refspecs</a>. It would be great if the SemVer spec was updated to include
+policies for defining branch and tag names in your version control system of
+choice. Instead of depending on <code>~&gt; 1.2</code>, you could depend on
+<code>branches/v1.2.x</code>. This grants maintainers greater flexibility in making social
+contracts.  It also grants consumers greater control over how much trust they
+give to maintainers.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/18/oop-cycles/">Trivial Cycles in Object Oriented Programming</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-18T16:41:00-07:00" pubdate data-updated="true">Jun 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m not against objects. I&rsquo;m against programming in a style <em>oriented</em> by
+objects.</p>
+
+<p>One of the largest causes of big-ball-of-mud architectures is unnecessary cyclic
+dependencies. Unfortunately, object-oriented languages allow programmers to
+trivially create cyclic dependencies without warning or immediate
+repercussions. Overtime, these cycles become a significant source of complexity
+and corresponding suffering.</p>
+
+<p>The problem can be summarized in a single line of pseudocode:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='ruby'><span class='line'><span class="n">person</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">residents</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This innocuous-looking expression embodies a pleasant interface, but its
+implementation hides an insidious cyclic relationship between the <code>Person</code>
+class and the <code>Address</code> class. Worse than that, this cyclic relationship
+is extended transitively to any other related classes. Consider the following
+diagram with an additional <code>Company</code> class that may also have an address.</p>
+
+<p><img src="/images/oop-cycle.png" alt="Person / Address / Company ball-of-mud" /></p>
+
+<p>Any time you add a type to this graph, it is instantly tangled-up with
+everything else. Compare this with this functional variant:</p>
+
+<p><img src="/images/fp-dag.png" alt="Person / Address / Company untangled" /></p>
+
+<p>Now you can analyze, compile, and reason about a subset of this graph.
+Reasoning about any particular node only requires reasoning about the
+transitive closure of its dependencies. However, in the presence of ubiquitous
+cycles, the transitive closure is equivalent to the entire graph.</p>
+
+<p>Unfortunately, we&rsquo;ve now lost the convenient <code>noun.verb</code> or <code>noun.component</code>
+syntax. Instead, our expressions are inside out. Here it is in Ruby or Python
+syntax:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='ruby'><span class='line'><span class="n">residents</span><span class="p">(</span><span class="n">address</span><span class="p">(</span><span class="n">person</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here it is in Lisp syntax:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="nf">residents</span> <span class="p">(</span><span class="nf">address</span> <span class="nv">person</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Luckily, we can recover the pleasant ordering with the help of a macro.  Here
+is an example of Clojure&rsquo;s threading macro:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="nb">-&gt; </span><span class="nv">person</span> <span class="nv">address</span> <span class="nv">residents</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the absense of macros, we can use a binary operator. Here&rsquo;s an example of
+F#&rsquo;s &ldquo;pipeline&rdquo; operator:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">person</span> <span class="o">|&gt;</span> <span class="n">address</span> <span class="o">|&gt;</span> <span class="n">residents</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both Scala and C# provide tools for directly emulating the dotted access
+syntax.  Respectively, implicit conversions and extension methods leverage the
+type system to perform dispatch to non-members in a syntactically identical
+way.</p>
+
+<p>It is unfortunate that it is so easy to create cycles. A small sin at first,
+but they quickly add up and really start to hurt as a system grows larger.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/17/octopress/">Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-17T17:04:00-07:00" pubdate data-updated="true">Jun 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A while ago, I started blogging again. Google&rsquo;s Blogger isn&rsquo;t great for code
+snippets, so I contorted a few posts to fit the formatting. A few posts never
+got written at all. I wanted to get my blog into Github Flavored Markdown and
+under version control. I&rsquo;m not a super huge fan of Jekyll, but in interest of
+getting back to content, I went ahead and did the simplest possible thing that
+could work.</p>
+
+<p>So here&rsquo;s my new blog.</p>
+
+<p>It&rsquo;s built on <a href="https://github.com/mojombo/jekyll">Jekyll</a> via <a href="http://octopress.org/">Octopress</a> with the a <a href="https://github.com/lucaslew/whitespace">Theme by Lucas Lew</a>
+and hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
+
+<p>I ported the majority of the posts from HTML to Markdown via a pile of Vim
+Macros.  Then, I set up a tiny Ruby app on Heroku to redirect old URLs.  It was
+an extremely tedious process, but I&rsquo;m pretty happy with the result!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/11/fipp-intro/">Fipp: Fast Idiomatic Pretty-Printer for Clojure</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-11T00:00:00-08:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I decided to create a new pretty printer in the spirit of &ldquo;Data All The
+Things!&rdquo; And it&rsquo;s fast too!</p>
+
+<p>Fipp, the Fast Idiomatic Pretty-Printer for Clojure, is a pretty printer with
+linear runtime and bounded space requirements. Unlike clojure.pprint&rsquo;s
+side-effectual API, Fipp is configured by pretty print documents that are
+similar to Hiccup HTML templates. It&rsquo;s based on some fancy pants research
+pretty printers from the Haskell world.</p>
+
+<p>You can see my implementation and lots more notes at
+<a href="https://github.com/brandonbloom/fipp">https://github.com/brandonbloom/fipp</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/01/factjor-intro/">Factjor: Concatenative Clojure</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-01T00:00:00-08:00" pubdate data-updated="true">Jan 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve released another small Clojure project:
+<a href="https://github.com/brandonbloom/factjor">Factjor</a></p>
+
+<p>Head on over to GitHub for a tiny intro in the README. Lots more explanation
+and context will follow in a future post, after I release the project that
+motivated Factjor.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

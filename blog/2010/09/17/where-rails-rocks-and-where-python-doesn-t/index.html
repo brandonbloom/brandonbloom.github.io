@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Where Rails Rocks (and where Python doesn't) - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="Here’s a list of things I like about Ruby on Rails. Almost every single one of
+these are available in at least one Python framework in some form, but &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2010/09/17/where-rails-rocks-and-where-python-doesn-t">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Where Rails Rocks (and Where Python Doesn't)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-17T00:00:00-07:00" pubdate data-updated="true">Sep 17<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Here’s a list of things I like about Ruby on Rails. Almost every single one of
+these are available in at least one Python framework in some form, but the best
+thing about Rails is how polished the pieces are and how well they all fit
+together. The whole is truly greater than the sum of its parts.</p>
+
+<h4>Fantastic OOBE</h4>
+
+<p>Rails has a fantastic out-of-box experience. Simply execute </span><span >rails new</span><span > and you’re off to the races with a directory full of goodies that every real web app needs: dependency management, build system, multi-environment configuration, development storage, logging, custom error pages, robots.txt file and more. See section 3.2 of the </span><a href="http://guides.rubyonrails.org/getting_started.html"><span >getting started guide</span></a><span > for a complete list. Hell, they even fill out a .gitignore file for you! A place for everything and everything in its place.</span></p>
+
+<h4>Dependency Management: RubyGems</h4>
+
+<p>In the Python world, easy_install and its ilk are all kinds of broken. You can’t even uninstall a package! Luckily, there is </span><a href="http://pypi.python.org/pypi/pip"><span >Pip and Virtualenv</span></a><span >, but assuming Pip supports all your packages, you’ve still got to make sense of dependency freezing and manually setup a virtual environment. With Rails, that all just works: </span><span >rails server</span><span > runs in a virtualized environment and loads gems as defined by your </span><a href="http://docs.rubygems.org/read/book/1"><span >Gemfile</span></a><span >; </span><span >rails console</span><span > for a repl. No need to muck with sys.path! Any seasoned developed has spent many an hour in dependency hell, but it is still hard to justify the infrastructure investment before writing a line of HTML. Bonus points for the “vendor” directory, in case you need to patch a third party package (or Rails itself) and want to keep it under version control.</span></p>
+
+<h4>Build System: Rake</h4>
+
+<p>gnu.org/software/make/manual/make.html&#8221;><span >Makefiles</span></a><span >. A lot of people really hate them, but they are just so damn useful. Frequently, you need to transform some set of files into some other set of files, but only when they change. Makefiles help you do that reliably. They accomplish their feat explicitly by </span><span >not</span><span > being a programming language, but a dependency and build rule declaration language. I’ve seen a lot of attempts at build systems that aim to be idiomatic with respect to their host languages. Java has Ant and Maven. Python has Scons and others. Scala has Simple Build Tool. None of them are as good as plain old Makefiles. Then, I discovered </span><a href="http://rake.rubyforge.org/"><span >Rake</span></a><span >. Rakefiles rock. They are 90% Makefiles, and 90% Ruby. Rake expertly uses the features of Ruby to craft an API/DSL that looks a lot like Make declarations without compromising on general purpose programmability.</span></p>
+
+<h4>Markup and Style Sheets: Haml and Sass</span></h4>
+
+<p><a href="http://haml-lang.com/"><span >Haml</span></a><span > and </span><a href="http://sass-lang.com/"><span >Sass</span></a><span > are so amazing, they ought to be illegal. Just click those links and check out the HTML and CSS comparisons. It is no contest. I never want to write HTML or CSS ever again. As far as I’m concerned, HTML and CSS are object code: to be generated by a compiler. Whenever I have to look at the generated code, it feels like I am reading assembly. Simply add </span><span >gem ‘haml’</span><span > to your Gemfile, then start writing .html.haml files instead of .html.erb and .sass files instead of .css. Use </span><span >html2haml</span><span > and </span><span >sass-convert</span><span > to upgrade your crusty old markup and style sheets instantly.</span></p>
+
+<h4>Object Relational Mapper: ActiveRecord</span></h4>
+
+<p>I’ve discussed my </span><a href="http://blog.brandonbloom.name/2009/10/orms-and-declarative-schemas.html"><span >preference for database schema reflection</span></a><span > at great length, so I won’t reiterate here. I will, however, say that </span><a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html"><span >ActiveRecord</span></a><span > makes simple things simple and complex things possible while embodying successful best practices in its various subsystems, like migrations. It doesn’t try to be everything to everyone, unlike </span><a href="http://www.sqlalchemy.org/"><span >SqlAlchemy</span></a><span >. And it seems to be nicely onion layered for pealing back when necessary. For example, </span><a href="http://github.com/rails/rails/tree/master/activemodel"><span >ActiveModel</span></a><span > validations can be used on plain old Ruby objects. Which brings me to&hellip;</span></p>
+
+<h4>Form Handling: FormBuilder, params and mass assignment</span><span ></span></h4>
+
+<p>I don’t need to learn and manage three different data marshaling techniques to map a database record to a web form. In fact, I don’t need to manage </span><span >any</span><span >. Schema reflection spares me in the model layer, </span><a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html"><span >FormBuilder/FormHelpers</span></a><span > in the views, and the hash &amp; array structured params in the controllers layer. Almost every user interaction boils down to interpreting a form’s worth of JSON-like data structures as an API call, implemented via a (</span><a href="http://github.com/ryanb/trusted-params"><span >secured</span></a><span >) </span><a href="http://railscasts.com/episodes/26-hackers-love-mass-assignment"><span >mass assignment</span></a><span > to </span><a href="http://railscasts.com/episodes/167-more-on-virtual-attributes"><span >virtual attributes</span></a><span >.</span></p>
+
+<h4>Templating: Layouts, Partials, and Helpers</span></h4>
+
+<p>When I’m getting my Haml on, I frequently want to run some non-trivial code. Feel free to shout about your separation of concerns religion, but I’ve got real things to worry about. Furthermore, we as engineers should be writing our production views/templates, not some hypothetical designer who is technical enough to write loops and branching statements, but not to be trusted with a function definition. Views are composed of markup and presentation declarations in the templates, presentation logic goes in helpers (which conveniently share scope with templates and controllers), and are neatly organized into </span><a href="http://api.rubyonrails.org/classes/ActionView/Partials.html"><span >partials</span></a><span >. Simple, but effective.</span></p>
+
+<h4>URL Design: Routes</span></h4>
+
+<p>Rail’s </span><a href="http://edgeguides.rubyonrails.org/routing.html"><span >routing</span></a><span > system makes clever use of blocks to provide a hierarchical, declarative URL map that just makes sense to read. I used to design URLs in an indented text file and then map it to a list of regexps, but the routes.rb file is close enough to a spec and doesn’t require me to even think about regexes, ‘nuff said.</span></p>
+
+<h4>Authentication: Authlogic</span><span ></span></h4>
+
+<p>Authentication is hard. Really, really hard. And boring. Really, really boring. But important. Really, really important. Everyone knows that the sign-up funnel is critical to get right and security is easy to get wrong. Most quality sites have a little bit of domain-specific special sauce in their authentication model. Trivial sign-up and log-in forms just don’t cut it. One size simply does not fit all for authentication front-ends, but the authentication back-ends tend to be pretty repeatable. </span><a href="http://github.com/binarylogic/authlogic"><span >Authlogic</span></a><span > turns repeatable into re-usable, without the baggage of views you’re going to need to rewrite anyway. Thinking about authentication as CRUD operations on a user-session model blew my mind slightly. I had a full authentication system tuned to my needs up and running within two hours.</span></p>
+
+<h4>Authorization: CanCan</span></h4>
+
+<p>I hate </span><a href="http://en.wikipedia.org/wiki/Access_control_list"><span >ACLs</span></a><span >. </span><a href="http://en.wikipedia.org/wiki/Role-based_access_control"><span >Role-based authorization</span></a><span > simply has too much impedance mismatch for most problem domains. </span><a href="http://github.com/ryanb/cancan"><span >CanCan</span></a><span > is a clever little library which makes zero assumptions about how permissions are represented. Simply declare a list of everything a user can do and how to tell if they may. Query with the </span><span >can?</span><span > function, or assert with the </span><span >authorize!</span><span > method. Beautiful.</span></p>
+
+<h4>Rope to Hang Yourself: Ruby Itself</span></h4>
+
+<p>One keyword in my previous post triggered much discussion: magic. The concept of magic is a topic for a whole ‘nother blog post (as I’ve already been hung a few times), but as several commenters pointed out: it’s all just Ruby. Between mixins, include, require, blocks, method_missing, symbols, and many other features, Ruby is a very capable internal domain specific language development toolkit. Most of the time, you don’t want a DSL. If you’re not an expert in both the host language and the DSL, there is almost certain confusion and maintenance danger. Most projects are either small or distinct enough to justify writing more verbose code that can more readily be understood by successors or even your future self. The gains of a DSL do not always outweigh the costs. Python excels at not supporting DSLs; it is basically executable pseudocode. However, when it comes to a task as common as web application development, it’s worth the time to develop or learn a DSL or two. Rails is loaded with DSL features and “magic” behavior that increases the learning curve, but also increases peak productivity.</span><span ></span></p>
+
+<h4>Community</h4>
+
+<p>These sites have been invaluable: </span><a href="http://ruby-toolbox.com/"><span >The Ruby Toolbox</span></a><span >, </span><a href="http://www.railsplugins.org/"><span >RailsPlugins</span></a><span >, </span><a href="http://railscasts.com/"><span >Railscasts</span></a><span >. The quantity and quality of </span><a href="http://github.com/languages/Ruby"><span >Ruby libraries on Github</span></a><span > continues to impress. The educational infrastructure is extensive. Somehow, the Ruby community seems to consistently be at the forefront of the biggest trends in software development. Much like Rails compared to other frameworks, the community distinctions are subtle, but meaningful. For example, Rubyists championed Git while Python adopted Hg. To the untrained eye, they are virtually identical tools, but extensive experience with both has convinced me that Git is significantly superior. I’m new to the community, but it seems like Rubyists tend to insist on quality and bet on the winning horses.</span></p>
+
+<h4>Other Random Things</h4>
+
+<ul><li ><span >Javascript and CSS minification are trivially easy with plug-ins</span></li><li ><span >Static files are served with version stamps for better caching behavior</span></li><li ><span >Console and file logging are usefully configured by default</span></li><li ><a href="http://heroku.com/"><span >git push heroku</span></a><span ></span></li><li ><a href="http://rails.vim.tpope.net/"><span >rails.vim</span></a><span ></span></li><li ><a href="http://www.activemerchant.org/"><span >ActiveMerchant</span></a><span > looks awesome</span></li><li ><span >Only been working with Rails for two weeks; lots more goodness to uncover</span></li></ul>
+
+
+<p><span ></span></p>
+
+<h4>Just who the hell do I think I am?</h4>
+
+<p>I’m nobody. Just some opinionated computer geek working on a start-up. Not unlike many of you! My co-founder and I are currently participating in TechStars Seattle and hope to launch something killer come demo day, November 11th, 2010. We’ve got a grand vision for next generation enterprise collaboration software, but we’re starting small by focusing on making </span><span ><span><span><a href="http://www.thinkfuse.com/">weekly status reports</a></span></span><a href="http://www.thinkfuse.com/"></a></span><span > less painful and more useful. More details soon, but please visit </span><span ><a href="http://www.thinkfuse.com">http://www.thinkfuse.com</a></a>. Thanks!</div>  </div></p>
+
+<h2>Imported Comments</h2>
+
+<h3>Steve</h3>
+
+<p>You&rsquo;ll probably remove this too (at least you read like a fan-boy) but &hellip; you
+don&rsquo;t show where Python is lacking at all in this article.  I&rsquo;m not going to
+start a war but TurboGears has an equivalent to almost everything you listed
+there  (Although I&rsquo;m not so sure about Rake), and I was looking forward to the
+&ldquo;comparisons&rdquo; your title implies.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>I removed the previous comment because the author deleted it himself which left
+a vestigial block in the comment stream saying that the post was deleted.</p>
+
+<p>He wrote &ldquo;Why would you compare a framework to a programming language?&rdquo; to
+which the answer is: because I&rsquo;ve tried dozens of libraries and several
+frameworks in Python. Then I tried Rails. Python as an ecosystem lost out to
+Rails as a particular framework community for my needs.</p>
+
+<p>To your comment: I don&rsquo;t really think TurboGears does. Or at least, they are
+not first class citizens. For example, the documentation on form handling
+presents several options include FormEncode, ToscaWidgets, etc. It requires
+that I create an additional schema class where I declare widgets outside of the
+templates &mdash; or awkward @validate decorators.</p>
+
+<h3>Ixmatus</h3>
+
+<p>This is a poorly researched article. You&rsquo;re comparing the language Python and
+it&rsquo;s vast sea of tools to Rails the framework <i>written in</i> Ruby.</p>
+
+<p>Pylons (which is also the foundation for TurboGears 2) provides all you have
+listed above, if not more. I&rsquo;ve also noticed a strong tendency for Rails,
+Django, CakePHP, and many other &ldquo;kitchen sink&rdquo; frameworks to do much of the
+work for the developer and if I wanted to get around it &ndash; it becomes a day long
+hackathon of digging through docs, source code, and IRC logs.</p>
+
+<p>Pylons, has its own quirks and dirty sides too; but I highly prefer having to
+spend a lot of up-front time programming/configuring my own framework
+environment &ldquo;flavor&rdquo; (and being able to use it across many different projects)
+then having it just be &ldquo;Rails&rdquo;.</p>
+
+<p>Next time you post something like this, compare Rails to Django, or TurboGears,
+or Pylons; not just &ldquo;Python&rdquo;.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@lxmatus: I am quite aware of the distinctions between a language and a
+framework. Thanks.</p>
+
+<p>In this case, I am genuinely making the case that the Python web-development
+ecosystem as a whole has a story to tell which is less coherent and less
+attractive than the single framework: Rails.</p>
+
+<p>I make this argument because I was able to use everything in this article
+without having to write a lot of glue code. I spent <em>months</em> researching and
+experimenting with Python libraries. Then I spent a week using Rails. Each of
+these things worked beautifully together without any heavy setup. The resulting
+complete stack aligned very closely with my preferences. And I&rsquo;m a picky
+bastard: I tried a huuuge list of Python libraries before I found a stack I
+liked and I&rsquo;m still not totally satisfied.</p>
+
+<p>You can say &ldquo;TurboGears has these&rdquo; or &ldquo;You should try Web.py&rdquo; but that&rsquo;s
+precisely the problem. If I install Ruby, install Rails, and then visit
+<a href="http://ruby-toolbox.com/">http://ruby-toolbox.com/</a> and choose the most popular plugin for each thing I
+need: I&rsquo;ve got a highly pleasant, well integrated, stack in hours instead of
+months.</p>
+
+<h3>Steve</h3>
+
+<p>@Brandon &hellip; sorry for the accusation!  I&rsquo;ve watched far too many baseless
+arguments between the Ruby and Python groups, so maybe I&rsquo;m a bit sensitive.</p>
+
+<p>In any case, the example you gave is exactly the type of information I was
+expecting to find in the article.  It&rsquo;s very valuable to get the kind of
+comparative information you provide in your comment.</p>
+
+<p>As noted by Ixmatus, I find both the frameworks to have their quirks &hellip; it&rsquo;s
+the learning curve that you&rsquo;re paying for when using either.</p>
+
+<p>So I generally recommend TurboGears to people that already know Python and Ruby
+with Ruby on Rails for those that want to learn a 4th generation scripting
+language and use it with a RAD web framework.  RoR definitely has the media
+hype and resulting community (or it could be the other way around).</p>
+
+<h3>John</h3>
+
+<p>Great list of reasons to love rails (may I add: migrations, UJS defaults, and
+restful controllers).  The &ldquo;python ecosystem&rdquo; is a appropriate phrase and the
+whole &ldquo;comparing framework to language&rdquo; debate is out of context for this
+article.  It is clear you taking the various frameworks and
+I-can-glue-this-library-to-this-one solutions into account in your support of
+the rails framework.</p>
+
+<p>As far as rails doing too much work for the developer, that is the point.  That
+is the whole point.</p>
+
+<h3>Paddy3118</h3>
+
+<p>Horses for courses. Python frameworks have <a href="http://www.niemanlab.org/2009/06/four-crowdsourcing-lessons-from-the-guardians-spectacular-expenses-scandal-experiment/" rel="nofollow">their fanbois</a> too!</p>
+
+<h3>Bruno Cezar Rocha</h3>
+
+<p>You probably does not know web2py.</p>
+
+<p>web2py has everything you mentioned in that list.</p>
+
+<p><a href="http://www.web2py.com/book">http://www.web2py.com/book</a></p>
+
+<h3>William Brian Smith</h3>
+
+<p>I&rsquo;d recommend devise over authlogic. Devises is build around warden which is
+kind of an authentication framework of sorts. Allows for pluggable auth
+strategies and already has a lot of extras(fb, twitter, imap, cas, openid).
+Also in rails 3.1, you&rsquo;ll be able to flush the buffer before the page is done
+rendering, which should greatly increase load times. It will also come with a
+built in sprite system and css compression</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@William:  I followed the advice in comment #10 here: <a href="http://railscasts.com/episodes/209-introducing-devise">http://railscasts.com/episodes/209-introducing-devise</a></p>
+
+<p>I tend to want to customize pretty much everything heavily :&ndash;) Also, I also
+explicitly did not want any views/templates/etc done for me. However, I didn&rsquo;t
+look at Devise closely. If I ever revisit our authentication, I&rsquo;ll
+reinvestigate it.</p>
+
+<p>Looking forward to those new features too. Thanks!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-17T00:00:00-07:00" pubdate data-updated="true">Sep 17<span>th</span>, 2010</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2010/09/17/where-rails-rocks-and-where-python-doesn-t/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2010/09/17/where-rails-rocks-and-where-python-doesn-t/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/09/13/how-two-pythonistas-accidentally-fell-in-love-with-rails/" title="Previous Post: How two Pythonistas accidentally fell in love with Rails">&laquo; How two Pythonistas accidentally fell in love with Rails</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/08/16/stupid-brain-trick-tests-and-vertical-splits/" title="Next Post: Stupid brain trick: Tests and vertical splits">Stupid brain trick: Tests and vertical splits &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Templating: Clojure's Backtick - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="This post describes the motivation for my new Clojure library:
+Backtick There is no shortage of template languages. In fact, there are probably far &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2012/11/23/templating-clojures-backtick">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Templating: Clojure's Backtick</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-23T00:00:00-08:00" pubdate data-updated="true">Nov 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This post describes the motivation for my new Clojure library:
+<a href="https://github.com/brandonbloom/backtick">Backtick</a></p>
+
+<p>There is no shortage of template languages. In fact, there are probably far too
+many of them. Template languages fall into two major categories that I&rsquo;ll call
+<em>procedural</em> and <em>structural</em>. Procedural templating languages operate by
+emitting code as a side-effect. Structural templating languages operate on
+trees. For example, Ruby&rsquo;s
+<a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html">ERB</a> is procedural,
+where as <a href="http://haml.info/">HAML</a> is structural.</p>
+
+<p>The primary advantage of a text-based procedural template language is reach.
+ERB can be used to generate any type of text file, while HAML can only really
+be used to emit HTML. Reach is not without disadvantages, however. For one,
+it&rsquo;s quite easy to write incorrect ERB templates which emit invalid syntax,
+such as missing a close tag. Additionally, code with side effects can be
+difficult to refactor because execution order is critical. You can trivially
+generate SQL statements with an ERB template, but you&rsquo;ll quickly accumulate an
+incomprehensible mud ball, so you&rsquo;re better off working with a system that
+treats queries as data and lets you manipulate them structurally.
+Unfortunately, you&rsquo;ll need to implement a unique structural tool for each
+target data structure. If you&rsquo;re generating a lot of HTML, then using HAML is a
+great choice. But if you&rsquo;re only generating one HTML file among a sea of dozens
+of other arbitrary config file formats, then you really want ERB.</p>
+
+<p>Generalizing, structural templating systems are really just plain old pure
+functions. You take some data, let&rsquo;s say describing a blog post, and then you
+return some other data describing the rendered representation of that same
+post. This is a powerful realization because it enables you to utilize your
+language&rsquo;s full set of utility functions for refactoring your templates. For an
+HTML example, see <a href="http://webnoir.org/tutorials/html">Noir&rsquo;s partials</a> and
+their use of <a href="https://github.com/weavejester/hiccup">Hiccup</a>.</p>
+
+<p>When you get into the wonderful world of metaprogramming, templating systems
+encounter a series of new problems. First, there is multi-level escape
+character hell. Anyone who has ever tried to write a shell script, which
+substitutes arguments into an Awk script, which generates a config file, knows
+what I&rsquo;m talking about. Second, there is the issue of names. Unlike HTML or
+many simple config files, code generally have one or more notions of context,
+such as scoping or namespaces. You need to worry problems like
+<a href="http://www.bookshelf.jp/texi/onlisp/onlisp_10.html">variable capture</a>. Yikes!</p>
+
+<p>Early lisps discovered a mechanism for minimizing the pain of escape character
+hell: quoting. Quoting is similar to escaping, in much the same way that
+structural templates relate to procedural ones. Escaping lets one combine any
+two languages, provided the language on top provides a uniform escaping policy.
+However, with each new layer of languages, there is a new layer of escaping
+rules and, if those escape sequences conflict, you&rsquo;ll have to double-, or even
+triple-escape common metacharacters like apostrophes, backslashes, and dollar
+signs. There&rsquo;s no protection against incorrectly escaped strings and
+refactoring is thwarted by the need to increment and decrement escaping levels.
+In contrast, quoting takes advantage of Lisp&rsquo;s
+<a href="http://en.wikipedia.org/wiki/Homoiconicity">homoiconicity</a> to simplify
+template indirection into four composable, primitive operators: <code>quote</code>,
+<code>syntax-quote</code>, <code>unquote</code>, and <code>unquote-splicing</code>.</p>
+
+<p><em>If you&rsquo;re already a Clojure syntax-quote pro, you may want to skip down to the
+next section</em></p>
+
+<p>Due to their high frequency of use, both Common Lisp and Clojure reserve some
+of their limited syntax for these primitives. Common Lisp uses the apostrophe
+(&lsquo;), backtick (<code>`</code>), comma (,), and comma-at (,@) character sequences as
+shorthand for quote, syntax-quote, unquote, and unquote-splicing respectively.
+Because Clojure treats commas as whitespace, it substitutes tilde (~) and
+tilde-at (~@) sequences for the unquoting operators. I&rsquo;ll use Clojure&rsquo;s
+notation for my examples.</p>
+
+<p>The quote operator is used to protect symbols from evaluation. If I have a
+symbol x with value 5, then the expression (quote x) or &lsquo;x does not evaluate to
+5, it evaluates to the symbol x. Quoting is distributed recursively throughout
+a form. &rsquo;(f x) will protect both f and x from evaluation. It&rsquo;s this
+distributive property that allows quoting and unquoting to compose across
+multiple levels of templating.</p>
+
+<p>You might guess that <code>(unquote 'x)</code> or <code>~'x</code> would return <code>5</code>, but that operation is
+performed by the eval function: <code>(eval 'x)</code> does return <code>5</code>. Trying to unquote here
+will generate an error. This distinction is because eval is generally
+implemented as a function, not a macro or special form. It does not alter the
+interpretation of its inputs, so it&rsquo;s behavior doesn&rsquo;t play nice with the
+distributive property of quoting.</p>
+
+<p>Unquoting comes into play once you introduce syntax-quoting. Syntax-quotes are
+demarcated by a backtick, which can be thought of as switching Lisp into
+template mode. Like regular quotes, syntax-quotes are distributive. Unlike
+regular quote, which leaves its input form alone, syntax-quote transforms its
+input in two important ways: First it enables unquoting. You can think of
+unquoting like template variable substitution. Second, it resolves symbols.
+We&rsquo;ll come back to this second point later.</p>
+
+<p>Let&rsquo;s say that you want to generate the code <code>(f 1 (g 2 3))</code> where the numbers
+are provided by variables <code>x</code> and <code>y</code> holding the number <code>1</code> and the vector <code>[2 3]</code>
+respectively. You can accomplish this with the expression <code>(syntax-quote (f
+(unquote x) (g (unquote-splicing y))))</code>. Well, sort of. Clojure does not provide
+direct access to syntax-quote as a symbol. You need to use the shorthand form:
+<code>`(f ~x (g ~@y))</code>. Luckily, that&rsquo;s nicer to look at anyway.</p>
+
+<p>Unquote substitutes in a single value, like a dollar-sign in a shell script.
+Unquote-splicing is a little bit more interesting. When a syntax quote is
+transforming its inputs, it looks for unquotes and evaluates them. The
+evaluated result is substituted into the parent expression. Regular unquotes
+are substituted directly, but splicing unquotes cause the parent expression to
+be rewritten as a concatenation. The expression <code>`(a b ~@x c d)</code> is transformed
+into an expression resembling <code>(concat '(a b) x '(c d))</code>. The splicing operation
+is a more powerful alternative to a traditional templating language&rsquo;s looping
+constructs. It can also emulate a traditional templating language&rsquo;s if
+statement. The expression <code>`(f ~@(when b [x]))</code> will return code that passes the
+<code>x</code> argument to <code>f</code> only when <code>b</code> is true.</p>
+
+<p>As discussed previously, quoting and unquoting are distributive. This is what
+allows you to escape from escape character hell. The expression
+<code>`(f (g x) ~(h y `z))</code> distributes the quoting behavior down to <code>f</code>, <code>g</code>,
+and <code>x</code>, but the unquoting operator decrements the quoting level, such that
+neither <code>h</code> nor <code>y</code> are quoted.  The <code>z</code> is explicitly quoted, re-incrementing
+the quoting level. You can&rsquo;t do that with escape sequences, because, like a
+procedural template language, there is no explicit notion of the inherent tree
+structure.  It&rsquo;s worth noting that most lisps don&rsquo;t have an explicit quoting
+level, instead syntax-quote processes its inputs recursively; the quote level
+is maintained implicitly by the execution stack.</p>
+
+<p>That&rsquo;s not all you need to know about syntax-quote; there&rsquo;s also symbol
+resolution. Now that you&rsquo;ve escaped escape hell and you&rsquo;re writing structural
+templates, you&rsquo;re able to do bigger and better metaprogramming. If you&rsquo;re
+writing Common Lisp, you&rsquo;ll quickly run into the aforementioned variable
+capture problem: You&rsquo;ll generate code that includes name collisions. Clojure&rsquo;s
+syntax-quote differs from Common Lisp&rsquo;s by providing two mechanisms to combat
+this problem. First is namespace resolution. Clojure will expand <code>`inc</code>
+into clojure.core/inc and <code>`foobar</code> into <code>user/foobar</code>. This protects you
+from <a href="http://www.bookshelf.jp/texi/onlisp/onlisp_10.html#SEC69">free symbol capture</a>.
+Secondly, Clojure provides automatic gensyms. Symbols ending with a # character
+inside a syntax-quote are replaced by an automatically generated name. So the
+expression <code>`(x# x# y#)</code> will expand into something like <code>(x__1__auto__
+x__1__auto__ y__2__auto__)</code>, which is virtually impossible to cause <a href="http://www.bookshelf.jp/texi/onlisp/onlisp_10.html#SEC68">macro
+argument capture</a>. As
+linked several times, <a href="http://www.paulgraham.com/onlisp.html">Paul Graham&rsquo;s On
+Lisp</a> is the best source for
+understanding these issues more deeply.</p>
+
+<p>[Experienced Clojurians can start reading from here]</p>
+
+<p>OK, so now that you have an extremely powerful template language baked into
+Clojure&rsquo;s syntax-quoting mechanism, you still have the problem of reach: What
+good is a template language if you can only generate Clojure code with it? What
+if you need to generate some HTML? Or what about that Awk script?</p>
+
+<p>Unfortunately, the template language can only really yield Clojure forms.
+Luckily, Clojure forms are relatively rich with a variety of primitives and
+collection types, so much of the Clojure community uses them for configuration
+files and DSLs. If you&rsquo;re generating input to these Clojure systems, you&rsquo;re in
+good shape. You don&rsquo;t have quite the same reach as &ldquo;all tools that operate on a
+stream of characters&rdquo;, but &ldquo;any library in the Clojure ecosystem&rdquo; is a pretty
+damn good start. If you&rsquo;re going to create a system to structurally generate
+SQL queries, you&rsquo;ll need to build some kind of query representation that can be
+compiled to a SQL string. In a non-homoiconic language, you&rsquo;d eventually need
+to come up with a new structural template engine too. In Clojure, your query
+library will get that template engine for free!</p>
+
+<p>However, there is still a problem. When you first encountered code duplication,
+you reached for a simple procedural text template. Now you have the escape
+sequence problem. Lisp mitigates the escape sequence problem with quoting. But
+once you have larger scale templates, you start running into the variable
+capture problem. So Clojure solves the variable capture problem with an
+enhanced syntax-quote. Well just as each prior solution yields a new problem,
+so too does Clojure&rsquo;s enhanced syntax-quote.</p>
+
+<p>The problem is that Clojure tightly couples the syntax-quote symbol resolution
+to Clojure&rsquo;s namespace system. This isn&rsquo;t usually a problem if you&rsquo;re always
+using syntax-quotes to generate code that will ultimately be executed in your
+local Clojure environment. However, consider the case of generating code to be
+executed in a <em>remote</em> Clojure environment. Or what about generating Clojure
+forms that will be compiled to SQL procedures to be executed on your database
+server? In those two cases, it&rsquo;s less likely that resolving symbols against the
+locally loaded namespaces is a useful behavior. Suddenly, Clojure&rsquo;s powerful
+template language is unavailable to you! Either you have to piece together your
+own template system, just as a non-homoiconic language, or you need to play
+tricks by manually or procedurally defining vars. Ouch.</p>
+
+<p>Enter <a href="https://github.com/brandonbloom/backtick">Backtick</a>.</p>
+
+<p>Backtick is an absurdly simple library. It provides Clojure&rsquo;s syntax-quote
+reader macro as a normal macro. You can create new template quoting macros by
+providing a custom symbol resolver. Check it out!</p>
+
+<h3>Comments</h3>
+
+<h4>drcode said&hellip;</h4>
+
+<p>Thanks- I need this.</p>
+
+<p>Conrad Barski</p>
+
+<h4>Brandon Bloom said&hellip;</h4>
+
+<p>Cool! Let me know how it works out for you.</p>
+
+<h4>Unknown said&hellip;</h4>
+
+<p>I really needed this!
+Thank you for making this available.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-23T00:00:00-08:00" pubdate data-updated="true">Nov 23<span>rd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2012/11/23/templating-clojures-backtick/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2012/11/23/templating-clojures-backtick/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/22/clojurescript-projects/" title="Previous Post: ClojureScript Projects">&laquo; ClojureScript Projects</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/12/01/dataflow-solver-qplan-for-clojure/" title="Next Post: Dataflow Solver (qplan for Clojure)">Dataflow Solver (qplan for Clojure) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

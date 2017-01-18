@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ClojureScript Projects - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="I stumbled across Clojure a few times, but I&rsquo;ve fallen in love with it
+sometime over the past year. I&rsquo;ve always loved the idea of Lisp, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2012/11/22/clojurescript-projects">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">ClojureScript Projects</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-22T00:00:00-08:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I stumbled across <a href="http://clojure.org/">Clojure</a> a few times, but I&rsquo;ve fallen in love with it
+sometime over the past year. I&rsquo;ve always loved the idea of Lisp, but I never
+loved any particular Lisp until Clojure.</p>
+
+<p>The name &ldquo;CLoJure&rdquo; comes from C#, Lisp, and Java. The best parts of each of
+community clearly shine through. Bolstered by the Java community, Clojure
+combines all the expressiveness of a Lisp in a package that makes everything
+seem as easy as C#. That last point deserves elaboration: C# has managed to
+empower the average code monkey with lambdas, closures, generics, expression
+trees, and futures. Similarly, Clojure empowers the average senior developer
+with immutability, macros, flexible dispatch, software transactional memory,
+interactive development, and a whole lot more! Plus, it&rsquo;s free and open source!
+Rich Hickey has an incredible talent for distilling good ideas down into
+understandable bite sized chunks, making agreeable tradeoffs, and then deftly
+guiding the community.</p>
+
+<p>Lately, I&rsquo;ve been spending a lot of my spare cycles working on
+<a href="http://github.com/clojure/clojurescript">ClojureScript</a>.  Hacking on the ClojureScript compiler and runtime has been
+more fun than I can ever recall in my programming career. It&rsquo;s an incredible
+toolkit that I intend to utilize heavily in my next startup, so I feel like my
+hours and hours of fiddling with cljs.core is extremely worthwhile. I&rsquo;ve
+already contributed 20+ patches!</p>
+
+<p>As fun as hacking on ClojureScript is, it&rsquo;s probably a better idea to hack on
+something that uses ClojureScript, rather than ClojureScript itself. Paul
+Graham described Hacker News as <a href="http://www.paulgraham.com/hackernews.html">an application to sharpen Arc on</a>. Paul is
+right in saying that you need the top down pressure of a real application to
+motivate the design and implementation of the language from the bottom up.
+Although where his goal is <a href="http://paulgraham.com/arcchallenge.html">brevity</a>, Rich&rsquo;s goal is <a href="http://www.infoq.com/presentations/Simple-Made-Easy">simplicity</a>. While
+Paul has seemingly effortlessly scaled Hacker News to a 1M+ daily pageview
+community, Rich has seemingly effortlessly <a href="http://www.datomic.com/">reinvented the database</a>.</p>
+
+<p>ClojureScript hasn&rsquo;t found its killer application yet. There is a lot of
+interest around the project, but only a handful of active contributors and
+production users. People like <a href="http://www.chris-granger.com/">Chris Granger</a> are pushing down on the top
+with ambitious applications like <a href="http://www.lighttable.com/">Light Table</a>, but we need others. Chris is
+starting to make re-inventing the IDE look effortless, but his application
+prefers to be installed outside the browser, generally on Macs, so it isn&rsquo;t
+clear to me if his vision remains squarely in the
+HTML/CSS/JavaScript-targeting, client/server sweet spot.</p>
+
+<p>It has been over seven years since Gmail and Google Maps has made us re-think
+what is possible in the browser. I sense that ClojureScript holds the key to
+the next generation of re-thinking what&rsquo;s possible in client-side applications.
+As I ponder my next startup, I&rsquo;m going to be on the lookout for just such an
+application. In the meantime, I&rsquo;ll be open sourcing some of the technology I&rsquo;m
+building as I explore that path.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-22T00:00:00-08:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2012/11/22/clojurescript-projects/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2012/11/22/clojurescript-projects/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/16/learn-to-read-the-source-luke/" title="Previous Post: Learn to Read the Source, Luke">&laquo; Learn to Read the Source, Luke</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/11/23/templating-clojures-backtick/" title="Next Post: Templating: Clojure's Backtick">Templating: Clojure's Backtick &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

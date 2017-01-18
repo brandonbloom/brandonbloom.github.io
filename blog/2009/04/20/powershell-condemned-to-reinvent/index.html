@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>PowerShell: condemned to reinvent - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="I tried PowerShell when it was first released, but never used it for real work.
+I recently attended a &ldquo;brown bag&rdquo; presentation about &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2009/04/20/powershell-condemned-to-reinvent">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">PowerShell: Condemned to Reinvent</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-20T00:00:00-07:00" pubdate data-updated="true">Apr 20<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I tried PowerShell when it was first released, but never used it for real work.
+I recently attended a &ldquo;brown bag&rdquo; presentation about PowerShell. This
+presentation spurred me to augment our team&rsquo;s environment with PowerShell and I
+have been using it every day since.</p>
+
+<p>In the past weeks using and abusing PowerShell, I have drawn two conclusions:</p>
+
+<ul>
+<li>PowerShell has a killer set of standard tools with brilliantly designed
+usability.</li>
+<li>The PowerShell team doesn&rsquo;t understand UNIX and therefore were condemned to
+reinvented it, poorly &mdash; with apologies to Henry Spencer.</li>
+</ul>
+
+
+<p>First things first: if you spend any time working with Windows, get PowerShell.
+Now. Stop reading my blog and go <a href="http://www.microsoft.com/windowsserver2003/technologies/management/powershell/download.mspx">download it</a> immediately. It mops the
+floor with cmd.</p>
+
+<p>The key premise behind PowerShell is that it operates on live .NET objects.
+This is beneficial because it eliminates a lot of the text cutting and
+manipulation common in shell scripts. Additionally, it puts the full .NET Base
+Class Library into your scripting toolbox. PowerShell tools, known as
+commandlets, typically only render the most common fields for their objects,
+but the less common fields are easily available in memory. By convention,
+Commandlets are named with a <code>verb-noun</code> pattern and support a common command
+line parsing behavior. The repository of commandlets and the command line
+options of each are easily queried and highly consistent. All this meta-data
+makes PowerShell a breeze to learn.</p>
+
+<p>I fell in love with the the discoverablity and ease of use when I tried to kill
+a collection of runaway processes:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>PS&gt; get-command -noun process
+</span><span class='line'>
+</span><span class='line'>CommandType   Name           Definition
+</span><span class='line'>-----------   ----           ----------
+</span><span class='line'>Cmdlet        Get-Process    Get-Process [[-Name] &lt;String[]&gt;] [-Verbo...
+</span><span class='line'>Cmdlet        Stop-Process   Stop-Process [-Id] &lt;Int32[]&gt; [-PassThru]...
+</span><span class='line'>
+</span><span class='line'>PS&gt; get-process notepad | stop-process
+</span><span class='line'>PS&gt; get-alias | where { $_.definition.contains("Process") }
+</span><span class='line'>
+</span><span class='line'>CommandType   Name   Definition
+</span><span class='line'>-----------   ----   ----------
+</span><span class='line'>Alias         kill   Stop-Process
+</span><span class='line'>Alias         ps     Get-Process
+</span><span class='line'>
+</span><span class='line'>PS&gt; ps someotherapp | kill</span></code></pre></td></tr></table></div></figure>
+
+
+<p>OK, that&rsquo;s pretty cool and oh-so-very Unixy &mdash; right? Wrong. Notice the
+&ldquo;CommandType&rdquo; column in the results of get-command. There are many other types
+of commands besides commandlets: functions, filters, scripts, applications,
+etc. Each of these has slightly different semantics for pipes and parameters.
+Applications, for example, have no way of accepting .NET object pipes. You must
+develop a separate commandlet. Yikes!</p>
+
+<p>Compare to Unix: all commands are applications which accept a command line and
+pipe byte streams in and out. Much simpler, but byte streams aren&rsquo;t as
+friendly, discoverable, and maintainable as object streams. However, the
+brilliantly simple thing about Unix is that, when you get right down to it,
+object streams are just byte streams! There is absolutely nothing stopping you
+from implementing <code>get-process</code> and <code>stop-process</code> as Unix programs which pipe
+object references, JSON, pickled Python objects, XML, S-expressions, or any
+other data format you fancy. Doug Mcllroy, the inventor of Unix pipes, was
+right: text streams are the universal interface.</p>
+
+<p>Actually, this is no different on Windows. All of the PowerShell commandlets
+could have been implemented as applications which import a library. This
+library would replace <code>main</code> in much the same way as <code>winmain</code>, provide a
+metadata enriched implementation of <a href="http://www.gnu.org/software/hello/manual/libc/Getopt.html">getopt</a>, <code>man</code>, etc. There is no need to
+invent a new shell in order to acquire the power of piping objects. Sure, cmd
+is old and needed to be retired for many other reasons, but it is a real shame
+that the PowerShell toolset is not available to those of us stuck in batch
+scripts.</p>
+
+<p>Personally, I would really like to see such a library developed. Microsoft has
+certainly proved one thing with PowerShell: steep learning curves are not
+intrinsic to command line interfaces. Unfortunately, commandlets are two steps
+forward and one step backwards. I have no doubt that we can retake that forward
+step.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>klumsy</h3>
+
+<p>I find the 2nd point interesting given that most of the powershell team were
+unix only guys before this project.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>I don&rsquo;t know the history of PowerShell or any of the team members. I&rsquo;m sure
+they are all very smart and have a strong grasp of Unix in general. Maybe they
+understand exactly what I&rsquo;m getting at, but explicitly rejected it for some
+non-obvious reasons (such as scheduling, implementation complexity, target
+users, etc). They probably know better than I do. My apologies for exaggerating
+to make a point :&ndash;)</p>
+
+<h3>Howard T. Snidbiscuits</h3>
+
+<p>I agree, PowerShell is way better than the primitive, DOS style Windows CMD.
+However, it&rsquo;s nothing like a normal Unix shell for me&hellip; and I&rsquo;d rather just
+use cygwin.</p>
+
+<h3>Kosta</h3>
+
+<p>Sorry but no: Pipelining objects is much smarter. You can still pipe strings or
+binary data if you want, but you don&rsquo;t have all the drawbacks.</p>
+
+<p>And then there&rsquo;s the security implications. While theoratically possible, are
+all your scripts safe against whitespace|&ldquo;&lsquo;<code>`` injection? Piping objects is sooo
+much easier AND it does not kill your system if the bytestream contains</code>rm -rf /`.</p>
+
+<p>Just my two cents&hellip;</p>
+
+<h3>Powershell Jedi</h3>
+
+<p>Unix is optimized around flat files windows is optimized around objects. It&rsquo;s
+not the they don&rsquo;t understand Unix. The Powershell Team has a strong unix
+Background. It&rsquo;s just just that M$ has 87% market share and a trillion dollars
+in the bank share that says F@ck unix.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Piping objects has draw backs too. Here&rsquo;s a case that came up on the internal
+PowerShell mailing list&hellip;</p>
+
+<p>Unix:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>cat foo | wc -l</span></code></pre></td></tr></table></div></figure>
+
+
+<p>PowerShell:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>Get-Content foo | Measure-Object -line</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ignore the line length, as I didn&rsquo;t use any aliases for the PowerShell version.
+The issue here is that Get-Content returns a String, not a StreamReader. The
+result is that for large files, the entire String must be read into memory and
+for really large files, swapped back out to disk!</p>
+
+<p>You could easily work around this with objects; this example is just to show
+that objects have drawbacks just as byte streams do. Everything is always a
+balance. I like the Unix approach because it is a simple system with drawbacks
+that are well understood. I dislike the object approach because it is a complex
+system with less obvious drawbacks that don&rsquo;t bite you until much later.</p>
+
+<h3>Len</h3>
+
+<p>Are you kidding?  MS couldn&rsquo;t even get the <em>simplest</em> thing right.  Their
+&ldquo;compare-object&rdquo; is supposed to be their &ldquo;equivalent&rdquo; to diff.  Not so.  Not
+even close.  Try comparing these two files:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>file 1:
+</span><span class='line'>a
+</span><span class='line'>b
+</span><span class='line'>c
+</span><span class='line'>d
+</span><span class='line'>
+</span><span class='line'>file 2:
+</span><span class='line'>d
+</span><span class='line'>c
+</span><span class='line'>b
+</span><span class='line'>a</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unix diff correctly shows how they are different.  MS compare-objects says they
+are the same.  Why?  Because the latter doesn&rsquo;t care about order.</p>
+
+<p>Microsoft is not &ldquo;very smart&rdquo;.  They are demented.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-20T00:00:00-07:00" pubdate data-updated="true">Apr 20<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2009/04/20/powershell-condemned-to-reinvent/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2009/04/20/powershell-condemned-to-reinvent/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/02/09/language-oriented-programming-too-much-too-fast/" title="Previous Post: Language-oriented programming: too much, too fast">&laquo; Language-oriented programming: too much, too fast</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/06/12/appweek/" title="Next Post: AppWeek">AppWeek &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

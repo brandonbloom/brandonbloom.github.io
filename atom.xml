@@ -1,0 +1,2488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[You work for me, Computer.]]></title>
+  <link href="http://www.brandonbloom.name/atom.xml" rel="self"/>
+  <link href="http://www.brandonbloom.name/"/>
+  <updated>2017-01-18T13:19:44-08:00</updated>
+  <id>http://www.brandonbloom.name/</id>
+  <author>
+    <name><![CDATA[Brandon Bloom]]></name>
+    
+  </author>
+  <rights>Copyright (c) 2017, Brandon Bloom</rights>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Versioning Better Than SemVer]]></title>
+    <link href="http://www.brandonbloom.name/blog/2017/01/18/versioning/"/>
+    <updated>2017-01-18T01:30:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2017/01/18/versioning</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>I&rsquo;ve written before about <a href="http://www.brandonbloom.name/blog/2013/06/19/semver/">my dislike for SemVer</a>. Recently, Rich Hickey has
+<a href="https://www.youtube.com/watch?v=oyLBGkS5ICk">spoke about this very same issue, and more</a>. I&rsquo;m currently working on some
+software that I&rsquo;m hoping people will use, so I decided to make my thoughts on
+a better versioning scheme clear. Below you&rsquo;ll find an exerpt from my new
+project&rsquo;s documentation. Each point below could be elaborated on in a full post
+of it&rsquo;s own, but this summary has value as a checklist of sorts for those
+discussions.</p>
+
+
+
+
+<h2>Contracts</h2>
+
+
+
+
+<p>Software should make explicit what it promises to provide, as well as make
+explicit the requirements it relies on. Implicit promises or reliance should
+be avoided. This is a as much a social contract as it is a technical one.</p>
+
+
+
+
+<h3>Breakage</h3>
+
+
+
+
+<p>If software relies on an explicit promise, it should never break.</p>
+
+
+
+
+<h3>Instability</h3>
+
+
+
+
+<p>It is often useful to defer commitments. The default social contract should be
+one of instability. In the absence of explicit promises, everything should be
+considered unstable, and subject to change.</p>
+
+
+
+
+<h3>Accretion</h3>
+
+
+
+
+<p>It should always be possible to provide more. Making additional promises should
+never cause breakage.</p>
+
+
+
+
+<h2>Migrations</h2>
+
+
+
+
+<p>Occasionally supporting old contracts becomes burdensome. Parties to these
+contracts should be provided a path to a new contract without breakage.</p>
+
+
+
+
+<h3>Retractions</h3>
+
+
+
+
+<p>Retracting promises should always be preceded by sufficient warning in order
+to avoid breakage. This entails a new contract which specifies deprecated
+provisions at the same time as providing new promises to migrate to.</p>
+
+
+
+
+<h3>Timelines</h3>
+
+
+
+
+<p>Contracts are identified by a ordinal version number and an instant in time.
+Any contract may accrete new promises or bug fixes by creating an artifact
+tagged with a new instant. Successive ordinal versions may retract promises
+deprecated by previous ordinals.</p>
+
+
+
+
+<h2>Coexistence</h2>
+
+
+
+
+<p>Even in the presence migrations, grandfathered contracts should be honored.</p>
+
+
+
+
+<h3>Side-by-Side</h3>
+
+
+
+
+<p>A contract timeline may be forked by accreting a new contract with a new name.</p>
+
+
+
+
+<h3>Layering</h3>
+
+
+
+
+<p>Platform systems should facilitate openness such that side-by-side systems may
+interoperate. Where this is not immediately possible, lower layers should be
+extended to facilitate this before forking higher layers.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rarely Reversible]]></title>
+    <link href="http://www.brandonbloom.name/blog/2015/04/26/rarely-reversible/"/>
+    <updated>2015-04-26T15:33:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2015/04/26/rarely-reversible</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p><a href="https://facebook.github.io/react/">React.js</a> and its <a href="http://mollyrocket.com/861">&ldquo;IMGUI&rdquo;</a> inspired rendering model is exploding in
+popularity.  After <a href="https://www.youtube.com/watch?v=LNtQPSUi1iQ">my talk at Clojure/West</a>, several folks asked me about
+two seemingly separate discussion topics: Two-way Bindings and <a href="https://github.com/omcljs/om/wiki/Cursors">Cursors</a>.</p>
+
+
+
+
+<p>Among those asking me about data binding, there are a few campaigning for a
+&ldquo;spreadsheet-like&rdquo; method of defining user interfaces. On one hand, they&rsquo;re
+right to seek a direct-manipulation experience for building artifacts in a
+fundamentally visual and interactive medium. However, the code-level approach
+of using spreadsheet-like &ldquo;equations&rdquo; is fundamentally flawed.</p>
+
+
+
+
+<p>Meanwhile, folks using <a href="https://github.com/omcljs/om">Om</a> in practice have expressed their frustrations
+with cursors. A few suggested using something more principled like Haskell&rsquo;s
+<a href="https://hackage.haskell.org/package/lens">lenses</a>.  While this may be useful in some situations, it&rsquo;s fundamentally
+flawed for the same underlying reasons.</p>
+
+
+
+
+<p>Both designs share a flaw born of a common desire: To automatically map user
+input back to data sources. When there&rsquo;s a 1-to-1 mapping from data sources to
+user interfaces, this is appropriate. However, it&rsquo;s not sufficient for the
+general case. In fact, it&rsquo;s not sufficient for the <em>common</em> case.</p>
+
+
+
+
+<p>Transformations of source data in to views beyond trivial editable fields is
+almost never reversible or equational.</p>
+
+
+
+
+<p>To substantiate my position, let me demonstrate just how difficult it is to
+write reversible relationships with some examples in the domain of grammars.</p>
+
+
+
+
+<p>Let&rsquo;s say you have this simple grammar:</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>A ::= a+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The production <code>A</code> is formed of 1 or more <code>a</code> characters.</p>
+
+
+
+
+<p>An infinite number of substitutions will satisfy the rule.</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>a &ndash;&gt; A
+</span><span class='line'>aaaaaa &ndash;&gt; A</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Here, the direction of the arrow is critically important.</p>
+
+
+
+
+<p>How can you reverse this production rule?</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>??? &lt;&ndash; A</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The only <em>universal</em> way to convert directed rules in to reversible relations
+is to never discard &ldquo;information&rdquo;.</p>
+
+
+
+
+<p>For example, we could parameterize <code>A</code> by a number.</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>aaaa &lt;&ndash;&gt; A(4)</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Alternatively, you can specify a general principal for lossy reversal rules,
+like &ldquo;always produce the smallest value that would satisfy the rule&rdquo;.</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>a &lt;&ndash; A</span></code></pre></td></tr></table></div></figure></p>
+
+<p>However, this falls flat on its face if you introduce alternation:</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>AB ::= a | b
+</span><span class='line'>
+</span><span class='line'>a &ndash;&gt; AB
+</span><span class='line'>b &ndash;&gt; AB
+</span><span class='line'>
+</span><span class='line'>??? &lt;&ndash; AB</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Neither <code>a</code> nor <code>b</code> is &ldquo;smaller&rdquo;, so you need a new principle to reverse by.
+In a traditional context free grammar, <code>|</code> doesn&rsquo;t imply order, but in a
+<a href="https://en.wikipedia.org/wiki/Parsing_expression_grammar">PEG</a>, for example, you have ordered choice. You could say that you reverse
+to the first choice which satisfies the rule. Let&rsquo;s use <code>/</code> as the ordered
+choice operator.</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class='code'><pre><code class=''><span class='line'>AB ::= a / b
+</span><span class='line'>
+</span><span class='line'>a &ndash;&gt; AB
+</span><span class='line'>b &ndash;&gt; AB
+</span><span class='line'>
+</span><span class='line'>a &lt;&ndash; AB</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Even in this simplified context, we haven&rsquo;t even begun to scratch the surface
+of potential problems with reversibility. Constructs such as binders or loops
+will cause the reversal principles to explode in complexity.</p>
+
+
+
+
+<p>Grammars offer pretty simple and well defined operations. However, practically
+every new operation introduces new reversal principles. Once real world
+business logic gets involved, things get hairy quickly.</p>
+
+
+
+
+<p>In the context of user interfaces, these problems are magnified to be so large
+that they are practically unrecognizable. However, if you zoom in on individual
+cases in your own applications, you&rsquo;ll spot this inherit complexity.</p>
+
+
+
+
+<p>A robust UI solution should not attempt to build upon a foundation of
+automatic reversibility.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Unsound and Incomplete]]></title>
+    <link href="http://www.brandonbloom.name/blog/2014/01/08/unsound-and-incomplete/"/>
+    <updated>2014-01-08T17:36:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2014/01/08/unsound-and-incomplete</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>The academic programming language community spends lots of time studying and
+building type systems. It&rsquo;s widely considered that <a href="http://en.wikipedia.org/wiki/Soundness">soundness</a> is the mark
+of a well designed type system. A sound type system never permits an
+incorrectly typed program to pass type checking. An ideal type system would
+also be <a href="http://en.wikipedia.org/wiki/Completeness#Logical_completeness">complete</a>; it would never reject a correctly typed program because
+it was unable to prove its correctness. If you&rsquo;re not familiar with this
+terminology, Ben Karel offers <a href="http://eschew.wordpress.com/2009/08/31/sound-and-complete/">an illuminating analogy</a> to help you.</p>
+
+
+
+
+<p>Recently, a flurry of new, statically typed languages have entered the public
+stage. Among these are Google&rsquo;s <a href="http://www.dartlang.org/">Dart</a>, as well as Microsoft&rsquo;s
+<a href="http://www.typescriptlang.org/">TypeScript</a>. One thing that these languages have in common is that they
+have unsound type systems. Cue the horrified gasps of the type theorists!</p>
+
+
+
+
+<p>Ignoring the topic of completeness for a moment, since most critics do so
+themselves (I think &ldquo;unsound&rdquo; just sounds scarier than &ldquo;incomplete&rdquo;). Surely
+Google and Microsoft employ some smart folks who have followed the latest
+research in type systems, so why, in 2014, are we still building languages
+that have unsound type systems? Well, I&rsquo;ll let the <a href="https://www.dartlang.org/articles/why-dart-types/">Googlers</a> and
+<a href="https://typescript.codeplex.com/discussions/428572">Microsofties</a> explain themselves. In short, it&rsquo;s difficult to maintain
+soundness in feature-rich languages. Even when possible, it may cause an
+<a href="http://i.imgur.com/YAls4tQ.png">astronomical increase in complexity</a>. Achieving soundness requires
+a trade off against completeness, complexity, toolability, and more. Never
+mind the fact that being fully sound isn&rsquo;t even that useful to begin with!</p>
+
+
+
+
+<p>Let&rsquo;s step back and examine why we even bother with type systems at all.
+In many cases, static analysis can dramatically reduce programmer errors and
+opens up significant optimization opportunities. Programming languages that
+are amenable to formal static analysis are <a href="http://www.cse.chalmers.se/~nad/publications/danielsson-et-al-popl2006.html">highly correlated</a> with
+programming languages that are amenable to informal static analysis, i.e. by
+programmers! Type systems have proven to be a particularly useful category of
+static analysis; so much so, that many programmers can&rsquo;t imagine building
+software without a type checker on hand at all times.</p>
+
+
+
+
+<p>Sadly, type systems fundamentally can&rsquo;t catch all kinds of programming
+mistakes, nor will they magically improve the time or space complexity of your
+algorithms. You&rsquo;ll have to write tests and benchmarks either way, to say
+nothing of validating your designs with stakeholders! Still, there are other
+reasons to have a good type system, like enforcement of <a href="http://en.wikipedia.org/wiki/Type_safety">type safety</a>
+(which is a different thing than &ldquo;type correctness&rdquo;). However, safety can also
+be <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/ClassCastException.html">enforced by dynamic means</a> and dynamic mechanisms such as
+<a href="http://erights.org/elib/capability/ode/ode-capabilities.html">capabilities</a> can enforce security far beyond that of static safety
+checks. You might even want to <a href="http://msdn.microsoft.com/en-us/library/t2yzs44b.aspx">intentionally forego safety</a> in order to
+achieve maximum performance. Furthermore, there&rsquo;s lots of other kinds of
+static analysis, both formal and informal, that can be used to find bugs or
+speed your programs up.</p>
+
+
+
+
+<p>Assuming we want a tool that finds as many errors as possible, we should be
+willing to forego completeness, instead preferring to have our static analysis
+be overly cautious, warning us of programs that <em>might</em> be incorrect. We can
+always suppress such warnings after informal analysis (or alternative formal
+analysis!). Assuming we&rsquo;re realistic about the fact that no static analysis
+tool will ever catch all errors, we should also be willing to tolerate
+unsoundness in order to <a href="http://www.haskell.org/haskellwiki/Hoare_Property">spend our mental complexity budgets more wisely</a>.
+Assuming we want a tool that independently improves with time, we should not
+create a <a href="http://bracha.org/pluggableTypesPosition.pdf">cyclic dependency between languages and type systems</a>.</p>
+
+
+
+
+<p>There is a class of such tools. They&rsquo;re called <a href="http://en.wikipedia.org/wiki/Lint_(software)">linters</a>.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Slurp & Spit]]></title>
+    <link href="http://www.brandonbloom.name/blog/2013/06/26/slurp-and-spit/"/>
+    <updated>2013-06-26T11:59:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2013/06/26/slurp-and-spit</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<h2>Does nobody teach fopen anymore?</h2>
+
+
+
+
+<p>Many programmers start with &ldquo;Hello World&rdquo;. Shortly after that, it&rsquo;s &ldquo;Hello
+$NAME&rdquo;, with a string read off stdin. But soon, budding engineers get tired of
+reminding their computer of their name each and every time their code runs.
+When I was first learning to program, file IO was an early requirement. We were
+taught how to read and write &ldquo;data files&rdquo; using little more than fopen,
+fscanf, fprintf, and fclose.</p>
+
+
+
+
+<p>Fast forward five to ten years; you find yourself writing your 10 millionth SQL
+query, wishing for simpler times. Spend some more time with the NoSQL database
+du jour and the humble fopen function will be but a distant memory.  Until that
+one fateful day arrives where you&rsquo;ve got a relatively simple program and
+encounter the need for equally simple durability. Five years ago, you&rsquo;d have
+cracked your knuckles and hacked out a pair of &ldquo;save&rdquo; and &ldquo;load&rdquo; functions.
+Today, you add a dependency on your favorite database driver, switch to the
+shell, type <code>createdb myapp</code> and then dutifully begin defining a lovely schema.
+Of course, now you need to either rework your models to conform to some horrid
+ORM layer, or write save/load-style &ldquo;hydrate&rdquo; and &ldquo;dehydrate&rdquo; methods anyway.</p>
+
+
+
+
+<p>Now, at ten years and a day, you decide it&rsquo;s finally time to learn that hip new
+programming language that everybody is talking about. You&rsquo;ve got your book out,
+you&rsquo;ve rocked through all your favorite technical interview puzzles, and you&rsquo;re
+ready to put together a little web service for personal or small group use.  If
+this was yesterday, you&rsquo;d know exactly what dependency to add and how to
+proceed, but that was yesterday. Today, you do some Googling or hop into IRC
+looking to find out what&rsquo;s popular.</p>
+
+
+
+
+<p>Why don&rsquo;t you even consider fopen?</p>
+
+
+
+
+<h2>But files aren&rsquo;t &ldquo;Web Scale&rdquo;!</h2>
+
+
+
+
+<p>Is that really true? And do you really care? Should you really care?</p>
+
+
+
+
+<p>The answer to all of these questions is &ldquo;No&rdquo;. Files can easily be &ldquo;web scale&rdquo;.
+As of 2013, Hacker News is still running as a single process, on a single core,
+of a single server, backed by a directory structure of simple data files.
+Nearly 2 million page views are served daily. See <a href="https://news.ycombinator.com/item?id=5229522">this thread</a> and
+<a href="https://news.ycombinator.com/item?id=5253773">this submission</a> for details.</p>
+
+
+
+
+<p>The bottom line on this subject is that 1) You&rsquo;re going to need significant
+cleverness to scale any service regardless of whether you use a database or the
+file system directly. And 2) You probably won&rsquo;t need to scale hugely anytime
+soon, anyway. Being crushed by traffic is a Good Problem To Have, so let&rsquo;s
+worry about the Ghost Town problem first. 3) You can always refactor later.</p>
+
+
+
+
+<h2>Data Literals: print, read, spit, and slurp</h2>
+
+
+
+
+<p>This article was prompted by a reoccurring discussion started by newcomers to
+the Clojure IRC channel. Having learned the basics, folks want to hit the
+ground running with stateful and durable services. Coming from a background in
+some big framework or some hairy application, these folks ask those suggestive
+questions about databases, driver libraries, and the like. Often, upon
+interrogation, they only have a couple kilobytes or megabytes of total data to
+be stored. In such a situation, the advice is always the same: Put that data
+into an atom, then use <code>spit</code> and <code>slurp</code> to save and load.</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">db</span> <span class="p">(</span><span class="nf">atom</span> <span class="p">{</span><span class="nv">&hellip;</span><span class="p">}))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">save-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">spit</span> <span class="s">&quot;somefile&quot;</span> <span class="p">(</span><span class="nb">prn-str </span><span class="err">@</span><span class="nv">db</span><span class="p">)))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">load-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">reset!</span> <span class="nv">db</span> <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nb">slurp </span><span class="s">&quot;somefile&quot;</span><span class="p">))))</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Because Clojure encourages the use of printable, readable, &ldquo;pure&rdquo; data, your
+save and load functions are virtually free! If you&rsquo;re not familiar with
+Clojure, then consider working with pure JSON in Node.js:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="p">{&hellip;};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">saveData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;somefile&quot;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(</span><span class="nx">db</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">loadData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">db</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&quot;somefile&quot;</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Things aren&rsquo;t quite as easy in languages lacking data literals, but nearly
+every popular language has some kind of automatic serialization library.
+However, even if you do need to write your own save and load functions, it&rsquo;s
+a pretty straightforward, if somewhat tedious, process.</p>
+
+
+
+
+<p>Even&mdash;or especially&mdash;experienced programmers are surprised by just how far
+this brain-dead-simple durability scheme will go.</p>
+
+
+
+
+<h2>Atomicity</h2>
+
+
+
+
+<p>One other objection to files is that it&rsquo;s difficult to ensure an application
+enjoys the same guarantees that a well-tested ACID database affords. Never mind
+the fact that the majority of Rails applications suffer from dozens of
+consistency bugs because most developers forget to wrap related updates in
+transactions; it is true that incorrectly implemented file IO can cause
+catastrophic data loss.</p>
+
+
+
+
+<p>If you plan to deploy spit and slurp into production, you&rsquo;d be advised to write
+to a temporary file and utilize an atomic rename. This ensures that a failure
+during writing won&rsquo;t corrupt your database. See <code>man rename</code> for more.</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">saveData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;somefile.tmp&quot;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(</span><span class="nx">db</span><span class="p">));</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">renameSync</span><span class="p">(</span><span class="s2">&quot;somefile.tmp&quot;</span><span class="p">,</span> <span class="s2">&quot;somefile&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Just this one little tweak and this bad boy is production ready. Clojure
+programmers can use Java&rsquo;s <code>File.renameTo</code> method. See below.</p>
+
+
+
+
+<p>Remember to configure your backups!</p>
+
+
+
+
+<h2>Don&rsquo;t Stop The World</h2>
+
+
+
+
+<p>Experienced Node.js programmers likely cringed at the &ldquo;Sync&rdquo; suffix on the
+above file operations. These operations will block while data is being read or
+written. In addition to yielding clearer example code, synchronous operations
+do not require coordination. If your application only needs to serve a handful
+of users, you can still write 100 megabytes of data in less than half a
+second. Even if you write every change to a file on every request, your ten
+users might not even notice your blocking IO. As you scale up, you&rsquo;ll need to
+either split your data files up and/or start writing files asynchronously.</p>
+
+
+
+
+<p>Asynchronous means coordination. Coordination means locking or queues. This
+stuff really isn&rsquo;t as scary as it sounds, but it will have to wait; this post
+has already gotten far too long. However, I don&rsquo;t want to lead you down the
+wrong path, so I should mention that, unlike Node.js, synchronous writes on
+the JVM will not block other requests. You practically don&rsquo;t have a choice, but
+to be asynchronous.  If two requests both call your save function at the same
+time, the resulting race condition can lead to incremental data loss. Luckily,
+Clojure&rsquo;s agents and persistent data structures provide for a super quick fix:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="nb">import </span><span class="ss">&#39;java.io.File</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">save-agent</span> <span class="p">(</span><span class="nb">agent </span><span class="nv">nil</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">save-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">send-off </span><span class="nv">save-agent</span>
+</span><span class='line'>    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">_</span><span class="p">]</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">spit</span> <span class="s">&quot;somefile.tmp&quot;</span> <span class="p">(</span><span class="nb">prn-str </span><span class="err">@</span><span class="nv">db</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">.renameTo</span> <span class="p">(</span><span class="nf">File.</span> <span class="s">&quot;somefile.tmp&quot;</span><span class="p">)</span> <span class="p">(</span><span class="nf">File.</span> <span class="s">&quot;somefile&quot;</span><span class="p">)))))</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Different web servers across all the different languages have varying
+concurrency support and configuration defaults. Whether or not you use file IO,
+you should be aware of the concurrency story for your platform and its impact
+on your application.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code Density]]></title>
+    <link href="http://www.brandonbloom.name/blog/2013/06/24/code-density/"/>
+    <updated>2013-06-24T18:26:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2013/06/24/code-density</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>I&rsquo;ve heard from many folks who have had difficulty learning functional
+programming. In attempting to complete seemingly simple tasks, even the most
+experienced imperative and object oriented programmers fall flat on their faces
+when first attempting to program in a functional style. Yet, experienced
+functional programmers rave about their productivity and their small, beautiful
+codebases. Are these functional programmers simply that much smarter? Or is
+there some other force at work?</p>
+
+
+
+
+<p>Even in a familiar language, a small, but powerful library might be described
+as &ldquo;write-only code&rdquo; by those who do not grok the fundamental ideas. Powerful
+ideas produce powerful programs, but powerful programs don&rsquo;t always shed light
+on their underlying powerful ideas. Functional programming is a powerful idea.</p>
+
+
+
+
+<p>A lot of businesses just need somebody to bang out some pretty vanilla
+solutions to some pretty vanilla problems. If you&rsquo;re in one of these businesses
+(and most of us are), then your team&rsquo;s resident curmudgeon is right: Clever is
+not a good thing. Familiar and understood beats simple and powerful ideas every
+time.</p>
+
+
+
+
+<p>However, if you&rsquo;re looking to up your game; If you want to tackle bigger
+problems, you need more powerful tools. If you&rsquo;ve tried to read some Lisp or ML
+or Haskell, but found your head swimming; If you&rsquo;ve tried to fight your way
+through <a href="http://projecteuler.net/">Project Euler</a> with an unfamiliar language, but got stumped by
+tasks you aced in freshman year; Don&rsquo;t panic. There&rsquo;s a good explanation for
+why these things seem harder. Those functional programmers really aren&rsquo;t
+smarter than you.  They&rsquo;re just a little more persistent.</p>
+
+
+
+
+<p>The key issue is one of code density. Powerful ideas can succinctly express
+solutions to tough problems. The problem isn&rsquo;t necessarily any easier, nor is
+expressing the solution necessarily any more difficult. There is simply more
+meaning per line of code, so reading and writing each line of code takes
+proportionally longer. If you&rsquo;ve jumped into a 100,000+ lines-of-code Java
+project and found your way around like a champ, you shouldn&rsquo;t feel ashamed by
+jumping into a 10,000 line Clojure project and being horribly lost. Those
+10,000 lines of code might take you five times as long to read per line.  These
+numbers are only backed by anecdotal evidence, but that&rsquo;s a hypothetical 50%
+reduction in total code reading time!</p>
+
+
+
+
+<p>When you start writing some object-oriented code, you spend a bunch of time
+creating classes and defining the shape of your domain. There is some delay
+between when you begin typing and when you run head first into the problem at
+hand. During that delay, you have a lot of time to think about the problem.
+While you&rsquo;re fingers are hard at work, your mind is too. Your brain needs time
+for solutions to bake. If you encounter the hard problems as soon as you start
+typing, you need to walk away from your desk!</p>
+
+
+
+
+<p>Functional programming is a particularly compelling powerful idea because it
+captures the essence of a lot of computational problems. There is a great deal
+of complexity that is hidden away in mutable state, implicit context, and
+abstract interfaces. If you&rsquo;re used to the constant drip of progress afforded
+by stitching together class hierarchies, you suffer immediate withdrawals when
+faced with all of the hidden moving parts laid bare in an individual function&rsquo;s
+signature. Suddenly, you need to solve many more problems at once, but you&rsquo;ve
+become accustom to having those problems spread out across a wider
+cross-section of your program.</p>
+
+
+
+
+<p>It takes longer to get started with a powerful idea because you must first
+understand and internalize that powerful idea. Take a deep breath, lean back in
+your chair, close your eyes, and think through the problem. Untangle the mess
+in your head, maybe explore a bit in the REPL, then come back and try the
+problem again. You might find that you spend half as much time thinking as you
+used to spend typing.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SemVer: A Technical Solution to a Social Problem]]></title>
+    <link href="http://www.brandonbloom.name/blog/2013/06/19/semver/"/>
+    <updated>2013-06-19T11:35:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2013/06/19/semver</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>&ldquo;Semantic Versioning&rdquo;, commonly called <a href="http://semver.org/">SemVer</a>, is a specification for
+assigning and reasoning about software version numbers. In short, it codifies
+some common practices regarding <code>$MAJOR.$MINOR.$REVISION</code> style version
+numbers, including guarentees about API compatibility and dependency
+resolution.</p>
+
+
+
+
+<p>Beautifully simple semantics, outlined by a clear and concise specification.
+What&rsquo;s not to like? Technically, SemVer is very strong. However, statistically
+speaking, software developers can not be trusted to maintain the semantics
+promised by SemVer. A small handful of individuals and projects use SemVer, or
+something like it, to good effect. The rest can&rsquo;t be trusted not to introduce
+major bugs or breaking changes with each and every revision.</p>
+
+
+
+
+<p>Every engineer who has ever worked on a project with more than a handful of
+external dependencies has had the horrifying experience of deploying some small
+dependency upgrades only to have their entire house of cards come crashing
+down. As a result, mature organizations tend to maintain their own package
+repositories, vendor all dependencies, or otherwise carefully scrutinize and
+control each and every external component.</p>
+
+
+
+
+<p>Packaging systems such as Ruby&rsquo;s <a href="http://gembundler.com/">Bundler</a> and Node&rsquo;s <a href="https://npmjs.org/">NPM</a> often default
+to or otherwise encourage SemVer. Depending on a
+<a href="http://docs.rubygems.org/read/chapter/16#page74">pessimistic version constraint</a>, such as <code>~&gt; 1.2</code>, is tantamount to saying
+&ldquo;I trust that the maintainer of this project both understands SemVer and is
+capable of enforcing its guarantees.&rdquo; Sadly, this is rarely, if ever, true.</p>
+
+
+
+
+<p>Versioning is a social contract. A maintainer makes a promise regarding API
+stability and versioning policy. Consumers make a judgement call regarding the
+veracity of the maintainer&rsquo;s promise. If the README file says &ldquo;This project uses
+SemVer&rdquo; and the project&rsquo;s maintainer is <a href="http://tom.preston-werner.com/">Tom Preston-Werner</a>, then you can
+trust that pessimistic version constraint in your dependencies file.</p>
+
+
+
+
+<p>However, the README might say &ldquo;Releases are only packaged for long-term support
+versions.  Please use the <code>stable</code> branch for new production systems.&rdquo; In such
+a case, you might want to consider depending directly on that branch or even on
+a particular commit hash. Speaking of branches and commits, this calls to mind
+a far preferable default for packaging and dependency resolution systems:
+<a href="https://www.kernel.org/pub/software/scm/git/docs/gitrevisions.html">refspecs</a>. It would be great if the SemVer spec was updated to include
+policies for defining branch and tag names in your version control system of
+choice. Instead of depending on <code>~&gt; 1.2</code>, you could depend on
+<code>branches/v1.2.x</code>. This grants maintainers greater flexibility in making social
+contracts.  It also grants consumers greater control over how much trust they
+give to maintainers.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Trivial Cycles in Object Oriented Programming]]></title>
+    <link href="http://www.brandonbloom.name/blog/2013/06/18/oop-cycles/"/>
+    <updated>2013-06-18T16:41:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2013/06/18/oop-cycles</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>I&rsquo;m not against objects. I&rsquo;m against programming in a style <em>oriented</em> by
+objects.</p>
+
+
+
+
+<p>One of the largest causes of big-ball-of-mud architectures is unnecessary cyclic
+dependencies. Unfortunately, object-oriented languages allow programmers to
+trivially create cyclic dependencies without warning or immediate
+repercussions. Overtime, these cycles become a significant source of complexity
+and corresponding suffering.</p>
+
+
+
+
+<p>The problem can be summarized in a single line of pseudocode:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='ruby'><span class='line'><span class="n">person</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">residents</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>This innocuous-looking expression embodies a pleasant interface, but its
+implementation hides an insidious cyclic relationship between the <code>Person</code>
+class and the <code>Address</code> class. Worse than that, this cyclic relationship
+is extended transitively to any other related classes. Consider the following
+diagram with an additional <code>Company</code> class that may also have an address.</p>
+
+
+
+
+<p><img src="http://www.brandonbloom.name/images/oop-cycle.png" alt="Person / Address / Company ball-of-mud" /></p>
+
+
+
+
+<p>Any time you add a type to this graph, it is instantly tangled-up with
+everything else. Compare this with this functional variant:</p>
+
+
+
+
+<p><img src="http://www.brandonbloom.name/images/fp-dag.png" alt="Person / Address / Company untangled" /></p>
+
+
+
+
+<p>Now you can analyze, compile, and reason about a subset of this graph.
+Reasoning about any particular node only requires reasoning about the
+transitive closure of its dependencies. However, in the presence of ubiquitous
+cycles, the transitive closure is equivalent to the entire graph.</p>
+
+
+
+
+<p>Unfortunately, we&rsquo;ve now lost the convenient <code>noun.verb</code> or <code>noun.component</code>
+syntax. Instead, our expressions are inside out. Here it is in Ruby or Python
+syntax:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='ruby'><span class='line'><span class="n">residents</span><span class="p">(</span><span class="n">address</span><span class="p">(</span><span class="n">person</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And here it is in Lisp syntax:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="nf">residents</span> <span class="p">(</span><span class="nf">address</span> <span class="nv">person</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Luckily, we can recover the pleasant ordering with the help of a macro.  Here
+is an example of Clojure&rsquo;s threading macro:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="nb">&ndash;&gt; </span><span class="nv">person</span> <span class="nv">address</span> <span class="nv">residents</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>In the absense of macros, we can use a binary operator. Here&rsquo;s an example of
+F#&rsquo;s &ldquo;pipeline&rdquo; operator:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">person</span> <span class="o">|&gt;</span> <span class="n">address</span> <span class="o">|&gt;</span> <span class="n">residents</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Both Scala and C# provide tools for directly emulating the dotted access
+syntax.  Respectively, implicit conversions and extension methods leverage the
+type system to perform dispatch to non-members in a syntactically identical
+way.</p>
+
+
+
+
+<p>It is unfortunate that it is so easy to create cycles. A small sin at first,
+but they quickly add up and really start to hurt as a system grows larger.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress]]></title>
+    <link href="http://www.brandonbloom.name/blog/2013/06/17/octopress/"/>
+    <updated>2013-06-17T17:04:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2013/06/17/octopress</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>A while ago, I started blogging again. Google&rsquo;s Blogger isn&rsquo;t great for code
+snippets, so I contorted a few posts to fit the formatting. A few posts never
+got written at all. I wanted to get my blog into Github Flavored Markdown and
+under version control. I&rsquo;m not a super huge fan of Jekyll, but in interest of
+getting back to content, I went ahead and did the simplest possible thing that
+could work.</p>
+
+
+
+
+<p>So here&rsquo;s my new blog.</p>
+
+
+
+
+<p>It&rsquo;s built on <a href="https://github.com/mojombo/jekyll">Jekyll</a> via <a href="http://octopress.org/">Octopress</a> with the a <a href="https://github.com/lucaslew/whitespace">Theme by Lucas Lew</a>
+and hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
+
+
+
+
+<p>I ported the majority of the posts from HTML to Markdown via a pile of Vim
+Macros.  Then, I set up a tiny Ruby app on Heroku to redirect old URLs.  It was
+an extremely tedious process, but I&rsquo;m pretty happy with the result!</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fipp: Fast Idiomatic Pretty-Printer for Clojure]]></title>
+    <link href="http://www.brandonbloom.name/blog/2013/01/11/fipp-intro/"/>
+    <updated>2013-01-11T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2013/01/11/fipp-intro</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>I decided to create a new pretty printer in the spirit of &ldquo;Data All The
+Things!&rdquo; And it&rsquo;s fast too!</p>
+
+
+
+
+<p>Fipp, the Fast Idiomatic Pretty-Printer for Clojure, is a pretty printer with
+linear runtime and bounded space requirements. Unlike clojure.pprint&rsquo;s
+side-effectual API, Fipp is configured by pretty print documents that are
+similar to Hiccup HTML templates. It&rsquo;s based on some fancy pants research
+pretty printers from the Haskell world.</p>
+
+
+
+
+<p>You can see my implementation and lots more notes at
+<a href="https://github.com/brandonbloom/fipp">https://github.com/brandonbloom/fipp</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Factjor: Concatenative Clojure]]></title>
+    <link href="http://www.brandonbloom.name/blog/2013/01/01/factjor-intro/"/>
+    <updated>2013-01-01T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2013/01/01/factjor-intro</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>I&rsquo;ve released another small Clojure project:
+<a href="https://github.com/brandonbloom/factjor">Factjor</a></p>
+
+
+
+
+<p>Head on over to GitHub for a tiny intro in the README. Lots more explanation
+and context will follow in a future post, after I release the project that
+motivated Factjor.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Node.js REPL is Broken]]></title>
+    <link href="http://www.brandonbloom.name/blog/2012/12/21/the-nodejs-repl-is-broken/"/>
+    <updated>2012-12-21T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2012/12/21/the-nodejs-repl-is-broken</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>Not only is the Node.js REPL broken, but so are the stock REPLs for Python and
+Ruby too! In fact, for many of you, every single REPL you&rsquo;ve ever used has been
+fundamentally flawed. Moreover, even if you used a fancy replacement REPL, such
+as <a href="https://github.com/Benvie/Node.js-Ultra-REPL">UltraREPL</a>,
+<a href="http://ipython.org/">IPython</a>, or <a href="http://pryrepl.org/">Pry</a>, you&rsquo;d only be
+mitigating the problem: JavaScript, Python, and Ruby are all fundamentally
+flawed languages from a REPL-lover&rsquo;s perspective.</p>
+
+
+
+
+<p>Now, I realize that this is a bold and, thus far, unsubstantiated claim. Python
+and Ruby are revered for interactive, dynamic development and Firebug&rsquo;s
+JavaScript console changed the game for web apps. So with so many happy REPL
+users, what are these fundamental flaws? Since it is the worst offender, let me
+pick on JavaScript for a moment&hellip;</p>
+
+
+
+
+<p>Node&rsquo;s stock REPL provides a fragile and awkward notion of an evaluation
+context. A fresh REPL is configured with an evaluation context as if by both
+<code>with(context)</code> and <code>.call(context)</code> to enable unqualified access to context
+variables, as well as introspection of the this context. This, however, is a
+convenient illusion. If you evaluate <code>var x = 1; this</code>, you&rsquo;ll note that <code>x</code> is
+added to <code>this</code>. If you were to use <code>var</code> inside a <code>with</code> block, you wouldn&rsquo;t
+get that same behavior. The top-level inside the REPL is somewhat magical.</p>
+
+
+
+
+<p>CommonJS Modules provides the blueprint for Node&rsquo;s module system. The key idea
+is that Plain Old JavaScript Objects can be used to describe modules and their
+exports. Simple, but perhaps too simple. Consider if you were working on some
+function f in module <code>m</code>. You boot up your trusty REPL, evaluate <code>var f =
+require('m').f;</code> and try out some corner cases. Ugh oh, <code>f</code> has a bug, so you
+modify <code>src/m.js</code> and then you&hellip;. promptly restart your REPL! The require
+function doesn&rsquo;t offer any sort of <code>{reload: true}</code> option, and even if you
+did, you&rsquo;d still be left with a reference f pointing to an old version of the
+function. That might not be a big problem if you have just one function, but
+what if you have several objects and functions in a larger system? The
+too-simple plain old JavaScript objects approach results in the copying of
+references and assigning those copies to local names. It is extremely difficult
+to reason about changes. Even if you knew to cheat by reaching inside of
+require.cache with a delete, you&rsquo;d still be better off restarting your REPL to
+preserve your sanity. That&rsquo;s a real shame if you had a bunch of interesting
+test cases lying around in memory, or if there is an expensive initialization
+computation you need to wait through each time.</p>
+
+
+
+
+<p>Now that I&rsquo;m done picking on JavaScript, I&rsquo;ll point out that the situations in
+both Python and Ruby aren&rsquo;t much better. Python doesn&rsquo;t have a notion of a
+current module, although it does provide the builtin <code>locals()</code> function, as
+well as lets you call <code>code.interact(locals={...})</code> to start a nested sub-REPL
+with something akin to Node&rsquo;s magical top-level. Ruby fairs marginally better
+by providing a reasonably well behaved implicit self, which can be shadowed in
+a nested sub-REPL via an argument to the confusingly named irb method. Python&rsquo;s
+modules have a similar issue to plain old JavaScript objects with from m import
+f and Ruby&rsquo;s metaprogramming facilities add more than enough complexity to make
+REPL-coding hair-raising.</p>
+
+
+
+
+<p>It doesn&rsquo;t have to be this way. There are languages that are much better suited
+to iterative REPL development. If you&rsquo;ve been following my blog, then this is
+where you&rsquo;d expect me to praise Clojure. I&rsquo;ll save that for a future post in
+which I&rsquo;ll discuss what is really necessary for a successful REPL. And while
+Clojure&rsquo;s REPL is far better than any other I&rsquo;ve ever used, it has its own
+shortcomings to discuss as well.</p>
+
+
+
+
+<h3>Comments</h3>
+
+
+
+
+<h4>Florian said&hellip;</h4>
+
+
+
+
+<p>Note that you&rsquo;re lamenting for the most part that python, ruby and JS can&rsquo;t do &ldquo;hot-reload&rdquo;.</p>
+
+
+
+
+<p>This has nothing to do with an interactive prompt.</p>
+
+
+
+
+<p>Hot reloading never really does work whatever you do (it doesn&rsquo;t &ldquo;just work&rdquo; in
+smalltalk and any lisp dialect either). The first reason is that even if you
+can magically substitute all references to everything with the right version
+(which smalltalk and most lisp dialects can) it still leaves in-memory data
+corrupt (you haven&rsquo;t written an in-memory migration script have you?).</p>
+
+
+
+
+<p>The situation is somewhat worse for any language that allows references to
+everything (like python, ruby and JS) and is not side-effect free. In those
+environments hot-reloading becomes all but impossible, and although that&rsquo;s a
+bit sad, the very way those languages work also makes them pleasant to use
+unless you want a hot reload.</p>
+
+
+
+
+<h4>Brandon Bloom said&hellip;</h4>
+
+
+
+
+<p>Being able to &ldquo;hot-reload&rdquo; a file is nice, but the failing is in the manner by
+which names are resolved. Aliasing imports into a local variable lacks a level
+of indirection; this precludes hot-swapping.</p>
+
+
+
+
+<blockquote><p>This has nothing to do with an interactive prompt.</p></blockquote>
+
+
+
+
+<p>These are design decisions that impact the usability of interactive prompts.</p>
+
+
+
+
+<blockquote><p>you haven&rsquo;t written an in-memory migration script have you?</p></blockquote>
+
+
+
+
+<p>Sometimes I do migrate my in memory data structures&hellip; I enjoy having that
+option.</p>
+
+
+
+
+<h4>devdazed said&hellip;</h4>
+
+
+
+
+<p>I agree that the Node REPL is by far the worst offender, I think the largest
+point should have been that the REPL decides when an error make it crash. For
+instance, if you run:</p>
+
+
+
+
+<p><code>throw new Error('foo');</code></p>
+
+
+
+
+<p>All is well and it prints a stacktrace, however if you run:</p>
+
+
+
+
+<p><code>process.nextTick(function(){ throw new Error('foo') });</code></p>
+
+
+
+
+<p>It will cause the entire REPL to crash, and thus you need to start from square
+one. It&rsquo;s this type of inconsistent behavior that makes the Node REPL
+infuriating.</p>
+
+
+
+
+<p>IMO, the REPL should never crash and if there is anything a user can do to make
+it crash (aside from sending a kill -9 command) then it is fundamentally
+flawed.</p>
+
+
+
+
+<p>Another thing is that you can cause a JS OOM error by simply creating a tight
+look that prints to the console.</p>
+
+
+
+
+<p>Additionally, standard sigterm signals (such as ctrl+c) won&rsquo;t break such a
+tight loop, so your only choice is kill the entire application.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clojure's multimethod dispatch as a library]]></title>
+    <link href="http://www.brandonbloom.name/blog/2012/12/10/clojures-multimethod-dispatch-as-library/"/>
+    <updated>2012-12-10T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2012/12/10/clojures-multimethod-dispatch-as-library</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<h3>In keeping with the theme, this post motivates <a href="https://github.com/brandonbloom/dispatch-map">dispatch-map</a></h3>
+
+
+
+
+<p>Clojure&rsquo;s multimethods embody a powerful polymorphic dispatch mechanism. With
+multimethods, you can define a function which is polymorphic with respect to a
+given hierarchy and arbitrary dispatch value. The hierarchy is actually a
+directed acyclic graph, but you can adjust method priority to address the
+<a href="http://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">diamond problem</a>.</p>
+
+
+
+
+<p>Unfortunately, Clojure&rsquo;s dispatch mechanism is baked into the defmulti and
+defmethod forms. If you want multimethod-style dispatch, you need a Var to hold
+your multimethod. Similar to the circumstances which prompted the creation of
+<a href="https://github.com/brandonbloom/backtick">backtick</a>, I discovered that there
+was an opportunity to decomplect a part of the core library to extract a useful
+subcomponent. In this case, the datastructure which describes dispatch rules
+was complected with the identity which points to those dispatch rules. As a
+result, it&rsquo;s impossible to treat a multimethod as an immutible value.</p>
+
+
+
+
+<p>So I created <a href="https://github.com/brandonbloom/dispatch-map">dispatch-map</a>.  A
+dispatch map is just like a regular Clojure map, but it comes coupled with a
+dispatch function and hierarchy. Looking up keys in a dispatch map has the same
+dispatch behavior and caching functionality of multimethods. However, unlike a
+multimethod, a dispatch-map is a true value.  The standard map operators assoc,
+dissoc, etc, return a new dispatch-map, leaving the original unmodified. This
+enables you to manipulate dispatch maps like any other Clojure data structure,
+without the need for a named, mutable Var. Clojure&rsquo;s multimethods and all
+related functions could trivially be reimplemented in terms of a dispatch-map
+and an atom <em>(edit: and now are!)</em>.</p>
+
+
+
+
+<p>One use for a dispatch-map as a value is to store them within some other data
+structure, without breaking the value guarantees of the enclosing data
+structure. In my case, I&rsquo;ve got a dispatch-map of data types to their GUI
+representations. In a hierarchical definition of a GUI, each node can have a
+:templates key which is a <code>(dispatch-map class)</code>. If you want to render a
+<code>(Person.)</code> inside a list box, you can rely on automatic dispatch by type to find
+the appropriate template: Simply walk up the GUI hierarchy and look in the
+:templates map. Thanks to the powerful dispatch functionality, this will also
+work if you have an <code>(Employee.)</code> too!</p>
+
+
+
+
+<h3>Comments</h3>
+
+
+
+
+<h4>tgoossens said&hellip;</h4>
+
+
+
+
+<p>Doesn&rsquo;t one restrict himself then. What to do when you have a new
+type that you need to get working with the existing code? You cannot add any
+new methods. Its a neat idea and I&rsquo;m sure you can use it for a lot of stuff.
+But I think &ndash; if my previous statement is correct &ndash; that the advantage of
+having it as a value doesn&rsquo;t compensate for losing the ability to extend (which
+is basically what you want to do to solve the expression problem right?)</p>
+
+
+
+
+<h4>Brandon Bloom said&hellip;</h4>
+
+
+
+
+<pre><code>You cannot add any new methods.
+</code></pre>
+
+
+
+
+<p>If that were true, you couldn&rsquo;t add any new key value pairs to an immutable
+map&hellip;</p>
+
+
+
+
+<pre><code>the advantage of having it as a value doesn't compensate for losing the ability to extend
+</code></pre>
+
+
+
+
+<p>You&rsquo;re not losing your ability to extend, you&rsquo;re simply shifting it&rsquo;s
+responsibility elsewhere.</p>
+
+
+
+
+<p>Just put your dispatch-map in an atom, and you&rsquo;ve basically got a multimethod.
+More accurately, a multimethod is a dispatch-map plus a Var. The goal of
+dispatch-map is to decomplect dispatch from state.</p>
+
+
+
+
+<p>Consider, for example, if I had two separate multimethods (call them f and g)
+and wanted to add a method to both atomically. With a multimethod, you would
+have to (locking xx (defmethod f &hellip;) (defmethod g &hellip;)) when you could instead
+(swap! yy #(&ndash;> (assoc-in [:x a] &hellip;) (assoc-in [:y a] &hellip;)))</p>
+
+
+
+
+<h4>tgoossens said&hellip;</h4>
+
+
+
+
+<p>Ok cool. I think that now I get what you were trying to achieve. Thanks for the
+explanation!</p>
+
+
+
+
+<h4>Paul Stadig said&hellip;</h4>
+
+
+
+
+<p>Conceptually, an atom and a dispatch-map could replace multimethods. It might
+be possible with multimethods, since they are so slow anyway. However, there
+could be performance issues.</p>
+
+
+
+
+<p>I did some similar experiments trying to extract type based dispatch from
+protocol functions. I started with an atom and a dispatch table, and it turned
+out to be pretty slow.</p>
+
+
+
+
+<h4>Brandon Bloom said&hellip;</h4>
+
+
+
+
+<p>&ldquo;Slow&rdquo; is a relative term. Surely multimethods are slower than protocol
+dispatch. And protocol dispatch is surely slower than direct dispatch.</p>
+
+
+
+
+<p>However, each yields an additional level of indirection for an additional
+abstraction need. Direct dispatch offers no abstraction. Protocol dispatch
+offers abstraction by type. Multimethods offer arbitrary dispatch with respect
+to a directed acyclic graph. In theory, you could also create a
+predicate-dispatch-map, which would allow dispatch with respect to an arbitrary
+decision tree.</p>
+
+
+
+
+<p>With each level of abstraction, you gain a little more flexibility and dynamism
+at the cost of a little more performance. However, if you can statically
+determine a dispatch value, you can eliminate those performance costs at
+compile time. That&rsquo;s likely not a worthwhile exercise, though, since dynamism
+is often the whole point of that level of abstraction.</p>
+
+
+
+
+<p>In the case of both multimethods and my dispatch-maps, dispatch values are
+memoized. Subsequent calls given the same dispatch key do not require
+traversing the hierarchy to find a &ldquo;best&rdquo; match. The result is that the
+amortized cost of a lookup is the cost of the dispatch-fn plus the cost of one
+tree lookup. That&rsquo;s quite reasonable in my mind.  December 14, 2012 at 1:26 PM</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dataflow Solver (qplan for Clojure)]]></title>
+    <link href="http://www.brandonbloom.name/blog/2012/12/01/dataflow-solver-qplan-for-clojure/"/>
+    <updated>2012-12-01T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2012/12/01/dataflow-solver-qplan-for-clojure</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>This post describes the motivation for my next Clojure library: <a href="https://github.com/brandonbloom/qplan">qplan</a></p>
+
+
+
+
+<p>The overwhelming majority of graphical applications are built using ad-hoc
+event callbacks. Some portion of graphical applications, however, use a
+databinding model of varying expressivity. Often, these databinding models are
+simply shorthand for ad-hoc dependency graphs composed of event callbacks.
+Inevitably, the databinding system will be insufficiently expressive,
+necessitating manual callback wiring. Even with the most expressive data
+binding systems available in application frameworks these days, there is a
+shockingly fragile rat&rsquo;s nest of control flow and execution order.</p>
+
+
+
+
+<p>Quite a bit of activity has occurred in the research community surrounding more
+formal, more composable, and less fragile event handling. The buzzword de jour
+is &ldquo;<a href="http://c2.com/cgi/wiki?FunctionalReactiveProgramming">Functional Reactive Programming</a>&rdquo; (FRP) which, although quite varied by
+author, generally involves the concepts of continuous &ldquo;signals&rdquo;, discrete
+&ldquo;events&rdquo;, and some evaluation strategy. FRP was born of animation systems and
+is a fertile research area. More generally, FRP is a type of
+<a href="http://en.wikipedia.org/wiki/Dataflow_programming">dataflow programming</a>.  The &ldquo;reactive&rdquo; moniker also applies to the area of
+push-sequences, such as .NET&rsquo;s <a href="http://msdn.microsoft.com/en-us/library/dd990377.aspx">IObservable</a> and associated <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx">Reactive
+Extensions</a> (Rx).</p>
+
+
+
+
+<p>As fun as it has been to study FRP, there has been little success building real
+applications using its techniques. In my opinion, this is because FRP
+encourages a continuous model of your application, but most graphical
+applications are much more discrete in nature. Multimedia systems, like the
+animation system that motivated the first FRP paper, and games have quite a few
+continuous use cases. Point-and-click software, however, generally has discrete
+controls, with discrete values, and discrete commands. Consider, for example,
+the undo-able discrete mutations in the most broadly deployed dataflow
+application on the planet: spreadsheets. Although capable of representing
+discreet events, FRP systems project the mental framework of water flowing
+through pipes. This mental framework clashes badly with the more familiar event
+callback model. Furthermore, even for truly continuous use cases,
+discretization is essential to the nature of computation; every game
+fundamentally distills down to an update and render loop.</p>
+
+
+
+
+<p>I&rsquo;m still contemplating whether or not it is possible to build a databinding
+system that is an order of magnitude more expressive and composable than the
+existing state of the art. However, I&rsquo;m certain that the underlying
+architecture will be a discrete system which embraces a formal notion of time
+through an explicit notion of <a href="http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey">identity and value</a>.  Consider again the
+spreadsheet, where cells have an identity composed of their row and column
+labels. As you change the spreadsheet, the document updates the values in all
+cells synchronously in response to a discrete command. This approach can be
+extended to an arbitrary graph of identities connected by dataflow constraints.</p>
+
+
+
+
+<p>Given a sprawling graph of identities, you need some evaluation system for
+assigning values to each identity. Unlike a spreadsheet, many applications
+demand sophisticated and potentially cyclical bindings. In the face of
+multi-input, multi-output, and multi-directional dataflow, there are many
+potential evaluation strategies yielding many different graph linearizations.
+You need a constraint solver suited to the task. Luckily, Texas A&amp;M has studied
+this problem in collaboration with Adobe. Their approach is referred to as
+<a href="https://parasol.tamu.edu/~jarvi/papers/gpce08.pdf">Property Models</a> and addresses many of the issues with relying on solvers
+for user-facing constraint systems. The Property Models approach is much
+broader than simply databinding, it also considers predictability and
+effectively synthesizing commands, such as those recorded in Photoshop&rsquo;s
+History pane.</p>
+
+
+
+
+<p>At the core of the Property Model system, is a variation of Zanden&rsquo;s
+<a href="http://www.cparity.com/projects/AcmClassification/samples/225543.pdf">Incremental Algorithm for Satisfying Hierarchies of Multiway Dataflow Constraints</a>
+as described by <a href="https://parasol.tamu.edu/publications/download.php?file_id=670">Freeman, et al</a>. I&rsquo;ve produced a Clojure implementation of
+this algorithm called qplan.</p>
+
+
+
+
+<p>My intention is to use qplan as part of a larger approach to building graphical
+user interfaces. I expect a that a complete system requires a variety of
+algorithms and solvers tuned for particular use cases. For example, Adobe&rsquo;s
+<a href="http://stlab.adobe.com/group__asl__overview.html">Adam and Eve</a>, has both a Quickplan solver for property models and a
+linear constraint solver for layout.  An even more complete system may have an
+FRP evaluation strategy for animations.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Templating: Clojure's Backtick]]></title>
+    <link href="http://www.brandonbloom.name/blog/2012/11/23/templating-clojures-backtick/"/>
+    <updated>2012-11-23T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2012/11/23/templating-clojures-backtick</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>This post describes the motivation for my new Clojure library:
+<a href="https://github.com/brandonbloom/backtick">Backtick</a></p>
+
+
+
+
+<p>There is no shortage of template languages. In fact, there are probably far too
+many of them. Template languages fall into two major categories that I&rsquo;ll call
+<em>procedural</em> and <em>structural</em>. Procedural templating languages operate by
+emitting code as a side-effect. Structural templating languages operate on
+trees. For example, Ruby&rsquo;s
+<a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html">ERB</a> is procedural,
+where as <a href="http://haml.info/">HAML</a> is structural.</p>
+
+
+
+
+<p>The primary advantage of a text-based procedural template language is reach.
+ERB can be used to generate any type of text file, while HAML can only really
+be used to emit HTML. Reach is not without disadvantages, however. For one,
+it&rsquo;s quite easy to write incorrect ERB templates which emit invalid syntax,
+such as missing a close tag. Additionally, code with side effects can be
+difficult to refactor because execution order is critical. You can trivially
+generate SQL statements with an ERB template, but you&rsquo;ll quickly accumulate an
+incomprehensible mud ball, so you&rsquo;re better off working with a system that
+treats queries as data and lets you manipulate them structurally.
+Unfortunately, you&rsquo;ll need to implement a unique structural tool for each
+target data structure. If you&rsquo;re generating a lot of HTML, then using HAML is a
+great choice. But if you&rsquo;re only generating one HTML file among a sea of dozens
+of other arbitrary config file formats, then you really want ERB.</p>
+
+
+
+
+<p>Generalizing, structural templating systems are really just plain old pure
+functions. You take some data, let&rsquo;s say describing a blog post, and then you
+return some other data describing the rendered representation of that same
+post. This is a powerful realization because it enables you to utilize your
+language&rsquo;s full set of utility functions for refactoring your templates. For an
+HTML example, see <a href="http://webnoir.org/tutorials/html">Noir&rsquo;s partials</a> and
+their use of <a href="https://github.com/weavejester/hiccup">Hiccup</a>.</p>
+
+
+
+
+<p>When you get into the wonderful world of metaprogramming, templating systems
+encounter a series of new problems. First, there is multi-level escape
+character hell. Anyone who has ever tried to write a shell script, which
+substitutes arguments into an Awk script, which generates a config file, knows
+what I&rsquo;m talking about. Second, there is the issue of names. Unlike HTML or
+many simple config files, code generally have one or more notions of context,
+such as scoping or namespaces. You need to worry problems like
+<a href="http://www.bookshelf.jp/texi/onlisp/onlisp_10.html">variable capture</a>. Yikes!</p>
+
+
+
+
+<p>Early lisps discovered a mechanism for minimizing the pain of escape character
+hell: quoting. Quoting is similar to escaping, in much the same way that
+structural templates relate to procedural ones. Escaping lets one combine any
+two languages, provided the language on top provides a uniform escaping policy.
+However, with each new layer of languages, there is a new layer of escaping
+rules and, if those escape sequences conflict, you&rsquo;ll have to double-, or even
+triple-escape common metacharacters like apostrophes, backslashes, and dollar
+signs. There&rsquo;s no protection against incorrectly escaped strings and
+refactoring is thwarted by the need to increment and decrement escaping levels.
+In contrast, quoting takes advantage of Lisp&rsquo;s
+<a href="http://en.wikipedia.org/wiki/Homoiconicity">homoiconicity</a> to simplify
+template indirection into four composable, primitive operators: <code>quote</code>,
+<code>syntax-quote</code>, <code>unquote</code>, and <code>unquote-splicing</code>.</p>
+
+
+
+
+<p><em>If you&rsquo;re already a Clojure syntax-quote pro, you may want to skip down to the
+next section</em></p>
+
+
+
+
+<p>Due to their high frequency of use, both Common Lisp and Clojure reserve some
+of their limited syntax for these primitives. Common Lisp uses the apostrophe
+(&lsquo;), backtick (<code>`</code>), comma (,), and comma-at (,@) character sequences as
+shorthand for quote, syntax-quote, unquote, and unquote-splicing respectively.
+Because Clojure treats commas as whitespace, it substitutes tilde (~) and
+tilde-at (~@) sequences for the unquoting operators. I&rsquo;ll use Clojure&rsquo;s
+notation for my examples.</p>
+
+
+
+
+<p>The quote operator is used to protect symbols from evaluation. If I have a
+symbol x with value 5, then the expression (quote x) or &lsquo;x does not evaluate to
+5, it evaluates to the symbol x. Quoting is distributed recursively throughout
+a form. &rsquo;(f x) will protect both f and x from evaluation. It&rsquo;s this
+distributive property that allows quoting and unquoting to compose across
+multiple levels of templating.</p>
+
+
+
+
+<p>You might guess that <code>(unquote 'x)</code> or <code>~'x</code> would return <code>5</code>, but that operation is
+performed by the eval function: <code>(eval 'x)</code> does return <code>5</code>. Trying to unquote here
+will generate an error. This distinction is because eval is generally
+implemented as a function, not a macro or special form. It does not alter the
+interpretation of its inputs, so it&rsquo;s behavior doesn&rsquo;t play nice with the
+distributive property of quoting.</p>
+
+
+
+
+<p>Unquoting comes into play once you introduce syntax-quoting. Syntax-quotes are
+demarcated by a backtick, which can be thought of as switching Lisp into
+template mode. Like regular quotes, syntax-quotes are distributive. Unlike
+regular quote, which leaves its input form alone, syntax-quote transforms its
+input in two important ways: First it enables unquoting. You can think of
+unquoting like template variable substitution. Second, it resolves symbols.
+We&rsquo;ll come back to this second point later.</p>
+
+
+
+
+<p>Let&rsquo;s say that you want to generate the code <code>(f 1 (g 2 3))</code> where the numbers
+are provided by variables <code>x</code> and <code>y</code> holding the number <code>1</code> and the vector <code>[2 3]</code>
+respectively. You can accomplish this with the expression <code>(syntax-quote (f
+(unquote x) (g (unquote-splicing y))))</code>. Well, sort of. Clojure does not provide
+direct access to syntax-quote as a symbol. You need to use the shorthand form:
+<code>`(f ~x (g ~@y))</code>. Luckily, that&rsquo;s nicer to look at anyway.</p>
+
+
+
+
+<p>Unquote substitutes in a single value, like a dollar-sign in a shell script.
+Unquote-splicing is a little bit more interesting. When a syntax quote is
+transforming its inputs, it looks for unquotes and evaluates them. The
+evaluated result is substituted into the parent expression. Regular unquotes
+are substituted directly, but splicing unquotes cause the parent expression to
+be rewritten as a concatenation. The expression <code>`(a b ~@x c d)</code> is transformed
+into an expression resembling <code>(concat '(a b) x '(c d))</code>. The splicing operation
+is a more powerful alternative to a traditional templating language&rsquo;s looping
+constructs. It can also emulate a traditional templating language&rsquo;s if
+statement. The expression <code>`(f ~@(when b [x]))</code> will return code that passes the
+<code>x</code> argument to <code>f</code> only when <code>b</code> is true.</p>
+
+
+
+
+<p>As discussed previously, quoting and unquoting are distributive. This is what
+allows you to escape from escape character hell. The expression
+<code>`(f (g x) ~(h y `z))</code> distributes the quoting behavior down to <code>f</code>, <code>g</code>,
+and <code>x</code>, but the unquoting operator decrements the quoting level, such that
+neither <code>h</code> nor <code>y</code> are quoted.  The <code>z</code> is explicitly quoted, re-incrementing
+the quoting level. You can&rsquo;t do that with escape sequences, because, like a
+procedural template language, there is no explicit notion of the inherent tree
+structure.  It&rsquo;s worth noting that most lisps don&rsquo;t have an explicit quoting
+level, instead syntax-quote processes its inputs recursively; the quote level
+is maintained implicitly by the execution stack.</p>
+
+
+
+
+<p>That&rsquo;s not all you need to know about syntax-quote; there&rsquo;s also symbol
+resolution. Now that you&rsquo;ve escaped escape hell and you&rsquo;re writing structural
+templates, you&rsquo;re able to do bigger and better metaprogramming. If you&rsquo;re
+writing Common Lisp, you&rsquo;ll quickly run into the aforementioned variable
+capture problem: You&rsquo;ll generate code that includes name collisions. Clojure&rsquo;s
+syntax-quote differs from Common Lisp&rsquo;s by providing two mechanisms to combat
+this problem. First is namespace resolution. Clojure will expand <code>`inc</code>
+into clojure.core/inc and <code>`foobar</code> into <code>user/foobar</code>. This protects you
+from <a href="http://www.bookshelf.jp/texi/onlisp/onlisp_10.html#SEC69">free symbol capture</a>.
+Secondly, Clojure provides automatic gensyms. Symbols ending with a # character
+inside a syntax-quote are replaced by an automatically generated name. So the
+expression <code>`(x# x# y#)</code> will expand into something like <code>(x__1__auto__
+x__1__auto__ y__2__auto__)</code>, which is virtually impossible to cause <a href="http://www.bookshelf.jp/texi/onlisp/onlisp_10.html#SEC68">macro
+argument capture</a>. As
+linked several times, <a href="http://www.paulgraham.com/onlisp.html">Paul Graham&rsquo;s On
+Lisp</a> is the best source for
+understanding these issues more deeply.</p>
+
+
+
+
+<p>[Experienced Clojurians can start reading from here]</p>
+
+
+
+
+<p>OK, so now that you have an extremely powerful template language baked into
+Clojure&rsquo;s syntax-quoting mechanism, you still have the problem of reach: What
+good is a template language if you can only generate Clojure code with it? What
+if you need to generate some HTML? Or what about that Awk script?</p>
+
+
+
+
+<p>Unfortunately, the template language can only really yield Clojure forms.
+Luckily, Clojure forms are relatively rich with a variety of primitives and
+collection types, so much of the Clojure community uses them for configuration
+files and DSLs. If you&rsquo;re generating input to these Clojure systems, you&rsquo;re in
+good shape. You don&rsquo;t have quite the same reach as &ldquo;all tools that operate on a
+stream of characters&rdquo;, but &ldquo;any library in the Clojure ecosystem&rdquo; is a pretty
+damn good start. If you&rsquo;re going to create a system to structurally generate
+SQL queries, you&rsquo;ll need to build some kind of query representation that can be
+compiled to a SQL string. In a non-homoiconic language, you&rsquo;d eventually need
+to come up with a new structural template engine too. In Clojure, your query
+library will get that template engine for free!</p>
+
+
+
+
+<p>However, there is still a problem. When you first encountered code duplication,
+you reached for a simple procedural text template. Now you have the escape
+sequence problem. Lisp mitigates the escape sequence problem with quoting. But
+once you have larger scale templates, you start running into the variable
+capture problem. So Clojure solves the variable capture problem with an
+enhanced syntax-quote. Well just as each prior solution yields a new problem,
+so too does Clojure&rsquo;s enhanced syntax-quote.</p>
+
+
+
+
+<p>The problem is that Clojure tightly couples the syntax-quote symbol resolution
+to Clojure&rsquo;s namespace system. This isn&rsquo;t usually a problem if you&rsquo;re always
+using syntax-quotes to generate code that will ultimately be executed in your
+local Clojure environment. However, consider the case of generating code to be
+executed in a <em>remote</em> Clojure environment. Or what about generating Clojure
+forms that will be compiled to SQL procedures to be executed on your database
+server? In those two cases, it&rsquo;s less likely that resolving symbols against the
+locally loaded namespaces is a useful behavior. Suddenly, Clojure&rsquo;s powerful
+template language is unavailable to you! Either you have to piece together your
+own template system, just as a non-homoiconic language, or you need to play
+tricks by manually or procedurally defining vars. Ouch.</p>
+
+
+
+
+<p>Enter <a href="https://github.com/brandonbloom/backtick">Backtick</a>.</p>
+
+
+
+
+<p>Backtick is an absurdly simple library. It provides Clojure&rsquo;s syntax-quote
+reader macro as a normal macro. You can create new template quoting macros by
+providing a custom symbol resolver. Check it out!</p>
+
+
+
+
+<h3>Comments</h3>
+
+
+
+
+<h4>drcode said&hellip;</h4>
+
+
+
+
+<p>Thanks- I need this.</p>
+
+
+
+
+<p>Conrad Barski</p>
+
+
+
+
+<h4>Brandon Bloom said&hellip;</h4>
+
+
+
+
+<p>Cool! Let me know how it works out for you.</p>
+
+
+
+
+<h4>Unknown said&hellip;</h4>
+
+
+
+
+<p>I really needed this!
+Thank you for making this available.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ClojureScript Projects]]></title>
+    <link href="http://www.brandonbloom.name/blog/2012/11/22/clojurescript-projects/"/>
+    <updated>2012-11-22T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2012/11/22/clojurescript-projects</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>I stumbled across <a href="http://clojure.org/">Clojure</a> a few times, but I&rsquo;ve fallen in love with it
+sometime over the past year. I&rsquo;ve always loved the idea of Lisp, but I never
+loved any particular Lisp until Clojure.</p>
+
+
+
+
+<p>The name &ldquo;CLoJure&rdquo; comes from C#, Lisp, and Java. The best parts of each of
+community clearly shine through. Bolstered by the Java community, Clojure
+combines all the expressiveness of a Lisp in a package that makes everything
+seem as easy as C#. That last point deserves elaboration: C# has managed to
+empower the average code monkey with lambdas, closures, generics, expression
+trees, and futures. Similarly, Clojure empowers the average senior developer
+with immutability, macros, flexible dispatch, software transactional memory,
+interactive development, and a whole lot more! Plus, it&rsquo;s free and open source!
+Rich Hickey has an incredible talent for distilling good ideas down into
+understandable bite sized chunks, making agreeable tradeoffs, and then deftly
+guiding the community.</p>
+
+
+
+
+<p>Lately, I&rsquo;ve been spending a lot of my spare cycles working on
+<a href="http://github.com/clojure/clojurescript">ClojureScript</a>.  Hacking on the ClojureScript compiler and runtime has been
+more fun than I can ever recall in my programming career. It&rsquo;s an incredible
+toolkit that I intend to utilize heavily in my next startup, so I feel like my
+hours and hours of fiddling with cljs.core is extremely worthwhile. I&rsquo;ve
+already contributed 20+ patches!</p>
+
+
+
+
+<p>As fun as hacking on ClojureScript is, it&rsquo;s probably a better idea to hack on
+something that uses ClojureScript, rather than ClojureScript itself. Paul
+Graham described Hacker News as <a href="http://www.paulgraham.com/hackernews.html">an application to sharpen Arc on</a>. Paul is
+right in saying that you need the top down pressure of a real application to
+motivate the design and implementation of the language from the bottom up.
+Although where his goal is <a href="http://paulgraham.com/arcchallenge.html">brevity</a>, Rich&rsquo;s goal is <a href="http://www.infoq.com/presentations/Simple-Made-Easy">simplicity</a>. While
+Paul has seemingly effortlessly scaled Hacker News to a 1M+ daily pageview
+community, Rich has seemingly effortlessly <a href="http://www.datomic.com/">reinvented the database</a>.</p>
+
+
+
+
+<p>ClojureScript hasn&rsquo;t found its killer application yet. There is a lot of
+interest around the project, but only a handful of active contributors and
+production users. People like <a href="http://www.chris-granger.com/">Chris Granger</a> are pushing down on the top
+with ambitious applications like <a href="http://www.lighttable.com/">Light Table</a>, but we need others. Chris is
+starting to make re-inventing the IDE look effortless, but his application
+prefers to be installed outside the browser, generally on Macs, so it isn&rsquo;t
+clear to me if his vision remains squarely in the
+HTML/CSS/JavaScript-targeting, client/server sweet spot.</p>
+
+
+
+
+<p>It has been over seven years since Gmail and Google Maps has made us re-think
+what is possible in the browser. I sense that ClojureScript holds the key to
+the next generation of re-thinking what&rsquo;s possible in client-side applications.
+As I ponder my next startup, I&rsquo;m going to be on the lookout for just such an
+application. In the meantime, I&rsquo;ll be open sourcing some of the technology I&rsquo;m
+building as I explore that path.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Learn to Read the Source, Luke]]></title>
+    <link href="http://www.brandonbloom.name/blog/2012/04/16/learn-to-read-the-source-luke/"/>
+    <updated>2012-04-16T00:00:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2012/04/16/learn-to-read-the-source-luke</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>Apparently, I&rsquo;m Jeff Atwood&rsquo;s guest blogger today:
+<a href="http://www.codinghorror.com/blog/2012/04/learn-to-read-the-source-luke.html">Learn to Read the Source, Luke</a></p>
+
+
+
+
+<p>Since I wrote <a href="https://news.ycombinator.com/item?id=3769665">the original Hacker News comment</a>, I figured I might as well
+reproduce it in full here.</p>
+
+
+
+
+<blockquote><p>I started working with Microsoft platforms professionally at age 15 or so. I
+worked for Microsoft as a software developer doing integration work on Visual
+Studio. More than ten years after I first wrote a line of Visual Basic, I
+wish I could never link against a closed library ever again.</p>
+
+<p>Using software is different than building software. When you&rsquo;re using most
+software for its primary function, it&rsquo;s a well worn path. Others have
+encountered the problems and enough people have spoken up to prompt the core
+contributors to correct the issue. But when you&rsquo;re building software, you&rsquo;re
+doing something new. And there are so many ways to do it, you&rsquo;ll encounter
+unused bits, rusty corners, and unfinished experimental code paths. You&rsquo;ll
+encounter edge cases that have been known to be broken, but were worked
+around.</p>
+
+<p>Sometimes, the documentation isn&rsquo;t complete. Sometimes, it&rsquo;s wrong. The
+source code never lies. For an experienced developer, reading the source can
+often be faster… especially if you&rsquo;re already familiar with the package&rsquo;s
+architecture.  I&rsquo;m in a medium-sized co-working space with several startups.
+A lot of the other CTOs and engineers come to our team for guidance and
+advice on occasion.  When people report a problem with their stack, the first
+question I ask them is: &ldquo;Well, did you read the source code?&rdquo;</p>
+
+<p>I encourage developers to git clone anything and everything they depend on.
+Initially, they are all afraid. &ldquo;That project is too big, I&rsquo;ll never find
+it!&rdquo; or &ldquo;I&rsquo;m not smart enough to understand it&rdquo; or &ldquo;That code is so ugly! I
+can&rsquo;t stand to look at it&rdquo;. But you don&rsquo;t have to search the whole thing, you
+just need to follow the trail. And if you can&rsquo;t understand the platform below
+you, how can you understand your own software? And most of the time, what
+inexperienced developers consider beautiful is superficial, and what they
+consider ugly, is battle-hardened production-ready code from master hackers.
+Now, a year or two later, I&rsquo;ve had a couple of developers come up to me and
+thank me for forcing them to sink or swim in other people&rsquo;s code bases. They
+are better at their craft and they wonder how they ever got anything done
+without the source code in the past.</p>
+
+<p>When you run a business, if your software has a bug, your customers don&rsquo;t
+care if it is your fault or Linus&#8217; or some random Rails developer&rsquo;s. They
+care that your software is bugged. Everyone&rsquo;s software becomes my software
+because all of their bugs are my bugs. When something goes wrong, you need to
+seek out what is broken, and you need to fix it. You fix it at the right spot
+in the stack to minimize risks, maintenance costs, and turnaround time.
+Sometimes, a quick workaround is best. Other times, you&rsquo;ll need to recompile
+your compiler. Often, you can ask someone else to fix it upstream, but just
+as often, you&rsquo;ll need to fix it yourself.</p>
+
+<p>Closed-software shops have two choices: beg for generosity, or work around
+it.  Open source shops with weaker developers tend to act the same as
+closed-software shops.  Older shops tend to slowly build the muscles required
+to maintain their own forks and patches and whatnot.  True hackers have come
+to terms with a simple fact: If it runs on my machine, it&rsquo;s my software. I&rsquo;m
+responsible for it. I must understand it. Building from source is the rule
+and not an exception. I must control my environment and I must control my
+dependencies.</p></blockquote>
+
+
+
+
+<p>After reproducing my comment, Jeff wrote:</p>
+
+
+
+
+<blockquote><p>Nobody reads other people&rsquo;s code for fun. Hell, I don&rsquo;t even like reading my
+own code. The idea that you&rsquo;d settle down in a deep leather chair with your
+smoking jacket and a snifter of brandy for a fine evening of reading through
+someone else&rsquo;s code is absurd.</p></blockquote>
+
+
+
+
+<p><a href="https://news.ycombinator.com/item?id=3851767">I disagree</a>.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[REST: One Thousand Inconsequential Decisions]]></title>
+    <link href="http://www.brandonbloom.name/blog/2012/02/26/rest-one-thousand-inconsequential-decisions/"/>
+    <updated>2012-02-26T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2012/02/26/rest-one-thousand-inconsequential-decisions</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>Hardly a week goes by without yet another Hacker News front page post by a
+blogger making a bold declaration about some important thing you <i>absolutely
+must do</i> if you want your API to be &ldquo;RESTful&rdquo;. With
+<a href="http://weblog.rubyonrails.org/2012/2/26/edge-rails-patch-is-the-new-primary-http-method-for-updates">Rails&#8217; recent PATCH announcement</a>, REST is all over the front page again.</p>
+
+
+
+
+<p>In my experience designing and consuming APIs of varying levels of RESTfulness,
+I&rsquo;ve concluded that most of the decisions involved in designing a RESTful API
+are completely inconsequential. PUT vs POST vs PATCH? HATEOAS vs manual URL
+construction? JSON vs custom Mimetype? It&rsquo;s all the same to an API consuming
+<i>developer</i>. It might matter to some kind of generic crawler, but I&rsquo;m not
+building an API for crawlers, so I don&rsquo;t care.</p>
+
+
+
+
+<p>What follows is a series of rants about various parts of the grand REST debate.
+This is by no means comprehensive. My goal with this post isn&rsquo;t to discourage
+you from writing a REST API. I simply want you to spend your time on the API
+decisions that matter, not the cosmetic, inconsequential ones.</p>
+
+
+
+
+<h4>HTTP Verbs &amp; Status Codes</h4>
+
+
+
+
+<p>The Rails PATCH announcement states &ldquo;both PUT and PATCH are routed to update&rdquo;.
+So what&rsquo;s the difference? Apparently PATCH is for partial updates, where as PUT
+is for complete replacement of resources. Here&rsquo;s the funny bit: Both of these
+are implemented via POST with a <code>_method</code> parameter for support of older
+browsers. The only two HTTP Verbs that actually matter are GET, for idempotent,
+cachable requests; and POST, for side-effects. Even DELETE is insufficiently
+defined for any real application. What if you want to support both Archive and
+Delete like Gmail?</p>
+
+
+
+
+<p>Which response codes should you use? Those which have specific meaning to HTTP
+clients. Specifically: those treated differently by browsers. Should you use
+201 on create instead of 200? Who cares? Should you use 301 or 302 for
+redirects? In an API, it doesn&rsquo;t matter. Pick one. Document it. For your actual
+web page, consult an SEO guide.</p>
+
+
+
+
+<p>What about errors? If you don&rsquo;t have permission to see a resource, is that a
+403? Or do you hide the existence of the resource and return a 404 (like
+GitHub)? It doesn&rsquo;t matter. Return a 4xx for expected caller errors and a 5xx
+for unexpected errors. Pick one. Document it.</p>
+
+
+
+
+<p>The smart thing to do is to always return your resources within one level of
+nesting. That is an <i>item</i> key in JSON or an <i>item </i>element in XML.
+Do this so that you can add an <i>error</i> key or other metadata without
+breaking changes. For example, you may want a <i>timings</i> key for perf
+debugging. For lists, use an <i>items</i> key because pretty soon, you&rsquo;re going
+to want a <i>paging</i> key. Also, for errors, make sure you include a
+non-localized (and hence, Google-able) error string; a status code is
+insufficient.</p>
+
+
+
+
+<h4>Hating On HATEOAS</h4>
+
+
+
+
+<p>HATEOAS, an absurd mouthful of an acronym, is a complete waste of time outside
+of read-only semi-structured datasets. If you&rsquo;re FreeBase, then go to town with
+HATEOAS conventions that are useful to you. However, for your typical webapp
+API, you simply cannot build a useful API client application without deep
+knowledge of the problem domain and the available API calls. You&rsquo;re going to
+have API documentation and you&rsquo;re going to have to read it.</p>
+
+
+
+
+<p>By all means, feel free to use HTTP 201 and a <i>Location</i> header to return
+the location of a newly created resource. Or you could just return the resource
+as JSON with an <i>href</i> or <i>id</i> key. That&rsquo;s yet another
+inconsequential decision. Might as well go with the path of least resistance:
+return interesting data in the body of the response (ie. in the JSON) where it
+can be accessed without additional effort to parse the headers. As long as your
+response code is in the 200 range, no one is going to look at it further.</p>
+
+
+
+
+<p>I&rsquo;ve seen people advocate <i>Link</i> headers such as <i>rel=&ldquo;newcomment&rdquo;.</i>
+It&rsquo;s weird to me because you still need to know which <i>rel</i> to lookup. The
+same thing applies to returning a bunch of extra URLs as metadata in your JSON.
+You still need to know which key to look up for the post-new-comment URL. You
+might as well just appended <i>&ldquo;/comments&rdquo;</i> and avoid the indirection.
+<i>Link</i> and <i>rel</i> are useful to generic tools that want to treat a
+wide range of resources the same. There aren&rsquo;t enough common aspects between
+the domain models of a typical API to justify the spare brain cycles. Again, if
+you&rsquo;re Wikipedia, your use case is different. You have generic data that you
+want to traverse generically. And again, that&rsquo;s a mostly read-only use case.</p>
+
+
+
+
+<h4>Versioning</h4>
+
+
+
+
+<p>Some REST fans advocate the use of custom MIME types for API versioning. These
+folks believe that version numbers in URLs are ugly. The usual objection is
+that resources should be equitable by URL and that <i>/v1/users/5</i> and
+<i>/v2/users/5</i> are different resources. The problem here is that this
+resource is actually identified by just the number. You don&rsquo;t need the whole
+URL and practical constraints are going to make it impossible to equate
+resources by URL. Consider the constraint of browsers&#8217; Same Origin Access
+Policy. You need <i>api.example.com</i> to run your public API on it&rsquo;s own IP
+address. And you need <i>example.com/api/</i> to make calls from your web
+frontend without jumping through crazy IFrame interop hacks.</p>
+
+
+
+
+<p>There are two types of API changes: 1) Backward Compatible, and 2) Breaking
+Changes. In the case of backwards compatible changes, you don&rsquo;t have to, nor
+should you, change version numbers. Simply add the additional method or
+additional return data. Nothing to worry about. In the case of breaking
+changes, you <i>want</i> to break clients as loudly as possible. If you simply
+change the MIME type, most consumers of the API are totally going to ignore it.
+If you deploy your new API at <i>api2.example.com</i>, then there is no risk of
+breaking older clients and they have to make a conscious decision to upgrade.</p>
+
+
+
+
+<p>In general, you&rsquo;re probably going to want to protect yourself with API keys.
+API keys provide the best way to version your API: record the desired API
+version with the generated key. Just stick an <i>api_version</i> column on your
+<i>api_keys</i> table. Expose that column as a drop down box in your API key
+management UI. This solution let&rsquo;s you leave the &ldquo;ugly&rdquo; version number out of
+the URL, but still enforce breakage on breaking changes. The best part is that
+you can totally ignore API keys and versioning when you start: Simply default
+unregistered API consumers to use v1 when you do implement v2.</p>
+
+
+
+
+<p>Last word on custom MIME types: One of the great promises of REST is the
+ability to treat generic things, generically. If your MIME type isn&rsquo;t a
+standard JSON MIME type, then how can you expect your browser to render it
+nicely with syntax highlighting and code folding? Your data is structured as
+JSON or XML; if you want to version the schema, use the facilities provided by
+XSDs or JSON Schemas, etc. But you&rsquo;re better off with documentation written by
+humans, for humans, than you are with formal schema.</p>
+
+
+
+
+<h4>REST: The Good Parts</h4>
+
+
+
+
+<p>There are a lot of good reasons why REST has gained popularity. For one thing,
+it isn&rsquo;t SOAP.</p>
+
+
+
+
+<p>The good ideas in REST are primarily predictable URLs, contractual idempotence,
+the <a href="http://news.ycombinator.com/item?id=2858712">preference of nouns
+over verbs</a>, and CURL as a client library. In practice, you can get
+contractual idempotence via GET vs POST. Predictable URLs are no different than
+predictable function names in all typical library code.</p>
+
+
+
+
+<p>All this other stuff, the finer points of URIs and HTTP headers, are completely
+inconsequential to a developer programming against a well documented API.</p>
+
+
+
+
+<h2>Imported Comments</h2>
+
+
+
+
+<h3>Xavier Noria</h3>
+
+
+
+
+<p>Note that the motivation for PATCH in Rails is to follow HTTP semantics, it is
+unrelated to REST.</p>
+
+
+
+
+<h3>Lars Gierth</h3>
+
+
+
+
+<blockquote><p>It&rsquo;s all the same to an API consuming developer. It might matter to some kind
+of generic crawler, but I&rsquo;m not building an API for crawlers, so I don&rsquo;t
+care.</p></blockquote>
+
+
+
+
+<p>That&rsquo;s how you&rsquo;re consuming APIs now! Imagine building a client that doesn&rsquo;t
+break if the API changes its semantics.</p>
+
+
+
+
+<p>The idea of versioning APIs is bad though, as it&rsquo;s contradicting the idea of
+building sustainable web services.</p>
+
+
+
+
+<h3>Brandon Bloom</h3>
+
+
+
+
+<p>@Xavier: What benefit do I get from following the rules of HTTP semantics on
+this point? Semantics are only worth having if they make a distinction that is
+useful in practice. HTTP experimented with various verbs and it turns out that
+two are universally useful: GET and POST. The rest are ancillary.</p>
+
+
+
+
+<p>@Lars: Your two points conflict. You should only make breaking changes if
+you&rsquo;re changing your models meaningful. When you make a breaking change, you
+use versioning strategies like changing the base URL. When your models change
+meaningfully, your clients will need to change to present the new view of the
+problem domain. If you&rsquo;ve versioned correctly, old apps will work on the old
+API version and new ones will work on the new API version. It&rsquo;s impossible for
+an old client to magically support new concepts.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Plugging a hole in Microsoft's hiring pipe: IE Frame]]></title>
+    <link href="http://www.brandonbloom.name/blog/2012/01/14/plugging-a-hole-in-microsoft-s-hiring-pipe-ie-frame/"/>
+    <updated>2012-01-14T00:00:00-08:00</updated>
+    <id>http://www.brandonbloom.name/blog/2012/01/14/plugging-a-hole-in-microsoft-s-hiring-pipe-ie-frame</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>You&rsquo;re probably familiar with <a href="http://code.google.com/chrome/chromeframe/">Google Chrome Frame</a>, Google&rsquo;s clever workaround to combat Internet Explorer dependency in enterprises. You&rsquo;re probably also aware that <a href="http://arstechnica.com/microsoft/news/2009/09/microsoft-google-chrome-frame-makes-ie-less-secure.ars">Microsoft is not a fan</a>.</p>
+
+
+
+
+<p>Microsoft desperately needs to implement an equivalent &ldquo;Internet Explorer 10
+Frame&rdquo; mass deployed as a high-priority Windows Update. Failure to do so all
+but guarantees that Microsoft will become completely incapable of hiring a
+sufficient supply of talented graduates.</p>
+
+
+
+
+<p>The key issue is that two of the major vectors for aspiring engineers are no
+longer dominated by Microsoft technology.</p>
+
+
+
+
+<h4>Javascript is the New Basic</h4>
+
+
+
+
+<p>Microsoft QBasic was my first experience with programming, but I got started a
+few years earlier than most of my peers. The students I graduated college with
+largely had their first foray into text editing via HTML. Browsers are
+installed on every computer on the market and web development skills are vital
+for nearly all professional developers (even those not doing full-time web
+development). This puts Microsoft in a really bad spot: every budding
+developer&rsquo;s first impression of Microsoft is &ldquo;IE SUCKS!!!!11!!one!&rdquo;.</p>
+
+
+
+
+<h4>Microsoft&rsquo;s Stranglehold on Gaming is Loosening</h4>
+
+
+
+
+<p>When I was employed by Microsoft, I took an informal survey of my recently
+hired peers. I worked in the gaming division, so my view was skewed: they
+almost all got into programming via PC gaming. If you loved games, you ran
+Windows. If you wanted to make games, you learned Microsoft Visual C++.
+However, times are changing. Apple&rsquo;s iPhone is the biggest gaming platform on
+the planet. Your family computer is probably a Mac by now and your Xbox doesn&rsquo;t
+come with a compiler. Why not learn Objective-C? Furthermore, canvas games are
+popping up everywhere and it won&rsquo;t be long before WebGL is common place. Soon
+enough, a significant subset of aspiring game developers only have to boot
+Windows to test something in Internet Explorer. <em>sigh</em>.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[One year after accidentally falling in love with Rails]]></title>
+    <link href="http://www.brandonbloom.name/blog/2011/09/24/one-year-after-accidentally-falling-in-love-with-rails/"/>
+    <updated>2011-09-24T00:00:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2011/09/24/one-year-after-accidentally-falling-in-love-with-rails</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>About a year ago, I wrote a post titled&nbsp;<a href="http://blog.brandonbloom.name/2010/09/how-two-pythonistas-accidentally-fell.html">How two Pythonistas accidentally fell in love with Rails</a>. Some people predicted that the honeymoon would be over quickly and that I would soon hate it.</p>
+
+
+
+
+<p><b>So, do I still love Rails?</b></p>
+
+
+
+
+<p>Yes. Absolutely.</p>
+
+
+
+
+<p>The prototype and first beta version of <a href="http://www.thinkfuse.com/">my startup</a> was built entirely on Rails. The framework enabled us to build our site significantly faster than we would have been able to without it. For that, I still love Rails. It was critical in helping us get to where we are today.</p>
+
+
+
+
+<p>It&rsquo;s the perfect <i>hammer</i> for the v1, nebulous direction, rapid development,&nbsp;<i>nail</i>.</p>
+
+
+
+
+<p><b>That said, we&rsquo;re not using Rails for any new components.</b></p>
+
+
+
+
+<p>After getting a lot of feedback from our first beta, we realized we had the wrong approach to the UI.&nbsp;Now, in our second attempt, we&rsquo;ve got a much richer client-side front-end, written in <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> and bootstrapped by <a href="http://nodejs.org/">Node.js</a>. Ruby/Rails is simply not the right tool for that job. In the new world of the browser app, even the folks of 37signals have been accused of&nbsp;<a href="https://github.com/rails/rails/commit/9f09aeb8273177fc2d09ebdafcc76ee8eb56fe33">propping&nbsp;up their successor</a>.</p>
+
+
+
+
+<p>Luckily, we had a pretty good handle on the models in the problem domain. So I ran <code>git rm -r app/views</code> and effectively turned the Rails app into a Json API backend. The models have evolved, but not by much. In fact, there were a few months where the Ruby code remained practically unchanged while we developed the frontend.</p>
+
+
+
+
+<p>As time goes on, we&rsquo;ve been breaking our API layer apart into several services. It makes development, deployment, and versioning easier. Service Oriented Architecture is working great for us&hellip; now that we know what services we need. These services are each too simple to justify the overhead of Rails. Some are Node.js, some are Sinatra, some are cron jobs and shell scripts. We&rsquo;re polyglots, so we&rsquo;re careful to choose the right tools for each job.</p>
+
+
+
+
+<p>We&rsquo;d have gotten it very wrong if we tried to build services from the start. The monolithic Rails app was the correct evolutionary intermediate form.</p>
+
+
+
+
+<p><b>Given a time machine, would I have done anything differently?</b></p>
+
+
+
+
+<p>Only one thing:&nbsp;<a href="http://seldo.com/weblog/2011/08/11/orm_is_an_antipattern">I wouldn&rsquo;t have used ActiveRecord</a>.</p>
+
+
+
+
+<p>I guess&nbsp;<a href="http://blog.brandonbloom.name/2009/10/orms-and-declarative-schemas.html">I should have seen that one coming</a>. ORMs are an insidious, broken abstraction. At first, they save you time and make you feel productive. They work out splendidly for a while, but like a virus, they infect every part of your application. One day, you hit that abstraction brick wall and it&rsquo;s too late to do anything about it without significant effort.</p>
+
+
+
+
+<div>
+</div>
+
+
+
+
+<p><b>Are there things I hate about Rails?</b></p>
+
+
+
+
+<p>Ignoring ActiveRecord, only one thing really stands out: Performance.</p>
+
+
+
+
+<p>I&rsquo;m not even talking about page load times. I&rsquo;m talking about development time.</p>
+
+
+
+
+<p>Even with our modestly sized application, the impact on productivity is&nbsp;atrocious. Our test suite runs far too slowly to be waited on for every checkin. Rake&rsquo;s startup time is too great to for its usage to be considered &ldquo;interactive&rdquo;. Simple shell scripts have replaced practically all of our custom tasks; they are instantaneous.</p>
+
+
+
+
+<p><b>Isn&rsquo;t this basically the same <a href="http://blog.brandonbloom.name/2009/08/dropping-django.html">story I told about Django</a>?</b></p>
+
+
+
+
+<p>Yeah, I guess it is.</p>
+
+
+
+
+<p>The story basically goes:</p>
+
+
+
+
+<ol><li>Use a framework</li><li>Be productive</li><li>Encounter shortcomings</li><li>Stretch it to work</li><li>Watch it break</li><li>Replace components</li><li>Loop steps three to six</li><li>Be productive</li><li>&#8220;Where&#8217;s the framework?&#8221;</li></ol>
+
+
+
+
+<div>I still stand by my original&nbsp;criticisms&nbsp;of Django (although, I&#8217;m sure much as changed in the last year). I&#8217;m also re-affirmed in my belief that big frameworks are generally bad. It just so happens that Rails is good enough and matches my mindset well enough to justify the framework pains.</div>
+
+
+
+
+<p>  </div></p>
+
+
+
+
+<h2>Imported Comments</h2>
+
+
+
+
+<h4>rweald</h4>
+
+
+
+
+<p>If you are annoyed by your slow test times you should watch this presentation by Corey Haines at gogaruco
+<a href="http://confreaks.net/videos/641-gogaruco2011-fast-rails-tests">http://confreaks.net/videos/641-gogaruco2011-fast-rails-tests</a>      </div></p>
+
+
+
+
+<h4>Scott</h4>
+
+
+
+
+<p>I&rsquo;m going through using Django (1.2) coming from Rails to maintain and extend a legacy web app.  Generally I find Django more limited and painful than the Rails equivalent.  Maybe it&rsquo;s the way we create apps or just personal preference.</p>
+
+
+
+
+<p>I think it really depends what kind of web application you&rsquo;re building as to what works out well.</p>
+
+
+
+
+<p>Most of the web apps we deploy have pretty limited usage and are closer to the prototype side of things. They are niche, custom, broadly educational-market things that have a lot of customized UI flourishes, but underneath everything are more or less standard data driven forms-type apps.</p>
+
+
+
+
+<p>The indentation of Python that some people fuss about doesn&rsquo;t bother me at all since I indent correctly anyway. Python&rsquo;s methods often feel misplaced with the wrong objects to me, though.</p>
+
+
+
+
+<p>The Ruby &lsquo;end&rsquo; statements take a bit more space but Ruby optimizes in other ways such as with blocks and things that make the code shorter in other ways.  It&rsquo;s more or less a wash as far as I can tell for code brevity.</p>
+
+
+
+
+<p>A lot of people I know and respect love Python and Django.  I can&rsquo;t tell them they&rsquo;re wrong, but I&rsquo;m personally much more productive in Ruby even after getting used to Python for a number of months.</p>
+
+
+
+
+<p>Python performance is better than Ruby&rsquo;s, but Rails 3.1/Ruby 1.9.2 feels much faster than previous older versions of Ruby and Rails to me.</p>
+
+
+
+
+<p>I don&rsquo;t think there is a clear winner for all situations in the Ruby vs. Python and Rails vs. Django religious wars, but I know I prefer and work much better with Rails than with Django even after some significant ramp-up time.      </div></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stupid brain trick: Tests and vertical splits]]></title>
+    <link href="http://www.brandonbloom.name/blog/2011/08/16/stupid-brain-trick-tests-and-vertical-splits/"/>
+    <updated>2011-08-16T00:00:00-07:00</updated>
+    <id>http://www.brandonbloom.name/blog/2011/08/16/stupid-brain-trick-tests-and-vertical-splits</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p>Recently discovered a stupid brain trick that I thought was worth sharing.</p>
+
+
+
+
+<p>When writing code with unit tests, I find it helpful to view the tests and the
+implementations side by side. I use vertical splits in Vim to do this.</p>
+
+
+
+
+<p>The stupid brain trick is this: <b>Put your tests in the left-hand split!</b></p>
+
+
+
+
+<p>Why? I traditionally used the left-hand split for the &ldquo;main&rdquo; thing I&rsquo;m working
+on and the right-hand split for reference. I&rsquo;ve watched many other developers
+do the same thing. The right split is constantly sub-split horizontally and
+always changing to various different files.</p>
+
+
+
+
+<p>In trying to be better about writing tests <em>first</em>, I created a test code file
+before the implementation file, so it just happened to be in my left-hand
+split. After an hour or so of development, I realized that the &ldquo;main&rdquo; file
+placement of the tests meant that I focused more on them. I viewed the actual
+implementation file as just some ancillary file I had to tweak to get my tests
+to pass. It changed the focus of what I was doing from &ldquo;Write a method that
+does X&rdquo; to &ldquo;Describe X&rdquo;. Describing something involves breaking it up in to
+smaller and smaller pieces until the implementations are so trivial that they
+basically write themselves.</p>
+
+]]></content>
+  </entry>
+  
+
+</feed>

@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Slurp & Spit - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="Does nobody teach fopen anymore? Many programmers start with &ldquo;Hello World&rdquo;. Shortly after that, it&rsquo;s &ldquo;Hello
+$NAME&rdquo;, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2013/06/26/slurp-and-spit">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Slurp & Spit</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-26T11:59:00-07:00" pubdate data-updated="true">Jun 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Does nobody teach fopen anymore?</h2>
+
+<p>Many programmers start with &ldquo;Hello World&rdquo;. Shortly after that, it&rsquo;s &ldquo;Hello
+$NAME&rdquo;, with a string read off stdin. But soon, budding engineers get tired of
+reminding their computer of their name each and every time their code runs.
+When I was first learning to program, file IO was an early requirement. We were
+taught how to read and write &ldquo;data files&rdquo; using little more than fopen,
+fscanf, fprintf, and fclose.</p>
+
+<p>Fast forward five to ten years; you find yourself writing your 10 millionth SQL
+query, wishing for simpler times. Spend some more time with the NoSQL database
+du jour and the humble fopen function will be but a distant memory.  Until that
+one fateful day arrives where you&rsquo;ve got a relatively simple program and
+encounter the need for equally simple durability. Five years ago, you&rsquo;d have
+cracked your knuckles and hacked out a pair of &ldquo;save&rdquo; and &ldquo;load&rdquo; functions.
+Today, you add a dependency on your favorite database driver, switch to the
+shell, type <code>createdb myapp</code> and then dutifully begin defining a lovely schema.
+Of course, now you need to either rework your models to conform to some horrid
+ORM layer, or write save/load-style &ldquo;hydrate&rdquo; and &ldquo;dehydrate&rdquo; methods anyway.</p>
+
+<p>Now, at ten years and a day, you decide it&rsquo;s finally time to learn that hip new
+programming language that everybody is talking about. You&rsquo;ve got your book out,
+you&rsquo;ve rocked through all your favorite technical interview puzzles, and you&rsquo;re
+ready to put together a little web service for personal or small group use.  If
+this was yesterday, you&rsquo;d know exactly what dependency to add and how to
+proceed, but that was yesterday. Today, you do some Googling or hop into IRC
+looking to find out what&rsquo;s popular.</p>
+
+<p>Why don&rsquo;t you even consider fopen?</p>
+
+<h2>But files aren&rsquo;t &ldquo;Web Scale&rdquo;!</h2>
+
+<p>Is that really true? And do you really care? Should you really care?</p>
+
+<p>The answer to all of these questions is &ldquo;No&rdquo;. Files can easily be &ldquo;web scale&rdquo;.
+As of 2013, Hacker News is still running as a single process, on a single core,
+of a single server, backed by a directory structure of simple data files.
+Nearly 2 million page views are served daily. See <a href="https://news.ycombinator.com/item?id=5229522">this thread</a> and
+<a href="https://news.ycombinator.com/item?id=5253773">this submission</a> for details.</p>
+
+<p>The bottom line on this subject is that 1) You&rsquo;re going to need significant
+cleverness to scale any service regardless of whether you use a database or the
+file system directly. And 2) You probably won&rsquo;t need to scale hugely anytime
+soon, anyway. Being crushed by traffic is a Good Problem To Have, so let&rsquo;s
+worry about the Ghost Town problem first. 3) You can always refactor later.</p>
+
+<h2>Data Literals: print, read, spit, and slurp</h2>
+
+<p>This article was prompted by a reoccurring discussion started by newcomers to
+the Clojure IRC channel. Having learned the basics, folks want to hit the
+ground running with stateful and durable services. Coming from a background in
+some big framework or some hairy application, these folks ask those suggestive
+questions about databases, driver libraries, and the like. Often, upon
+interrogation, they only have a couple kilobytes or megabytes of total data to
+be stored. In such a situation, the advice is always the same: Put that data
+into an atom, then use <code>spit</code> and <code>slurp</code> to save and load.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">db</span> <span class="p">(</span><span class="nf">atom</span> <span class="p">{</span><span class="nv">...</span><span class="p">}))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">save-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">spit</span> <span class="s">&quot;somefile&quot;</span> <span class="p">(</span><span class="nb">prn-str </span><span class="err">@</span><span class="nv">db</span><span class="p">)))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">load-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">reset!</span> <span class="nv">db</span> <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nb">slurp </span><span class="s">&quot;somefile&quot;</span><span class="p">))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Because Clojure encourages the use of printable, readable, &ldquo;pure&rdquo; data, your
+save and load functions are virtually free! If you&rsquo;re not familiar with
+Clojure, then consider working with pure JSON in Node.js:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="p">{...};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">saveData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;somefile&quot;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(</span><span class="nx">db</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">loadData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">db</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&quot;somefile&quot;</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Things aren&rsquo;t quite as easy in languages lacking data literals, but nearly
+every popular language has some kind of automatic serialization library.
+However, even if you do need to write your own save and load functions, it&rsquo;s
+a pretty straightforward, if somewhat tedious, process.</p>
+
+<p>Even&mdash;or especially&mdash;experienced programmers are surprised by just how far
+this brain-dead-simple durability scheme will go.</p>
+
+<h2>Atomicity</h2>
+
+<p>One other objection to files is that it&rsquo;s difficult to ensure an application
+enjoys the same guarantees that a well-tested ACID database affords. Never mind
+the fact that the majority of Rails applications suffer from dozens of
+consistency bugs because most developers forget to wrap related updates in
+transactions; it is true that incorrectly implemented file IO can cause
+catastrophic data loss.</p>
+
+<p>If you plan to deploy spit and slurp into production, you&rsquo;d be advised to write
+to a temporary file and utilize an atomic rename. This ensures that a failure
+during writing won&rsquo;t corrupt your database. See <code>man rename</code> for more.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">saveData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&quot;somefile.tmp&quot;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(</span><span class="nx">db</span><span class="p">));</span>
+</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">renameSync</span><span class="p">(</span><span class="s2">&quot;somefile.tmp&quot;</span><span class="p">,</span> <span class="s2">&quot;somefile&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Just this one little tweak and this bad boy is production ready. Clojure
+programmers can use Java&rsquo;s <code>File.renameTo</code> method. See below.</p>
+
+<p>Remember to configure your backups!</p>
+
+<h2>Don&rsquo;t Stop The World</h2>
+
+<p>Experienced Node.js programmers likely cringed at the &ldquo;Sync&rdquo; suffix on the
+above file operations. These operations will block while data is being read or
+written. In addition to yielding clearer example code, synchronous operations
+do not require coordination. If your application only needs to serve a handful
+of users, you can still write 100 megabytes of data in less than half a
+second. Even if you write every change to a file on every request, your ten
+users might not even notice your blocking IO. As you scale up, you&rsquo;ll need to
+either split your data files up and/or start writing files asynchronously.</p>
+
+<p>Asynchronous means coordination. Coordination means locking or queues. This
+stuff really isn&rsquo;t as scary as it sounds, but it will have to wait; this post
+has already gotten far too long. However, I don&rsquo;t want to lead you down the
+wrong path, so I should mention that, unlike Node.js, synchronous writes on
+the JVM will not block other requests. You practically don&rsquo;t have a choice, but
+to be asynchronous.  If two requests both call your save function at the same
+time, the resulting race condition can lead to incremental data loss. Luckily,
+Clojure&rsquo;s agents and persistent data structures provide for a super quick fix:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="nb">import </span><span class="ss">&#39;java.io.File</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">save-agent</span> <span class="p">(</span><span class="nb">agent </span><span class="nv">nil</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">save-data</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">send-off </span><span class="nv">save-agent</span>
+</span><span class='line'>    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">_</span><span class="p">]</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">spit</span> <span class="s">&quot;somefile.tmp&quot;</span> <span class="p">(</span><span class="nb">prn-str </span><span class="err">@</span><span class="nv">db</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">.renameTo</span> <span class="p">(</span><span class="nf">File.</span> <span class="s">&quot;somefile.tmp&quot;</span><span class="p">)</span> <span class="p">(</span><span class="nf">File.</span> <span class="s">&quot;somefile&quot;</span><span class="p">)))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Different web servers across all the different languages have varying
+concurrency support and configuration defaults. Whether or not you use file IO,
+you should be aware of the concurrency story for your platform and its impact
+on your application.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-26T11:59:00-07:00" pubdate data-updated="true">Jun 26<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2013/06/26/slurp-and-spit/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2013/06/26/slurp-and-spit/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/24/code-density/" title="Previous Post: Code Density">&laquo; Code Density</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/01/08/unsound-and-incomplete/" title="Next Post: Unsound and Incomplete">Unsound and Incomplete &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

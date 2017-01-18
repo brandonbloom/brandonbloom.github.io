@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How two Pythonistas accidentally fell in love with Rails - You work for me, Computer.</title>
+  <meta name="author" content="Brandon Bloom">
+
+  <!--
+        __  ___    __  __                   __
+       / / / (_)  / /_/ /_  ___  ________  / /
+      / /_/ / /  / __/ __ \/ _ \/ ___/ _ \/ /
+     / __  / /  / /_/ / / /  __/ /  /  __/_/
+    /_/ /_/_/   \__/_/ /_/\___/_/   \___(_)
+
+    Welcome to view-source:http://www.brandonbloom.name
+
+    Please don't mind the mess. This homepage was hastily hobbled together
+    from a variety of free and open source components. Head on over to
+    https://github.com/brandonbloom/brandonbloom.github.io/tree/source
+    if you'd like to see how the sausage is made. Special thanks to
+    the many contributors that have made this lovely homepage possible.
+
+  -->
+
+  
+  <meta name="description" content="One week ago, my co-founder
+and I found ourselves staring down a thick stack of paper UI
+prototypes; almost 50 pages total. One week before that, we &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.brandonbloom.name/blog/2010/09/13/how-two-pythonistas-accidentally-fell-in-love-with-rails">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="You work for me, Computer." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2686218-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">You work for me, Computer.</a></h1>
+  
+    <h2>By Brandon Bloom</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.brandonbloom.name" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  
+    <li><a href="https://github.com/brandonbloom">GitHub</a></li>
+  
+  
+    <li><a href="https://twitter.com/brandonbloom">Twitter</a></li>
+  
+  
+    <li><a href="http://linkedin.com/in/brandondbloom">LinkedIn</a></li>
+  
+  <li><a href="/contact">Contact</a></li></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How Two Pythonistas Accidentally Fell in Love With Rails</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-13T00:00:00-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>One week ago, <a href="http://stevekrenzel.com/">my co-founder</a>
+and I found ourselves staring down a thick stack of paper UI
+prototypes; almost 50 pages total. One week before that, we threw
+out a perfectly good, working beta product because customer
+feedback suggested a significantly better path. The tale of how we
+ended up at that point is entertaining as well, but it will have to
+wait for another time. This is the tale of how our paper prototype
+turned a pair of long time <a href= "http://www.python.org/">
+Python</a> developers (and <a href= "http://blog.brandonbloom.name/2009/08/dropping-django.html">
+documented framework haters</a>) into <a href="http://www.ruby-lang.org/">
+Ruby</a> on <a href="http://rubyonrails.org/"> Rails</a> developers.</p>
+
+<p>Paper prototyping proved to be an extremely worthwhile exercise,
+but we really wanted something we could click around. We devised a
+strategy to build a clickable prototype that would evolve into
+production code. The plan was to stub out all of the views with
+static HTML and CSS. The CSS could be directly carried over to the
+product and the HTML could be retrofitted as templates. Having
+become religious about <a href="http://sass-lang.com/">Sass</a>
+about a year ago, I fired up the file watcher (which automatically
+rebuilds CSS) and set to work filling a directory with sass and
+html files.</p>
+
+<p>After some time, I asked myself &ldquo;I wonder if <a href="http://haml-lang.com/">Haml</a>
+has a <code>--watch</code> argument?&rdquo; (it doesn&rsquo;t) because Sass
+makes me hate Html&rsquo;s verbosity. Armed with
+practically zero Ruby knowledge, I hobbled together a simple
+<a href="http://rake.rubyforge.org/">Rakefile</a>
+and Haml watcher script and got back to work. A few Git pushes
+later, my co-founder, being the clever bastard that he is, simply
+installed Rails and the Haml plugin to replace my hacky scripts.
+&ldquo;Neat&rdquo;, I said and thought nothing of it.</p>
+
+<p>Then we designed our URLs in an indented plain text file, which
+pretty much directly mapped into the <a href= "http://edgeguides.rubyonrails.org/routing.html">
+routes.rb</a> file and some trivial (empty method) controllers. Whoops! Now
+we&rsquo;re writing Ruby.</p>
+
+<p>&ldquo;At this point, we might as well try Rails proper.&rdquo;</p>
+
+<p>Generated some models and corresponding migrations:
+&ldquo;Wow, explicit schema with reflective model
+objects. None of this
+<a href= "http://blog.brandonbloom.name/2009/10/orms-and-declarative-schemas.html">declarative schema bullshit</a>.&rdquo;</p>
+
+<p>Wired up some controllers. &ldquo;The <a href= "http://rails.nuvvo.com/lesson/6371-action-controller-parameters">
+structured params</a> infrastructure is pretty cool.&rdquo;</p>
+
+<p>&ldquo;Ruby is kinda fun.
+<a href= "http://www.robertsosinski.com/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/">Blocks</a>
+are super useful.&rdquo;</p>
+
+<p>Integrated <a href= "http://github.com/binarylogic/authlogic">Authlogic</a>.
+&ldquo;Wow, that was easy. I really like how it does not force any front-end decisions on me.&rdquo;</p>
+
+<p>&ldquo;Rails is full of evil black magic that I do not understand, but it seems to
+read my mind, so I don&rsquo;t really care.&rdquo;</p>
+
+<p>Started to apply some polish and work on the 10% that takes 90% of the time. &ldquo;I
+think I can safely add Ruby to my resume now.&rdquo;</p>
+
+<p>Late at night, at the very end of the week, exhausted, we stared at each other.
+&ldquo;Dude, I think we can show this off to people tomorrow.&rdquo; Walking out the door
+of the office, my co-founder said to me &ldquo;I feel so dumb for having ignored
+Rails for so long. I just assumed it was Ruby&rsquo;s Django&rdquo;.</p>
+
+<p>We accidentally implemented our entire beta product in one week, with zero
+prior Ruby or Rails experience.</p>
+
+<p>When I have some more time (and experience), I&rsquo;ll try to write about specific
+design decisions that set Rails apart.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Veezus Kreist</h3>
+
+<p>Great story! I love the black magic quote &ndash; but I think it will feel more
+apropos when you use rspec as a test framework.</p>
+
+<h3>Joe Lallouz</h3>
+
+<p>Sweet. A very similar situation happened when my co-founder and i switched to
+Groovy and Grails.</p>
+
+<h3>Dan</h3>
+
+<p>How did I never notice you on Hacker News before? I read it every day!</p>
+
+<h3>Andrew Ingram</h3>
+
+<p>Weird, I moved to Django because I was fed up with building sites using Rails :p</p>
+
+<p>I guess everyone has their own preferred style.</p>
+
+<h3>Eric Floehr</h3>
+
+<p>The best language for you is the one in which you are most productive in, so
+awesome!</p>
+
+<p>My first public website was in Rails, and I assumed Django was just Python&rsquo;s
+Rails.</p>
+
+<p>I have since converted it to Django because Django allows me to be more
+productive, and ActiveRecord didn&rsquo;t work well for me.</p>
+
+<p>Best of luck, and congrats again for finding such productivity!</p>
+
+<h3>Rives</h3>
+
+<p>lol, do you always call your co-founder a bastard?</p>
+
+<h3>Max</h3>
+
+<p>Did you give web2py a try? I believe it provides in Python what you found in
+Rails.</p>
+
+<h3>JonnieCache</h3>
+
+<p>&ldquo;lol, do you always call your co-founder a bastard?&rdquo;
+I&rsquo;m guessing he&rsquo;s in the UK :)</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@Dan: I haven&rsquo;t been hiding :&ndash;)</p>
+
+<p>@Andrew: I think that&rsquo;s why these topics are such hot issues. It is more
+preference and religion than anything else. Django is a solid piece of code and
+a stellar community, but it just doesn&rsquo;t mesh with my brain.</p>
+
+<p>@Rives &amp; JonnieCache: I called him a <em>clever</em> bastard. I consider that a
+complement. And no, I&rsquo;m not from the UK. I&rsquo;m from NY, he&rsquo;s from Philly, and we
+are currently located in Seattle.</p>
+
+<p>@Max: I&rsquo;ve played with web2py, but wasn&rsquo;t super impressed. But hey, I thought
+the same thing about Rails. I guess you need to really try to make something to
+understand. What about it is interesting in particular?</p>
+
+<h3>Nicko</h3>
+
+<p>Just out of interest, which version of rails are you using?</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>Rails 3</p>
+
+<h3>Psylinse</h3>
+
+<p>And here I am going from Rails (because of black magic :) to Pylons, which took
+a lot from Rails, but its in Python!</p>
+
+<p>Perhaps you should give Pylons a look over, just some food for thought.</p>
+
+<h3>jbaker</h3>
+
+<p>I originally began programming in Python with Django myself, but I saw Rails
+and immediately went.. WTF!? to Django and Python in general.</p>
+
+<h3>fitzgeraldsteele</h3>
+
+<p>I think the real lesson here is to find the right tool for the right job.  Both
+Rails and Django are pretty strong pieces of framework, allowing you to do a
+lot in a little amount of time.</p>
+
+<p>I had a similar experience, where I quickly prototyped a website in Rails.  I
+showed it off and said, &ldquo;see&hellip;this is pretty much done.&rdquo;  And then developers
+on my team felt the need to rebuild the site in PHP since that&rsquo;s what our
+company &lsquo;officially supports.&rsquo;  :)</p>
+
+<p>On another project, I was able to quickly use the Django ORM to introspect an
+existing MySQL database, and build an admin interface for some of our internal
+users.  That was a HUGE win for me to be able to quickly make the admin site.</p>
+
+<p>So, the right tool for the right job&hellip;</p>
+
+<h3>Max</h3>
+
+<p>@Brandon</p>
+
+<p>Given your article I thought your would like the fact that in web2py everything
+has a default. For example is you just type:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='python'><span class='line'><span class="n">db</span><span class="o">.</span><span class="n">define_table</span><span class="p">(</span><span class="s">&#39;post&#39;</span><span class="p">,</span><span class="n">Field</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>web2py creates the table (if it does not exist, or alters it as necessary), a
+web based database administrative interface, and crud.create, crud.update,
+crud.read, crud.select, crud.search forms that you can insert in your app like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class='code'><pre><code class='python'><span class='line'><span class="p"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It also includes role based access control out of the box with pluggable
+authentication mechanisms.</p>
+
+<p>Web2py also has a component/plugin architecture that is best described by this
+video <a href="http://vimeo.com/13485916">http://vimeo.com/13485916</a></p>
+
+<p>Since you are coming from Python, I though you may be interested. Anyway, I too
+really like Rails and web2py was originally designed to be in Python but closer
+to Rails than other Python frameworks.</p>
+
+<h3>brokenladder</h3>
+
+<p>Semantic indenting is far and away the best thing about Python, and Haml/Sass
+prove Ruby should adopt it too.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@brokenladder: Hell yes.</p>
+
+<h3>coulix</h3>
+
+<p>Well in my case I am way more productive in Python, especially when prototyping
+with Django. It all depends on the mastering level of the tool. One point I
+will give to rails is haml tho. We need a proper equivalent well integrated in
+Django/Python.</p>
+
+<h3>Rafael Rosa Fu</h3>
+
+<p>Hi,</p>
+
+<p>Next time you need to authentication, try Devise instead of Authlogic, and
+check Ruby Toolbox for more interesting Ruby tools.</p>
+
+<p><a href="http://github.com/plataformatec/devise">http://github.com/plataformatec/devise</a>
+<a href="http://ruby-toolbox.com/">http://ruby-toolbox.com/</a></p>
+
+<p>Cheers</p>
+
+<h3>Kevin</h3>
+
+<p>Could you expand on your file watcher script?  Running a background process
+(e.g. re-compile) on change is a common pattern that I haven&rsquo;t found a tidy
+solution to&hellip;</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@kevin: I&rsquo;ve written a bunch of watchers in the past. Each had their pros and cons.</p>
+
+<p>Steve has a simple Python script here: <a href="http://stevekrenzel.com/articles/autoreload">http://stevekrenzel.com/articles/autoreload</a></p>
+
+<p>However, in this case I used FSSM: <a href="http://github.com/ttilley/fssm">http://github.com/ttilley/fssm</a></p>
+
+<p>FSSM has the advantage that it uses the platform&rsquo;s native file notification
+mechanism, so it tends to respond more quickly (no polling delay).</p>
+
+<h3>T T</h3>
+
+<p>Awesome post! I&rsquo;ve been comfortable with Django though I am dabbling into Rails
+but I&rsquo;m having trouble with getting to grips with Ruby. Would you recommend
+anything you&rsquo;ve read that allowed you build a working prototype? I&rsquo;m curious
+about how you managed to learn it so quickly. Thanks!</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>@TT: I took advantage of the fact that many people switch to or from Python. I
+searched for phrases like &ldquo;python&rsquo;s foo in ruby&rdquo;. Ruby is so similar to Python,
+it was pretty easy to just pretend it&rsquo;s the same and go back for cleanup as you
+learn the idiomatic approaches.</p>
+
+<p>Also, I generally just have an interest in programming languages. I&rsquo;m pretty
+fluent with about a half dozen languages, so each marginal new language is that
+much easier to pick up.</p>
+
+<p>As an aside: the &ldquo;end&rdquo; keyword is just sooo unnecessary!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brandon Bloom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-13T00:00:00-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2010</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.brandonbloom.name/blog/2010/09/13/how-two-pythonistas-accidentally-fell-in-love-with-rails/" data-via="brandonbloom" data-counturl="http://www.brandonbloom.name/blog/2010/09/13/how-two-pythonistas-accidentally-fell-in-love-with-rails/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/06/04/noscript-add-on-install-base/" title="Previous Post: NoScript Add-on Install Base">&laquo; NoScript Add-on Install Base</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/09/17/where-rails-rocks-and-where-python-doesn-t/" title="Next Post: Where Rails Rocks (and where Python doesn't)">Where Rails Rocks (and where Python doesn't) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/18/versioning/">Versioning Better Than SemVer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/26/rarely-reversible/">Rarely Reversible</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/24/code-density/">Code Density</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/brandonbloom">@brandonbloom</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'brandonbloom',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/106075590186347766658?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brandon Bloom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
