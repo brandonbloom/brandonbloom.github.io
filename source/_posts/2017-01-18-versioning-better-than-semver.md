@@ -4,7 +4,7 @@ title: "Versioning Better Than SemVer"
 date: 2017-01-18 01:30
 ---
 
-I've written before about [my dislike for SemVer][1]. Recently, Rich Hickey has
+I've written before about [my dislike for SemVer][1]. Recently, Rich Hickey
 [spoke about this very same issue, and more][2]. I'm currently working on some
 software that I'm hoping people will use, so I decided to make my thoughts on
 a better versioning scheme clear. Below you'll find an exerpt from my new
