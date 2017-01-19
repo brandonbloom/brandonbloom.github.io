@@ -4,7 +4,7 @@
   <title><![CDATA[You work for me, Computer.]]></title>
   <link href="http://brandonbloom.github.io/atom.xml" rel="self"/>
   <link href="http://brandonbloom.github.io/"/>
-  <updated>2017-01-18T13:28:22-08:00</updated>
+  <updated>2017-01-18T19:29:45-08:00</updated>
   <id>http://brandonbloom.github.io/</id>
   <author>
     <name><![CDATA[Brandon Bloom]]></name>
@@ -83,7 +83,7 @@ never cause breakage.</p>
 
 
 
-<p>Occasionally supporting old contracts becomes burdensome. Parties to these
+<p>Occasionally, supporting old contracts becomes burdensome. Parties to these
 contracts should be provided a path to a new contract without breakage.</p>
 
 
@@ -119,7 +119,7 @@ deprecated by previous ordinals.</p>
 
 
 
-<p>Even in the presence migrations, grandfathered contracts should be honored.</p>
+<p>Even in the presence of migrations, grandfathered contracts should be honored.</p>
 
 
 
