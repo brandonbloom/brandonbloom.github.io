@@ -37,7 +37,7 @@ never cause breakage.
 
 ## Migrations
 
-Occasionally supporting old contracts becomes burdensome. Parties to these
+Occasionally, supporting old contracts becomes burdensome. Parties to these
 contracts should be provided a path to a new contract without breakage.
 
 ### Retractions
@@ -56,7 +56,7 @@ deprecated by previous ordinals.
 
 ## Coexistence
 
-Even in the presence migrations, grandfathered contracts should be honored.
+Even in the presence of migrations, grandfathered contracts should be honored.
 
 ### Side-by-Side
 
