@@ -2,7 +2,6 @@
 layout: post
 title: "Particles and Waves"
 date: 2017-05-24 09:45
-noImageBorder: true
 ---
 
 If simpler is better, is fewer better? Is one better than two? When
