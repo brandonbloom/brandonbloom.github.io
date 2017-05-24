@@ -26,8 +26,8 @@
   -->
 
   
-  <meta name="description" content="The modern, read/write web thrives on processes which accept and coordinate a
-large set of contributions from a set of contributors that is almost as &hellip;">
+  <meta name="description" content="Broken builds suck. Breaking the build sucks. No one wants to have their work
+stopped by others&#8217; build breaks and no one wants to cause work &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +105,108 @@ large set of contributions from a set of contributors that is almost as &hellip;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/03/break-the-cycle-of-broken-builds/">Break the Cycle of Broken Builds</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-03T00:00:00-08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Broken builds suck. Breaking the build sucks. No one wants to have their work
+stopped by others&#8217; build breaks and no one wants to cause work stoppage on
+account of their own build breaks.</p>
+
+<p>So then why do builds break so often? You&rsquo;d think that after so many years of
+software development, someone would have solved this problem. Microsoft
+employees tens of thousands of engineers across hundreds, if not thousands, of
+code projects. Many of those code projects are development tools for the
+engineering community at large as well as engineers within Microsoft. Yet,
+still, all of the tools at the disposal of those engineers are highly prone to
+build breaks.</p>
+
+<p>Below, are three ideas for reducing build breaks. Together, they could all but
+eliminate the problem.</p>
+
+<h3>Use a better version control system</h3>
+
+<p>Everyone keeps raving about distributed version control, and for good reason. I
+won&rsquo;t rehash the argument here, but I will say: branch early and merge often.
+Perforce (better known as Source Depot within Microsoft) and it&rsquo;s spiritual
+successor Team Foundation Server are <a href="http://weblog.masukomi.org/2007/8/31/dear-perforce-fuck-you">completely unbearable</a> . A great
+majority of build breaks can be contained if people are only pulling known good
+changes from dedicated integrators. Everyone checking in all at once to a main
+branch simply doesn&rsquo;t work with anything but the most tightly knit of teams.
+Even if the does build break, it should only block the person waiting on that
+particular change.</p>
+
+<h3>Isolate build breaks</h3>
+
+<p><code>sd submit -c 12345</code> translates roughly to &ldquo;I&rsquo;m 100% confident that my changes
+are solid and am equally confident that I am submitting the changes that I
+think I am.&rdquo; You never can be 100% confident, don&rsquo;t take any chances: submit to
+a private branch which is being monitored by a build service. The server should
+detect your submission, run a full buddy build (with unit tests!), and then
+submit it to the shared branch only after it
+has passed.</p>
+
+<p>If your builds take too long for this, people should be able to grab changes
+down from your unverified branch on an as-needed basis. If this happens too
+frequently: your builds take too long. Refactor your system into smaller
+components and formalize the contractual interface between those components.
+Then buddy build just the components which have changed. Verify that the
+interface hasn&rsquo;t changed with a unit test. This will stop compile errors at the
+boundaries.</p>
+
+<h3>Go lazy, be late</h3>
+
+<p>This one is a big of a pipe dream&hellip; software systems developed with dynamic
+languages do not experience build breaks nearly as often as those developed
+with static languages. This is because dynamic languages are typically
+lazy-loaded and utilize late bounded method invocations. If someone adds a new
+button to the UI which calls a method in a file they forgot to add to source
+control, that should only block people who want to click the button!</p>
+
+<p>There is no firm technical reason why statically or JIT compiled systems can&rsquo;t
+simulate this. Most compile errors could theoretically be treated as a runtime
+error. Clearly, compile errors are valuable, but should be ignorable whenever
+possible. Don&rsquo;t ignore them in your known good builds, but ignore them when
+they stand between you and forward progress.</p>
+
+<p>Since most of us aren&rsquo;t writing our own compilers are full tool chains, here is
+some more practical advice for projects using statically compiled languages:
+write code which fails gracefully. Runtime errors can be build breaks just the
+same as compile errors, but try to defer the negative consequences as much as
+possible. One broken feature shouldn&rsquo;t break the whole project; unless, of
+course, you are about to ship. In production builds, perform verification code
+at startup or in unit tests, but try to be lazy and late in development builds.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -804,155 +906,6 @@ thing to someone, she just called a car engine by the name of a fuel injector!</
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/24/microsoft-manages-interns-better-than-google/">Microsoft Manages Interns Better Than Google</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-24T00:00:00-07:00" pubdate data-updated="true">Jun 24<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In the interest of full disclosure: I was not offered a full-time position at
-Google.</p>
-
-<p>I was encouraged to apply again after earning a masters degree or after
-a few more years of experience. Please do not misconstrue this post as sour
-grapes; I mainly applied for a full-time conversion at Google to improve my
-Microsoft offer.</p>
-
-<p>The title of this post is hyperbole. Both companies are full of brilliant
-engineers, managers, and HR staff. Both do an excellent job of managing
-interns; they really do care. However, my experiences at Microsoft made it
-impossible for me to choose Google. Both sets of experiences were
-overwhelmingly positive, but several individuals at Microsoft went that extra
-mile and won me over in a big way.</p>
-
-<p>Early during my first internship at Microsoft, it was apparent that my skills
-were being misappropriated. I wasn&rsquo;t having a whole lot of fun and my direct
-manager quickly identified the problem during one of our weekly 1-on-1
-meetings. He radically adjusted the course of my internship to fit my skills
-and personality. Soon, things were going much better. I was more productive,
-having more fun, and learning a lot more.</p>
-
-<p>Great experiences didn&rsquo;t end with just my direct manager. Each intern also gets
-a mentor for additional job and team related support as well as a &ldquo;coach&rdquo; from
-a different part of the company to jump start your personal network. My mentor
-helped me understand the politics and personalities of our team and team
-members. My coach convinced me to tell my recruiter about the changes going on
-with my internship. My recruiter encouraged me to conduct informal interviews
-and have casual lunches with various people around the company. These
-&ldquo;informationals&rdquo; led to an awesome position for my second internship that was a
-perfect fit for me.</p>
-
-<p>Internships at Microsoft are as much about growing people as they are about
-getting engineering done. There are a lot of people around to support you, so
-you receive a lot of support. If you are lucky &mdash; like I was &mdash; all of these
-people are exceptional. Even if you are unlucky, at least one of the your many
-network seeds may be helpful. Additionally, recruiters are more personally
-involved.  Our recruiter took us out for dinner and drinks in small groups and
-got to know us quite well.</p>
-
-<p>At Google, I once again felt as if my skills were being misappropriated, but
-enjoyed far less success in correcting it. For the majority of the internship,
-I only interacted with my direct manager. He lacked experience mentoring
-interns and was a little surprised when I raised concerns over the quality and
-pace of my own work. With no one else to turn to, I contacted my recruiter who
-was alarmed by my frustration. Although my manager and recruiter had the best
-of intentions, they choose to reassure me that I was doing good work rather
-than reposition me so that I could do outstanding work.</p>
-
-<p>I am more vocal and assertive than many engineers, and especially interns, at
-both Microsoft and Google. Speaking up at Microsoft did wonders for my career,
-but I didn&rsquo;t have to say a word for people to ask &ldquo;what&rsquo;s the matter?&rdquo; At
-Google, I spoke up and I felt as though I was the first to ever do so &mdash; people
-were surprised and unsure how to react.</p>
-
-<p>It should be stressed that these were personal experiences. Some other fresh
-college graduate may have a completely symmetric experience.</p>
-
-<h2>Imported Comments</h2>
-
-<h3>michaelkimsal.com</h3>
-
-<p>Very interesting.  MS is likely just a much more mature company with respect to
-human issues.  Given that they&rsquo;ve been around a lot longer, that&rsquo;s not
-surprising.  Also, given the competitiveness MS has, they may be more attuned
-to issues of people being dissatisfied than they were, say, 10 years ago or so.</p>
-
-<p>By contrast, Google is a relatively new beast, having really only had a few
-years&#8217; experience of having thousands of employees to manage.  And after all,
-&ldquo;it&rsquo;s Google!&rdquo;.  For someone to suggest anything is &ldquo;wrong&rdquo; internally,
-culturally, probably isn&rsquo;t something they&rsquo;ve have to deal with much yet.  When
-thousands of people leave over a short period of time, they&rsquo;ll have to learn to
-deal with these issues at a cultural level &ndash; everyone will need to be aware of
-it, not just managers.</p>
-
-<p>Good luck at MS!</p>
-
-<h3>Alexandru</h3>
-
-<p>i&rsquo;ve been to google two summers already &amp; my experience was close to perfect
-both times. i was given the freedom to choose which project to work on and i
-really felt that i was part of team and not just an intern. more than that, i
-don&rsquo;t crave for too much attention.</p>
-
-<p>i don&rsquo;t care about social network, but at google we had social parties each
-friday where you drank wine &amp; beer for free, meet (really!) new people, discuss
-company internals &amp; stuff.</p>
-
-<p>can&rsquo;t say anything about microsoft, cause i&rsquo;ve not been there, but good luck
-joining them.</p>
-
-<h3>Brandon Bloom</h3>
-
-<p>(Cross-comment from Hacker News)</p>
-
-<p>&ldquo;That&rsquo;s why I ended the post by saying this was a personal experience. I just
-wanted to make the point that it certainly appeared like Microsoft was better
-prepared to cope with this situation and it also seemed that it was due to a
-more mature internship program. I loved working for both companies and there
-will definitely be pro-Google posts in the future :&ndash;)&rdquo;</p>
-
-<p>@michaelkimsal:</p>
-
-<p>Google deals with people suggesting things are &ldquo;wrong&rdquo; internally CONSTANTLY.
-In fact, there are numerous occasions where it is highly encouraged and
-institutionalized. Unfortunately, I had no platform for my problem and only a
-very small number of people were able to see it. The response was adequate, but
-far from perfect.</p>
-
-<p>Regarding social TGIF:</p>
-
-<p>They are great! I did meet a lot of interesting people, but the context is
-primarily social. Discussions are less you &amp; me -centric and more google &amp;
-tech-world centric.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -970,6 +923,10 @@ tech-world centric.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/05/24/particles-and-waves/">Particles and Waves</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/01/18/versioning-better-than-semver/">Versioning Better Than SemVer</a>
       </li>
     
@@ -983,10 +940,6 @@ tech-world centric.</p>
     
       <li class="post">
         <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/24/code-density/">Code Density</a>
       </li>
     
   </ul>
