@@ -4,7 +4,7 @@
   <title><![CDATA[You work for me, Computer.]]></title>
   <link href="http://brandonbloom.github.io/atom.xml" rel="self"/>
   <link href="http://brandonbloom.github.io/"/>
-  <updated>2017-05-24T09:46:15-07:00</updated>
+  <updated>2017-07-05T09:50:56-07:00</updated>
   <id>http://brandonbloom.github.io/</id>
   <author>
     <name><![CDATA[Brandon Bloom]]></name>
@@ -13,6 +13,207 @@
   <rights>Copyright (c) 2017, Brandon Bloom</rights>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Structural and Relational Data]]></title>
+    <link href="http://brandonbloom.github.io/blog/2017/07/05/structural-and-relational-data/"/>
+    <updated>2017-07-05T09:21:00-07:00</updated>
+    <id>http://brandonbloom.github.io/blog/2017/07/05/structural-and-relational-data</id>
+    <author>
+      <name><![CDATA[Brandon Bloom]]></name>
+    </author>
+    <content type="html"><![CDATA[<p><em>Before reading this post, see the introductory post for this series:
+<a href="http://www.brandonbloom.name/blog/2017/05/24/particles-and-waves/">Particles and Waves</a>.</em></p>
+
+
+
+
+<p>Among our goals is the desire to understand the duality of data and code. This
+duo represents one of the most fundamental pairs of particles and waves in
+software. However, careful selection of a bounded context can reveal particles
+and waves at any level. Combined with the observation that particles and space
+are generally easier to recognize and reason about than waves and time, let&rsquo;s
+zoom in on data before tackling code.</p>
+
+
+
+
+<h2>Data Structures</h2>
+
+
+
+
+<p>Perhaps surprisingly, there is only a small number of foundational abstract
+data types. <a href="https://en.wikipedia.org/wiki/Abstract_data_type#Examples_2">Wikipedia lists some common examples</a>: List, Set, Multiset
+(Bag), Map, Graph, Stack, Queue, Priority Queue, etc. If you squint just right,
+there are really only two fundamental types of data containers: lists and bags.
+Every simple data structure can be classified as ordered or unordered. Common
+modes of use, such as FILO stacks and FIFO queues, are really just
+specializations of more generalized lists. Similar for maps and graphs; these
+are specialized bags. More complex data structures can be recognized as a
+careful composite of ordered and unordered substructures. Even the ubiquitous
+map can be viewed as a bag of lists, where each list is a key/value pair,
+constraining keys to be unique.</p>
+
+
+
+
+<p>Individual data structures are the traditional particles we think of when we
+think about the data in our code. From a typical vantage point, the context
+that bounds these particles is so far away that we generally don&rsquo;t ever
+perceive it. It&rsquo;s only when we take a step back from a fragment of code and
+look at a complete system that we can perceive a common and relevant bounded
+context: a “database”.</p>
+
+
+
+
+<h2>Databases</h2>
+
+
+
+
+<p>Numbers, such as <code>5</code>, or strings, such as <code>"foo"</code>, have sufficient structure to
+be recognized in our shared global context made up of decimal numbers and
+unicode. However, <code>5</code> is useless on its own. We need to know how to interpret
+it. For that, we need more shared context. Let&rsquo;s introduce a database with a
+fruit table and say that our favorite number is a fruit ID. Now we can lookup
+up the fruit ID and find out that we&rsquo;re talking about bananas. It turns out
+that our number particle is just one  of many particles in a banana wave
+traveling through our database medium.</p>
+
+
+
+
+<p>By changing our perspective, we can study other bounded contexts, revealing
+more waves. When this happens, there tends to be an inversion: ordered becomes
+unordered and vice versa. Additional inversions are explored in sections below.
+For now, let&rsquo;s choose the perspective of a programming language runtime
+implementer. From this vantage point, the heap is a database. A simple ordered
+data structure such as a pair, is actually represented with pointers, no
+different than our banana ID. The pair structure arrises from the interplay
+between a ordered structure with two pointers and an unordered structure, a
+map, encoded as memory itself, that translates addresses to objects. Shift your
+perspective again, from application user-space to operating system kernel-space
+and the question of whether memory is ordered or unordered depends on your
+perspective on virtual memory.</p>
+
+
+
+
+<p>One common form of data warrants a special note: graphs. The easiest
+representation of a graph in a traditional programming language is to utilize
+memory pointers. However, this representation is impoverished. It forcibly
+equates nodes with their graphs that they are part of and sets an implicit
+boundary equal to all of memory. As much as possible, graphs and nodes should
+be clearly delimited. A graph should rightfully be considered as a database of
+nodes.</p>
+
+
+
+
+<h2>Openness</h2>
+
+
+
+
+<p>For the sake of concision, I will refer to data built up from other data in the
+implicit “global” context as “structural data”, or simply “structures”.
+Similarly, data derived from the relationship between structures and an
+explicit context will be referred to as “relational data”, or simply
+“relations”. These shorthands are not to be confused with the more specific
+concepts of C-style “structures” or traditional relational database
+“relations”, despite my abuse of the intentional analogies.</p>
+
+
+
+
+<p>A key distinction and advantage of relational data is its inherit openness. One
+fruit ID may appear in many tables. Adding a new table to a database extends
+the meaning of that fruit ID without impacting any existing relations. We can
+also extend the meaning of that one fruit ID by moving the context boundary:
+switch databases, connect to a second database, talk to an external fruit
+service, etc. By contrast, structural data is closed. Structural data can only
+be “extend” by replacing it with a slightly varied structure; appending an
+element to a four element list produces a new list of five elements.</p>
+
+
+
+
+<p>Time is the most important dimension of openness. Growth occurs over time as we
+add tables to a database, <code>mmap</code> additional pages in to virtual memory, or
+simply add keys to a map. The impact of time on the interpretation of data is a
+massive topic, to be discussed at another — <em>ahem — </em>time.</p>
+
+
+
+
+<h2>Cutting Along The Grain</h2>
+
+
+
+
+<p>Much pain in software designs stems from a conflict between the programmer&rsquo;s
+intuition and the nature of the data they are working with. Each kind of data
+“wants” to be used in a particular way. Given the ability to recognize
+structures and relations, we can choose the most appropriate end of this
+duality spectrum; then choose strategies for working with such data according
+to its wants.</p>
+
+
+
+
+<p>Here&rsquo;s a summary of each kind of data&rsquo;s respective usual wants:</p>
+
+
+
+
+<table>
+<tr><th>               </th><th>   Structures         </th><th>  Relations        </th></tr>
+<tr><th> Order         </th><td>   Ordered            </td><td>  Unordered        </td></tr>
+<tr><th> Substructure  </th><td>   Positional         </td><td>  Associative      </td></tr>
+<tr><th> Mutability    </th><td>   Immutable          </td><td>  Mutable          </td></tr>
+<tr><th> Hierarchy     </th><td>   Contain Children   </td><td>  Point To Parents </td></tr>
+<tr><th> Construction  </th><td>   Bottom-Up          </td><td>  Top-Down         </td></tr>
+<tr><th> Cycles        </th><td>   Acyclic            </td><td>  Cyclic           </td></tr>
+<tr><th> Limits        </th><td>   Finite             </td><td>  Infinite         </td></tr>
+</table>
+
+
+
+
+<p>Each of these wants can be overridden by moving the bounds of your context.
+Stuff tuples in to the context of a table to exploit associativity; or scope
+the context of a database to a transaction to build relations out of temporary
+ids, bottom-up.</p>
+
+
+
+
+<p>Again, time is too vast a topic to discuss in detail here. Suffice to say, time
+can be bounded by “stopping” it and/or by choosing a time slice. Stopped time
+turns the mutable in to immutable and a time slice can turn the infinite in to
+the finite. Conversely, stopped or sliced time can be started and opened again:
+stick an immutable structure in a mutable box or connect a live pipe to a
+queue.</p>
+
+
+
+
+<h2>Perspective</h2>
+
+
+
+
+<p>This perspective has dramatically hastened and improved how I design software.
+Carefully considering bounded contexts strongly guides many design choices. In
+situations where I used to find myself flip-flopping on some tradeoff, I now
+find myself happily choosing and committing to an appropriate blend of
+structural and relational data. Future posts in this series will revisit this
+tradeoff through some more concrete examples.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Particles and Waves]]></title>
@@ -2387,196 +2588,6 @@ come with a compiler. Why not learn Objective-C? Furthermore, canvas games are
 popping up everywhere and it won&rsquo;t be long before WebGL is common place. Soon
 enough, a significant subset of aspiring game developers only have to boot
 Windows to test something in Internet Explorer. <em>sigh</em>.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[One year after accidentally falling in love with Rails]]></title>
-    <link href="http://brandonbloom.github.io/blog/2011/09/24/one-year-after-accidentally-falling-in-love-with-rails/"/>
-    <updated>2011-09-24T00:00:00-07:00</updated>
-    <id>http://brandonbloom.github.io/blog/2011/09/24/one-year-after-accidentally-falling-in-love-with-rails</id>
-    <author>
-      <name><![CDATA[Brandon Bloom]]></name>
-    </author>
-    <content type="html"><![CDATA[<p>About a year ago, I wrote a post titled&nbsp;<a href="http://blog.brandonbloom.name/2010/09/how-two-pythonistas-accidentally-fell.html">How two Pythonistas accidentally fell in love with Rails</a>. Some people predicted that the honeymoon would be over quickly and that I would soon hate it.</p>
-
-
-
-
-<p><b>So, do I still love Rails?</b></p>
-
-
-
-
-<p>Yes. Absolutely.</p>
-
-
-
-
-<p>The prototype and first beta version of <a href="http://www.thinkfuse.com/">my startup</a> was built entirely on Rails. The framework enabled us to build our site significantly faster than we would have been able to without it. For that, I still love Rails. It was critical in helping us get to where we are today.</p>
-
-
-
-
-<p>It&rsquo;s the perfect <i>hammer</i> for the v1, nebulous direction, rapid development,&nbsp;<i>nail</i>.</p>
-
-
-
-
-<p><b>That said, we&rsquo;re not using Rails for any new components.</b></p>
-
-
-
-
-<p>After getting a lot of feedback from our first beta, we realized we had the wrong approach to the UI.&nbsp;Now, in our second attempt, we&rsquo;ve got a much richer client-side front-end, written in <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> and bootstrapped by <a href="http://nodejs.org/">Node.js</a>. Ruby/Rails is simply not the right tool for that job. In the new world of the browser app, even the folks of 37signals have been accused of&nbsp;<a href="https://github.com/rails/rails/commit/9f09aeb8273177fc2d09ebdafcc76ee8eb56fe33">propping&nbsp;up their successor</a>.</p>
-
-
-
-
-<p>Luckily, we had a pretty good handle on the models in the problem domain. So I ran <code>git rm -r app/views</code> and effectively turned the Rails app into a Json API backend. The models have evolved, but not by much. In fact, there were a few months where the Ruby code remained practically unchanged while we developed the frontend.</p>
-
-
-
-
-<p>As time goes on, we&rsquo;ve been breaking our API layer apart into several services. It makes development, deployment, and versioning easier. Service Oriented Architecture is working great for us&hellip; now that we know what services we need. These services are each too simple to justify the overhead of Rails. Some are Node.js, some are Sinatra, some are cron jobs and shell scripts. We&rsquo;re polyglots, so we&rsquo;re careful to choose the right tools for each job.</p>
-
-
-
-
-<p>We&rsquo;d have gotten it very wrong if we tried to build services from the start. The monolithic Rails app was the correct evolutionary intermediate form.</p>
-
-
-
-
-<p><b>Given a time machine, would I have done anything differently?</b></p>
-
-
-
-
-<p>Only one thing:&nbsp;<a href="http://seldo.com/weblog/2011/08/11/orm_is_an_antipattern">I wouldn&rsquo;t have used ActiveRecord</a>.</p>
-
-
-
-
-<p>I guess&nbsp;<a href="http://blog.brandonbloom.name/2009/10/orms-and-declarative-schemas.html">I should have seen that one coming</a>. ORMs are an insidious, broken abstraction. At first, they save you time and make you feel productive. They work out splendidly for a while, but like a virus, they infect every part of your application. One day, you hit that abstraction brick wall and it&rsquo;s too late to do anything about it without significant effort.</p>
-
-
-
-
-<div>
-</div>
-
-
-
-
-<p><b>Are there things I hate about Rails?</b></p>
-
-
-
-
-<p>Ignoring ActiveRecord, only one thing really stands out: Performance.</p>
-
-
-
-
-<p>I&rsquo;m not even talking about page load times. I&rsquo;m talking about development time.</p>
-
-
-
-
-<p>Even with our modestly sized application, the impact on productivity is&nbsp;atrocious. Our test suite runs far too slowly to be waited on for every checkin. Rake&rsquo;s startup time is too great to for its usage to be considered &ldquo;interactive&rdquo;. Simple shell scripts have replaced practically all of our custom tasks; they are instantaneous.</p>
-
-
-
-
-<p><b>Isn&rsquo;t this basically the same <a href="http://blog.brandonbloom.name/2009/08/dropping-django.html">story I told about Django</a>?</b></p>
-
-
-
-
-<p>Yeah, I guess it is.</p>
-
-
-
-
-<p>The story basically goes:</p>
-
-
-
-
-<ol><li>Use a framework</li><li>Be productive</li><li>Encounter shortcomings</li><li>Stretch it to work</li><li>Watch it break</li><li>Replace components</li><li>Loop steps three to six</li><li>Be productive</li><li>&#8220;Where&#8217;s the framework?&#8221;</li></ol>
-
-
-
-
-<div>I still stand by my original&nbsp;criticisms&nbsp;of Django (although, I&#8217;m sure much as changed in the last year). I&#8217;m also re-affirmed in my belief that big frameworks are generally bad. It just so happens that Rails is good enough and matches my mindset well enough to justify the framework pains.</div>
-
-
-
-
-<p>  </div></p>
-
-
-
-
-<h2>Imported Comments</h2>
-
-
-
-
-<h4>rweald</h4>
-
-
-
-
-<p>If you are annoyed by your slow test times you should watch this presentation by Corey Haines at gogaruco
-<a href="http://confreaks.net/videos/641-gogaruco2011-fast-rails-tests">http://confreaks.net/videos/641-gogaruco2011-fast-rails-tests</a>      </div></p>
-
-
-
-
-<h4>Scott</h4>
-
-
-
-
-<p>I&rsquo;m going through using Django (1.2) coming from Rails to maintain and extend a legacy web app.  Generally I find Django more limited and painful than the Rails equivalent.  Maybe it&rsquo;s the way we create apps or just personal preference.</p>
-
-
-
-
-<p>I think it really depends what kind of web application you&rsquo;re building as to what works out well.</p>
-
-
-
-
-<p>Most of the web apps we deploy have pretty limited usage and are closer to the prototype side of things. They are niche, custom, broadly educational-market things that have a lot of customized UI flourishes, but underneath everything are more or less standard data driven forms-type apps.</p>
-
-
-
-
-<p>The indentation of Python that some people fuss about doesn&rsquo;t bother me at all since I indent correctly anyway. Python&rsquo;s methods often feel misplaced with the wrong objects to me, though.</p>
-
-
-
-
-<p>The Ruby &lsquo;end&rsquo; statements take a bit more space but Ruby optimizes in other ways such as with blocks and things that make the code shorter in other ways.  It&rsquo;s more or less a wash as far as I can tell for code brevity.</p>
-
-
-
-
-<p>A lot of people I know and respect love Python and Django.  I can&rsquo;t tell them they&rsquo;re wrong, but I&rsquo;m personally much more productive in Ruby even after getting used to Python for a number of months.</p>
-
-
-
-
-<p>Python performance is better than Ruby&rsquo;s, but Rails 3.1/Ruby 1.9.2 feels much faster than previous older versions of Ruby and Rails to me.</p>
-
-
-
-
-<p>I don&rsquo;t think there is a clear winner for all situations in the Ruby vs. Python and Rails vs. Django religious wars, but I know I prefer and work much better with Rails than with Django even after some significant ramp-up time.      </div></p>
 
 ]]></content>
   </entry>

@@ -26,8 +26,8 @@
   -->
 
   
-  <meta name="description" content="Broken builds suck. Breaking the build sucks. No one wants to have their work
-stopped by others&#8217; build breaks and no one wants to cause work &hellip;">
+  <meta name="description" content="There was some recent discussion on Hacker News about the 2004 article on
+&ldquo;Language Oriented Programming&rdquo; by Sergey Dmitriev. With my &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +105,134 @@ stopped by others&#8217; build breaks and no one wants to cause work &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/09/language-oriented-programming-too-much-too-fast/">Language-oriented Programming: Too Much, Too Fast</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-09T00:00:00-08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There was some <a href="http://news.ycombinator.com/item?id=452919">recent discussion on Hacker News</a> about the <a href="http://www.onboard.jetbrains.com/is1/articles/04/10/lop/index.html">2004 article on
+&ldquo;Language Oriented Programming&rdquo;</a> by <a href="http://www.sergeydmitriev.com/">Sergey Dmitriev</a>. With my growing
+interest in programming languages, this article, and the pending release of
+<a href="http://www.jetbrains.com/mps/index.html">JetBrain&rsquo;s Meta Programming System</a>, I have been thinking a lot about the
+future of programming.</p>
+
+<p>As Sergey points out, MPS is not the first entry into this paradigm of software
+development. <a href="http://en.wikipedia.org/wiki/Intentional_programming">Intentional Programming</a> was being <a href="http://www.youtube.com/watch?v=tSnnfUj1XCQ">demonstrated by Microsoft
+Research</a> as early as 2000. Wikipedia lists several implementations of the
+<a href="http://en.wikipedia.org/wiki/Language-oriented_programming">language-oriented programming</a> concept. (OK, that is enough links for now!)
+Sadly, none of these systems have been met with wide spread success. Despite my
+unlimited respect for the JetBrains team and love of their products &mdash;
+especially Resharper &mdash; I expect MPS to fail to achieve critical mass. I don&rsquo;t
+think many programmers would disagree. It&rsquo;s just too much, too fast.</p>
+
+<p>Software development needs to evolve, not start anew. If you change too much at
+once, the common developer simply won&rsquo;t accept it. Language designers are still
+re-inventing Lisp piece by piece in an effort to make sense of all the
+different concepts for <a href="http://www.nikhilk.net/Personas.aspx">Mort</a>. In order to improve adoption of
+language-oriented programming concepts, the critical path must be identified
+and the programming community must be lead down that path one step at a time.</p>
+
+<p>I believe that the first stepping stone is the box editor.</p>
+
+<p>Both MPS and Intentional Programming provide a visual tree of boxes editor and
+store the abstract syntax tree in a sort of source code database. Both of these
+concepts are critical to power of language-oriented programming, but changing
+the storage of source code is simply too radical of a change. Well, actually,
+source code is routinely stored in databases for IDE features, but the
+authoritative storage always remains text files. All of a programmers most
+trusted tools operate at the string level and it is simply impractical to throw
+everything out at once.</p>
+
+<p>This is why I propose the creation of a new editor which uses an abstract
+syntax tree box editing model, but preserves the source as text. This editor
+would have to play nice with other developers who are using traditional text
+editors. It should be possible for a single developer to try the editor for a
+day or two without another collaborator even noticing. There are clear benefits
+to a box editor even in the absence of language-oriented features. For example,
+navigation of source code by parent, child, or sibling relationships instead of
+by word or by line. Advanced renders can be used to layout math expressions or
+to show a referenced image file in a comment.</p>
+
+<p>Editors are a religion, start a new one. If some box editor becomes popular
+enough, other tools would spring up around them. To help the process, the
+editor should have well exposed extension and composition mechanisms. For
+example, it should be trivially easy to add new renderers for various nodes. It
+should be equally trivial to utilize the abstract syntax tree system to create
+stand alone code analysis tools.</p>
+
+<p>If box editors garner enough of a following, then the language-oriented
+programming advocates can seek the next stepping stone.</p>
+
+<h2>Imported Comments</h2>
+
+<h3>Shawn Presser</h3>
+
+<blockquote><p>&ldquo;I believe that the first stepping stone is the box editor.&rdquo;</p></blockquote>
+
+<p>I went through this phase too.  You&rsquo;ll eventually realize that visual editors
+are simply less efficient than text editors for programming purposes.  The
+boxes convey less meaning than symbols in a text editor.  The boxes and
+connections are also symbols, but they take up far more screen space than text,
+so you see much less code simultaneously, which makes the box editor less
+efficient.  Also, there aren&rsquo;t usually restrictions on the layout of the boxes,
+so it&rsquo;s very hard to follow the &ldquo;flow&rdquo; of code in a visual editor.  In a text
+editor, the flow of code within a function is at least mostly linear (left to
+right, top down).</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>I&rsquo;m not talking about &ldquo;boxes and connections&rdquo; I&rsquo;m talking about representing
+the actual code blocks. Take a look at this tutorial:
+<a href="http://www.jetbrains.com/mps/docs/tutorial.html">http://www.jetbrains.com/mps/docs/tutorial.html</a></p>
+
+<h3>warjan</h3>
+
+<p>I think you are right saying it is too much. Especially application developer
+might find MPS to be too much for achieving common programming task, but for
+library/frameworks and DSL creators it is IMHO very valuable proposal. It could
+be also good for providing DSL for clients to cusotmize products.</p>
+
+<h3>Brandon Bloom</h3>
+
+<p>&ldquo;good for providing DSL for clients to cusotmize products&rdquo;</p>
+
+<p>Maybe if your clients are hardcore engineers, but in general asking clients to
+write code is a tough value proposition.</p>
+
+<p>However, let&rsquo;s assume your clients are hardcore engineers. Not only does MPS
+ask them to learn a DSL, but it is also asking them to learn a new editor.</p>
+
+<p>One step at a time.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -860,52 +988,6 @@ by APIs. Your users will love you for it.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/08/18/computers-are-everywhere-you-no-longer-have-an-excuse/">Computers Are Everywhere, You No Longer Have an Excuse</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-18T00:00:00-07:00" pubdate data-updated="true">Aug 18<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I work in an environment full of brilliant, technically minded people. Try as I
-might, sometimes I simply forget how little most people know about computers.</p>
-
-<p>In IKEA, I saw a odd wire metal rack which mounted to the side of a desk and
-held a computer tower suspended off the ground. Why anyone would attach such an
-ugly thing to a desk is beyond me. What is wrong with the computer being four
-inches lower, on the ground?</p>
-
-<p>Moments later, an young employee pointed to the tower rack and referred to it
-as a &ldquo;CPU holder&rdquo;. Never mind that she was actually trying to sell this silly
-thing to someone, she just called a car engine by the name of a fuel injector!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -923,6 +1005,10 @@ thing to someone, she just called a car engine by the name of a fuel injector!</
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/07/05/structural-and-relational-data/">Structural and Relational Data</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/05/24/particles-and-waves/">Particles and Waves</a>
       </li>
     
@@ -936,10 +1022,6 @@ thing to someone, she just called a car engine by the name of a fuel injector!</
     
       <li class="post">
         <a href="/blog/2014/01/08/unsound-and-incomplete/">Unsound and Incomplete</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/26/slurp-and-spit/">Slurp & Spit</a>
       </li>
     
   </ul>
