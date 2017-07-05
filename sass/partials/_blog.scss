@@ -66,6 +66,16 @@ article {
       }
     }
   }
+  table {
+    margin-bottom: 16px;
+    th {
+      font-weight: bold;
+    }
+    th, td {
+      border: 1px solid #cfcfcf;
+      padding: 0px 12px;
+    }
+  }
   > footer {
     padding-bottom: 2.5em;
     margin-top: 2em;
