@@ -18,22 +18,21 @@ Please don't hesitate to reach out.
 * Success stories (or other postmortems) from folks who use my code
   * If you use or fork my project, I'd love to hear what you're up to!
 * Technical discussions regarding topics I've expressed interest in
-* Consulting Opportunities
+* Consulting opportunities
 
 ### Messages That Will Be Ignored
 
-Or that will receive a snarky reply...
-
 * Third-party or otherwise impersonal recruiters
-* Non-technical persons seeking a CTO or other senior engineer
+* Non-technical founders seeking a CTO
 
 ## Feedback Channels
 
 ### Email
 
-Don't hesitate to email blog@brandonbloom.name if you have a question or want
-to communicate in more depth about any of the topics here on my site. I'm
-always happy to talk with practitioners and students alike.
+Don't hesitate to email [blog@brandonbloom.name](mailto:blog@brandonbloom.name)
+if you have a question or want to communicate in more depth about any of the
+topics here on my site. I'm always happy to talk with practitioners and
+students alike.
 
 ### GitHub
 
@@ -62,7 +61,8 @@ and investigate referrers on a regular basis.
 ### LinkedIn
 
 Please do not expect to have a discussion with me via LinkedIn. I'll happily
-accept any and all connection requests, but I can't promise I'll read them.
+accept connection requests from anyone I've interacted with, but I can't
+promise I'll read messages there. Cold connection requests will be rejected.
 
 [1]: https://github.com/brandonbloom
 [2]: https://github.com/brandonbloom/brandonbloom.github.io/tree/source/source/_posts
