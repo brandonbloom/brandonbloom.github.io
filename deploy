@@ -1,7 +1,0 @@
-#!/bin/bash
-
-set -e
-
-git push
-bundle exec rake generate
-bundle exec rake deploy
